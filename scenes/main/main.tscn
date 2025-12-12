@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjr78tl586o87"]
+[gd_scene load_steps=13 format=3 uid="uid://bjr78tl586o87"]
 
-[ext_resource type="PackedScene" uid="uid://bcew3rnsj8584" path="res://scenes/ui/screen.tscn" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://d4kghif8h5k10" path="res://scenes/ui/screen.gd" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://bypm1v6132kxr" path="res://scenes/ui/main_ui.tscn" id="2_k2fmo"]
+[ext_resource type="Shader" uid="uid://cky8auk2rsgs2" path="res://shaders/crt.gdshader" id="2_l3cfh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hyk8p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,17 +17,36 @@ sky = SubResource("Sky_iuonh")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iuonh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_l3cfh"]
 viewport_path = NodePath("Screen")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2fmo"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_iuonh")
+albedo_texture = SubResource("ViewportTexture_l3cfh")
 
 [sub_resource type="QuadMesh" id="QuadMesh_vom5j"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_k2fmo")
 size = Vector2(1.77778, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k2fmo"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6q06x"]
+viewport_path = NodePath("Screen/Text/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow5a4"]
+resource_local_to_scene = true
+shader = ExtResource("2_l3cfh")
+shader_parameter/tex = SubResource("ViewportTexture_6q06x")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.498000023655
 
 [node name="Main" type="Node3D"]
 
@@ -39,8 +60,39 @@ environment = SubResource("Environment_k2fmo")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0559022e-10, -3.0559022e-10, 0.65)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_vom5j")
-skeleton = NodePath("../Camera3D")
+[node name="Area3D" type="Area3D" parent="."]
+monitorable = false
 
-[node name="Screen" parent="." instance=ExtResource("1_hyk8p")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("QuadMesh_vom5j")
+skeleton = NodePath("../../Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_k2fmo")
+
+[node name="Screen" type="SubViewport" parent="." node_paths=PackedStringArray("screen_mesh", "subviewport")]
+size = Vector2i(576, 324)
+script = ExtResource("2_iuonh")
+screen_mesh = NodePath("../Area3D/MeshInstance3D")
+subviewport = NodePath("Text/SubViewport")
+
+[node name="Text" type="CanvasLayer" parent="Screen"]
+
+[node name="CRTLayer" type="CanvasLayer" parent="Screen/Text"]
+
+[node name="ColorRect" type="ColorRect" parent="Screen/Text/CRTLayer"]
+material = SubResource("ShaderMaterial_ow5a4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Screen/Text"]
+size = Vector2i(1728, 972)
+
+[node name="MainUI" parent="Screen/Text/SubViewport" instance=ExtResource("2_k2fmo")]
+
+[connection signal="input_event" from="Area3D" to="Screen" method="_on_area_3d_input_event"]

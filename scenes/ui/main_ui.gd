@@ -25,9 +25,6 @@ func _on_Button_button_up():
 	
 	gui.add_child(window)
 
-func _input(event: InputEvent) -> void:
-	if par:
-		par.push_input(event)
 
 func _on_Alert_button_up():
 	var dialog = AcceptDialog.new()

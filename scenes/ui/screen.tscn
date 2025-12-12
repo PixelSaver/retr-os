@@ -1,8 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcew3rnsj8584"]
+[gd_scene load_steps=6 format=3 uid="uid://bcew3rnsj8584"]
 
-[ext_resource type="PackedScene" uid="uid://wahrwnkryrrp" path="res://scenes/ui/screen_texture.tscn" id="1_7yo1e"]
+[ext_resource type="Script" uid="uid://d4kghif8h5k10" path="res://scenes/ui/screen.gd" id="1_pr1cc"]
+[ext_resource type="Shader" uid="uid://cky8auk2rsgs2" path="res://shaders/crt.gdshader" id="2_44dvx"]
+[ext_resource type="PackedScene" uid="uid://bypm1v6132kxr" path="res://scenes/ui/main_ui.tscn" id="4_7laqs"]
 
-[node name="Screen" type="SubViewport"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_pr1cc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7laqs"]
+resource_local_to_scene = true
+shader = ExtResource("2_44dvx")
+shader_parameter/tex = SubResource("ViewportTexture_pr1cc")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.498000023655
+
+[node name="Screen" type="SubViewport" node_paths=PackedStringArray("subviewport")]
 size = Vector2i(432, 243)
+script = ExtResource("1_pr1cc")
+subviewport = NodePath("Text/SubViewport")
 
-[node name="ScreenTexture" parent="." instance=ExtResource("1_7yo1e")]
+[node name="Text" type="CanvasLayer" parent="."]
+
+[node name="CRTLayer" type="CanvasLayer" parent="Text"]
+
+[node name="ColorRect" type="ColorRect" parent="Text/CRTLayer"]
+material = SubResource("ShaderMaterial_7laqs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Text"]
+size = Vector2i(1728, 972)
+
+[node name="MainUI" parent="Text/SubViewport" instance=ExtResource("4_7laqs")]
