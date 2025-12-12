@@ -1,17 +1,26 @@
-extends CanvasLayer
-class_name MainUI
+extends Node
 
-var par : SubViewport
-@export var main_menu : Control
-@export var computer_ui : Control
-@onready var theme: Control = $Theme
-@onready var gui = $Theme/GUI
+@onready var themesCtrl = $GUI/TaskBar/Themes
+@onready var gui = $GUI
 @onready var controlsDialog = preload ("res://assets/Themes/TestDialog.tscn")
 
+var themes = {
+	0: ThemeItem.new("Default", "."),
+	1: ThemeItem.new("Classic 3.11", "res://Themes/Classic311/Classic311.tres"),
+	2: ThemeItem.new("Classic 95", "res://Themes/Classic95/Classic95.tres"),
+	3: ThemeItem.new("Modern 11 (WIP)", "res://Themes/Modern11/Modern11.tres")
+}
 
 func _ready():
-	Global.main_ui = self
-	par = get_parent() as SubViewport
+	for key in themes:
+		var theme = themes[key]
+		themesCtrl.add_item(theme.name, key)
+	changeTheme(2) # pre-select Classic 95
+	#changeTheme(3) # pre-select Modern 11
+
+func changeTheme(index):
+	themesCtrl.select(index) 
+	_on_Themes_item_selected(index)
 
 func _on_Button_button_up():
 	var window = Window.new()
@@ -25,9 +34,21 @@ func _on_Button_button_up():
 	
 	gui.add_child(window)
 
-func _input(event: InputEvent) -> void:
-	if par:
-		par.push_input(event)
+class ThemeItem:
+	var name = ""
+	var source = ""
+	
+	func _init(name, source):
+		self.name = name;
+		self.source = source;
+
+
+func _on_Themes_item_selected(index):
+	var themeResource = themes[index].source
+	if themeResource == ".":
+		gui.theme = null
+	else:
+		gui.theme = load(themeResource)
 
 func _on_Alert_button_up():
 	var dialog = AcceptDialog.new()

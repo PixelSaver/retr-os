@@ -36,4 +36,4 @@ metadata/_edit_use_anchors_ = true
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1728, 972)
 
-[node name="CanvasLayer" parent="SubViewport" instance=ExtResource("2_ac5cb")]
+[node name="MainUI" parent="SubViewport" instance=ExtResource("2_ac5cb")]

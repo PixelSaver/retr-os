@@ -1,0 +1,9 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cusbc8d151ul"]
+
+[ext_resource type="Texture2D" uid="uid://0byxq78ynmnx" path="res://assets/Themes/Classic95/Styles/Bars/Scroller.png" id="1_qy5ga"]
+
+[resource]
+texture = ExtResource("1_qy5ga")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 2, 2)
