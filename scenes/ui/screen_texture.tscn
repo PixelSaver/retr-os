@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://wahrwnkryrrp"]
+
+[ext_resource type="Shader" uid="uid://cky8auk2rsgs2" path="res://shaders/crt.gdshader" id="1_6xqf4"]
+[ext_resource type="PackedScene" uid="uid://bypm1v6132kxr" path="res://scenes/ui/main_ui.tscn" id="2_ac5cb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6xqf4"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rqtwt"]
+resource_local_to_scene = true
+shader = ExtResource("1_6xqf4")
+shader_parameter/tex = SubResource("ViewportTexture_6xqf4")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.498000023655
+
+[node name="ScreenTexture" type="CanvasLayer"]
+
+[node name="CRTLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CRTLayer"]
+material = SubResource("ShaderMaterial_rqtwt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1728, 972)
+
+[node name="CanvasLayer" parent="SubViewport" instance=ExtResource("2_ac5cb")]
