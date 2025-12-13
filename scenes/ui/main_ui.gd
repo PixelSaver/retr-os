@@ -9,8 +9,6 @@ var par : SubViewport
 @onready var controlsDialog = preload ("res://assets/Themes/TestDialog.tscn")
 @onready var os_window_scene = preload("res://scenes/ui/window/os_window.tscn")
 
-
-
 func _ready():
 	Global.main_ui = self
 	par = get_parent() as SubViewport

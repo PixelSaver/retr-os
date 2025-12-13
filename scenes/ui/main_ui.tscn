@@ -16,6 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_l8t6x")
 
 [node name="MainMenu" type="Control" parent="Theme"]
 visible = false

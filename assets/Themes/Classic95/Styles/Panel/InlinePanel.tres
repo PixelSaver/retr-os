@@ -1,9 +1,9 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://ca8dgfkttda6q"]
 
-[ext_resource type="Texture2D" uid="uid://dayp4wyar0ep7" path="res://Themes/Classic95/Styles/Panel/InlinePanel.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c4wg6hsacmdxn" path="res://assets/Themes/Classic95/Styles/Panel/Panel.png" id="1_fj7uk"]
 
 [resource]
-texture = ExtResource("1")
+texture = ExtResource("1_fj7uk")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0

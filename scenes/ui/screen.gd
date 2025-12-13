@@ -44,9 +44,6 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 		new_event.global_position = screen_pos
 	if new_event is InputEventMouseMotion:
 		new_event.relative /= 2
-		# For motion events, the 'relative' property is usually calculated
-		# based on the difference from the last frame. For simplicity here, 
-		# we can skip setting 'relative' or just set it to zero for now.
 		
 	# Pushing the event sends it directly to the UI Control nodes
 	subviewport.push_input(new_event)

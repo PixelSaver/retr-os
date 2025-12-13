@@ -254,7 +254,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_title_bar_gui_input(event: InputEvent) -> void:
 	#if not is_resizing:
-	title_bar.mouse_default_cursor_shape = Control.CURSOR_DRAG
+	title_bar.grab_focus()
 	if event.is_action_pressed("l_click"):
 		bring_to_front()
 	
@@ -265,9 +265,12 @@ func _on_title_bar_gui_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _on_title_bar_hover():
+	title_bar.mouse_default_cursor_shape = Control.CURSOR_DRAG
 	if is_resizing or is_dragging: return
 	
 func _on_title_bar_unhover():
+	title_bar.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	title_bar.release_focus()
 	if is_resizing or is_dragging: return
 
 func _on_window_button_pressed(but:WindowButton):
