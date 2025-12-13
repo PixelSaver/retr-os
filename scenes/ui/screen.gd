@@ -6,8 +6,8 @@ class_name Screen
 
 
 func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	if not (event is InputEventMouseButton or event is InputEventMouseMotion):
-		return
+	#if not (event is InputEventMouseButton or event is InputEventMouseMotion):
+		#return
 
 	# 1. Translate 3D World Position to Local Quad UV Coordinates (0.0 to 1.0)
 	

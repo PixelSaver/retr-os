@@ -13,9 +13,9 @@ func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_MOUSE_ENTER:
 			print("Enter")
-			grab_focus()
+			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			self.modulate = Color(1.2, 1.2, 1.2)
 		NOTIFICATION_MOUSE_EXIT:
 			print("Exit")
-			release_focus()
+			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			self.modulate = Color(1.0, 1.0, 1.0)

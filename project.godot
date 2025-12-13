@@ -26,6 +26,10 @@ window/size/viewport_width=1728
 window/size/viewport_height=972
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
 [input]
 
 exit={
