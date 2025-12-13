@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://vww78vwdgyeb" path="res://scenes/ui/main_ui.gd" id="1_hcnxy"]
 [ext_resource type="Texture2D" uid="uid://dvnq10t376dh4" path="res://icon.svg" id="1_hnesk"]
 [ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="2_l8t6x"]
-[ext_resource type="Script" uid="uid://jpf1hhx6fl7b" path="res://scenes/ui/gui.gd" id="4_travt"]
+[ext_resource type="PackedScene" uid="uid://cdrxnq8rrjsll" path="res://scenes/ui/window/os_window.tscn" id="4_travt"]
 
 [node name="MainUI" type="CanvasLayer"]
 script = ExtResource("1_hcnxy")
@@ -72,7 +72,6 @@ offset_bottom = 64.0
 grow_horizontal = 2
 mouse_filter = 2
 theme = ExtResource("2_l8t6x")
-script = ExtResource("4_travt")
 
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
 layout_mode = 1
@@ -94,18 +93,30 @@ mouse_filter = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Button" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
+[node name="Controls" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
 layout_mode = 2
 text = "Controls"
 
-[node name="Button2" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
+[node name="Alert" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
 layout_mode = 2
 text = "Alert Dialog"
 
-[node name="Button3" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
+[node name="Confirm" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
 layout_mode = 2
 text = "Confirm Dialog"
 
-[node name="Button4" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
+[node name="File" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
 layout_mode = 2
 text = "File Dialog"
+
+[node name="OSWindow" parent="Theme/GUI" instance=ExtResource("4_travt")]
+layout_mode = 1
+offset_left = 0.6666667
+offset_top = 115.66667
+offset_right = -215.09067
+offset_bottom = 115.66667
+
+[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Controls" to="." method="_on_Button_button_pressed"]
+[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Alert" to="." method="_on_alert_pressed"]
+[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/File" to="." method="_on_file_pressed"]

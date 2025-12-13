@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=70 format=3 uid="uid://drrt0lg0vdcoc"]
+[gd_resource type="Theme" load_steps=72 format=3 uid="uid://drrt0lg0vdcoc"]
 
 [ext_resource type="StyleBox" uid="uid://cqveew3fhjoni" path="res://assets/Themes/Classic95/Styles/Button/Disabled.tres" id="1_gh6ca"]
 [ext_resource type="StyleBox" uid="uid://dygx7je0yh5k" path="res://assets/Themes/Classic95/Styles/Button/Focused.tres" id="2_gpp0l"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dj203sei7n3t0" path="res://assets/Themes/Classic95/Styles/Bars/Right.png" id="20_j03ad"]
 [ext_resource type="Texture2D" uid="uid://f14vdddmi2r5" path="res://assets/Themes/Classic95/Styles/Bars/RightPressed.png" id="21_r20c1"]
 [ext_resource type="StyleBox" uid="uid://cdry8rppufl83" path="res://assets/Themes/Classic95/Styles/Bars/HGrabber.tres" id="22_ojo6h"]
-[ext_resource type="StyleBox" path="res://assets/Themes/Classic95/Styles/Bars/Scroller.tres" id="23_hbcde"]
+[ext_resource type="StyleBox" uid="uid://cusbc8d151ul" path="res://assets/Themes/Classic95/Styles/Bars/Scroller.tres" id="23_hbcde"]
 [ext_resource type="StyleBox" path="res://assets/Themes/Classic95/Styles/Menu/HSeparator.tres" id="24_cp433"]
 [ext_resource type="Texture2D" uid="uid://c1ovvhv76uuk2" path="res://assets/Themes/Classic95/Styles/Bars/HGrabber.png" id="25_mlxsd"]
 [ext_resource type="Texture2D" uid="uid://yvslneak2bkk" path="res://assets/Themes/Classic95/Styles/Bars/HGrabberD.png" id="26_40xj0"]
@@ -91,6 +91,24 @@ axis_stretch_vertical = 1
 region_rect = Rect2(0, 0, 5, 5)
 
 [sub_resource type="StyleBoxEmpty" id="3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gh6ca"]
+load_path = "res://.godot/imported/Window.png-b1e73eb5304e336b6e5323a4f7bb9293.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gpp0l"]
+content_margin_top = 2.0
+content_margin_right = 3.0
+texture = SubResource("CompressedTexture2D_gh6ca")
+texture_margin_left = 4.0
+texture_margin_top = 22.0
+texture_margin_right = 4.0
+texture_margin_bottom = 3.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 10, 25)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqjei"]
 bg_color = Color(0.761719, 0.777344, 0.792969, 1)
@@ -228,6 +246,8 @@ LineEdit/colors/selection_color = Color(0, 0, 0.501961, 1)
 LineEdit/styles/focus = SubResource("3")
 LineEdit/styles/normal = ExtResource("28_bigxw")
 LineEdit/styles/read_only = ExtResource("29_udw03")
+OSWindow/base_type = &"Panel"
+OSWindow/styles/panel = SubResource("StyleBoxTexture_gpp0l")
 OptionButton/constants/arrow_margin = 6
 OptionButton/icons/arrow = ExtResource("30_5ylan")
 OptionButton/styles/disabled = ExtResource("31_b32cl")

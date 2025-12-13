@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dk2vibvbj7gq6" path="res://assets/Themes/Classic95/Styles/Bars/LeftPressed.png" id="36"]
 [ext_resource type="Texture2D" uid="uid://dj203sei7n3t0" path="res://assets/Themes/Classic95/Styles/Bars/Right.png" id="37"]
 [ext_resource type="Texture2D" uid="uid://f14vdddmi2r5" path="res://assets/Themes/Classic95/Styles/Bars/RightPressed.png" id="38"]
-[ext_resource type="StyleBox" path="res://assets/Themes/Classic95/Styles/Bars/Scroller.tres" id="39"]
+[ext_resource type="StyleBox" uid="uid://cusbc8d151ul" path="res://assets/Themes/Classic95/Styles/Bars/Scroller.tres" id="39"]
 [ext_resource type="StyleBox" uid="uid://cdry8rppufl83" path="res://assets/Themes/Classic95/Styles/Bars/HGrabber.tres" id="40"]
 [ext_resource type="Texture2D" uid="uid://7c8ooubhqfjr" path="res://assets/Themes/Classic95/Styles/Bars/UpPressed.png" id="41"]
 [ext_resource type="Texture2D" uid="uid://yibo0fxfp20k" path="res://assets/Themes/Classic95/Styles/Bars/DownPressed.png" id="42"]

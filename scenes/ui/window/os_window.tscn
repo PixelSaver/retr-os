@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdrxnq8rrjsll"]
+
+[ext_resource type="Script" uid="uid://bxaoa8qflndh0" path="res://scenes/ui/window/os_window.gd" id="1_e0mlt"]
+[ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_nolm4"]
+[ext_resource type="Script" uid="uid://0gm0j086ky1t" path="res://scenes/ui/window/title_bar.gd" id="3_2g2di"]
+[ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_d5y26"]
+[ext_resource type="Texture2D" uid="uid://dk0pa34w8su3u" path="res://assets/Themes/Classic95/Styles/Window/CloseBtn.png" id="5_h5i7h"]
+[ext_resource type="Texture2D" uid="uid://bm5f8jqi8i8hb" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnH.png" id="6_xcgly"]
+[ext_resource type="Texture2D" uid="uid://c5q3bccdc35i" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnPressed.png" id="7_j5pqg"]
+
+[node name="OSWindow" type="PanelContainer" node_paths=PackedStringArray("button_array")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1445.0
+offset_bottom = -705.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nolm4")
+theme_type_variation = &"OSWindow"
+script = ExtResource("1_e0mlt")
+button_array = [NodePath("VBoxContainer/TitleBar/Minimize"), NodePath("VBoxContainer/TitleBar/Fullscreen"), NodePath("VBoxContainer/TitleBar/Close")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 0
+alignment = 2
+script = ExtResource("3_2g2di")
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer/TitleBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Title"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Space" type="Control" parent="VBoxContainer/TitleBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Minimize" type="Button" parent="VBoxContainer/TitleBar"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+script = ExtResource("4_d5y26")
+idle_texture = ExtResource("5_h5i7h")
+hover_texture = ExtResource("6_xcgly")
+pressed_texture = ExtResource("7_j5pqg")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TitleBar/Minimize"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_h5i7h")
+
+[node name="Fullscreen" type="Button" parent="VBoxContainer/TitleBar"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+script = ExtResource("4_d5y26")
+idle_texture = ExtResource("5_h5i7h")
+hover_texture = ExtResource("6_xcgly")
+pressed_texture = ExtResource("7_j5pqg")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TitleBar/Fullscreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_h5i7h")
+
+[node name="Close" type="Button" parent="VBoxContainer/TitleBar"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+script = ExtResource("4_d5y26")
+idle_texture = ExtResource("5_h5i7h")
+hover_texture = ExtResource("6_xcgly")
+pressed_texture = ExtResource("7_j5pqg")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TitleBar/Close"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_h5i7h")

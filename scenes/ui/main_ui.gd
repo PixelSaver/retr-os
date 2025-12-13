@@ -13,7 +13,7 @@ func _ready():
 	Global.main_ui = self
 	par = get_parent() as SubViewport
 
-func _on_Button_button_up():
+func _on_Button_button_pressed() -> void:
 	var window = Window.new()
 	window.title = "Controls Demo"	
 	window.initial_position = Window.WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN
@@ -26,7 +26,7 @@ func _on_Button_button_up():
 	gui.add_child(window)
 
 
-func _on_Alert_button_up():
+func _on_alert_pressed() -> void:
 	var dialog = AcceptDialog.new()
 	dialog.title = "Alert"
 	dialog.initial_position = Window.WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN
@@ -38,7 +38,7 @@ func _on_Alert_button_up():
 	gui.add_child(dialog)
 
 
-func _on_Confirm_button_up():
+func _on_confirm_pressed() -> void:
 	var dialog = ConfirmationDialog.new()
 	dialog.title = "Please confirm"
 	dialog.initial_position = Window.WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN
@@ -50,7 +50,7 @@ func _on_Confirm_button_up():
 	gui.add_child(dialog)
 
 
-func _on_File_button_up():
+func _on_file_pressed() -> void:
 	var dialog = FileDialog.new()
 	dialog.title = "Save a file"
 	dialog.initial_position = Window.WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN
@@ -60,6 +60,6 @@ func _on_File_button_up():
 	dialog.visible = true
 	gui.add_child(dialog)
 	
-func putOnTop(control):
+func put_on_top(control):
 	var parent = control.get_parent()
 	parent.move_child(control, parent.get_child_count())
