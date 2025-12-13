@@ -18,7 +18,7 @@ func _ready():
 func _on_Button_button_pressed() -> void:
 	var inst := os_window_scene.instantiate() as OSWindow
 	add_child(inst)
-	inst.custom_init(Vector2(10,10))
+	inst.custom_init(Vector2(100,100))
 
 
 func _on_alert_pressed() -> void:

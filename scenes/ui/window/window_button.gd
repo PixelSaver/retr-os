@@ -3,6 +3,9 @@ class_name WindowButton
 
 signal window_button_pressed(button:WindowButton)
 
+func _ready() -> void:
+	self.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
 func _on_pressed() -> void:
 	window_button_pressed.emit(self)
 
