@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bypm1v6132kxr"]
+[gd_scene load_steps=4 format=3 uid="uid://bypm1v6132kxr"]
 
 [ext_resource type="Script" uid="uid://vww78vwdgyeb" path="res://scenes/ui/main_ui.gd" id="1_hcnxy"]
 [ext_resource type="Texture2D" uid="uid://dvnq10t376dh4" path="res://icon.svg" id="1_hnesk"]
 [ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="2_l8t6x"]
-[ext_resource type="PackedScene" uid="uid://cdrxnq8rrjsll" path="res://scenes/ui/window/os_window.tscn" id="4_travt"]
 
 [node name="MainUI" type="CanvasLayer"]
 script = ExtResource("1_hcnxy")
@@ -108,13 +107,6 @@ text = "Confirm Dialog"
 [node name="File" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
 layout_mode = 2
 text = "File Dialog"
-
-[node name="OSWindow" parent="Theme/GUI" instance=ExtResource("4_travt")]
-layout_mode = 1
-offset_left = 0.6666667
-offset_top = 115.66667
-offset_right = -215.09067
-offset_bottom = 115.66667
 
 [connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Controls" to="." method="_on_Button_button_pressed"]
 [connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Alert" to="." method="_on_alert_pressed"]

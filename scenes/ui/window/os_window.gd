@@ -11,6 +11,11 @@ var is_fullscreen := false
 ## Stores the window's position and size before it was minimized or fullscreened
 var restored_rect := Rect2()
 
+func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1) -> void:
+	size = rect_size
+	if init_pos == Vector2.ONE*-1:
+		self.position = get_viewport_rect().size/2 - size/2.
+
 func _ready() -> void:
 	if title_bar:
 		title_bar.gui_input.connect(_on_title_bar_gui_input)

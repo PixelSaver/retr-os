@@ -4,14 +4,12 @@
 [ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_nolm4"]
 [ext_resource type="Script" uid="uid://0gm0j086ky1t" path="res://scenes/ui/window/title_bar.gd" id="3_2g2di"]
 [ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_d5y26"]
-[ext_resource type="Texture2D" uid="uid://dk0pa34w8su3u" path="res://assets/Themes/Classic95/Styles/Window/CloseBtn.png" id="5_h5i7h"]
-[ext_resource type="Texture2D" uid="uid://bm5f8jqi8i8hb" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnH.png" id="6_xcgly"]
-[ext_resource type="Texture2D" uid="uid://c5q3bccdc35i" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnPressed.png" id="7_j5pqg"]
+[ext_resource type="Texture2D" uid="uid://blcde5h03l6bc" path="res://assets/98.css/icon/minimize.svg" id="4_h5i7h"]
+[ext_resource type="Texture2D" uid="uid://1eeqddd8v3f2" path="res://assets/98.css/icon/maximize.svg" id="6_xcgly"]
+[ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="7_j5pqg"]
 
 [node name="OSWindow" type="PanelContainer" node_paths=PackedStringArray("button_array")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
 offset_right = -1445.0
 offset_bottom = -705.0
 grow_horizontal = 2
@@ -50,50 +48,24 @@ size_flags_horizontal = 3
 [node name="Minimize" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
+icon = ExtResource("4_h5i7h")
+icon_alignment = 1
 script = ExtResource("4_d5y26")
-idle_texture = ExtResource("5_h5i7h")
-hover_texture = ExtResource("6_xcgly")
-pressed_texture = ExtResource("7_j5pqg")
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TitleBar/Minimize"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_h5i7h")
 
 [node name="Fullscreen" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
+icon = ExtResource("6_xcgly")
+icon_alignment = 1
 script = ExtResource("4_d5y26")
-idle_texture = ExtResource("5_h5i7h")
-hover_texture = ExtResource("6_xcgly")
-pressed_texture = ExtResource("7_j5pqg")
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TitleBar/Fullscreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_h5i7h")
 
 [node name="Close" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
+icon = ExtResource("7_j5pqg")
+icon_alignment = 1
 script = ExtResource("4_d5y26")
-idle_texture = ExtResource("5_h5i7h")
-hover_texture = ExtResource("6_xcgly")
-pressed_texture = ExtResource("7_j5pqg")
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TitleBar/Close"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_h5i7h")
+[connection signal="pressed" from="VBoxContainer/TitleBar/Minimize" to="VBoxContainer/TitleBar/Minimize" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TitleBar/Fullscreen" to="VBoxContainer/TitleBar/Fullscreen" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/TitleBar/Close" to="VBoxContainer/TitleBar/Close" method="_on_pressed"]
