@@ -91,7 +91,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="SubViewport" type="SubViewport" parent="Screen/Text"]
-size = Vector2i(1728, 972)
+size = Vector2i(864, 486)
 
 [node name="MainUI" parent="Screen/Text/SubViewport" instance=ExtResource("2_k2fmo")]
 

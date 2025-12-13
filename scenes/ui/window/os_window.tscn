@@ -8,9 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="7_j5pqg"]
 
 [node name="OSWindow" type="PanelContainer" node_paths=PackedStringArray("button_array")]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.114
+anchor_right = 0.592
+anchor_bottom = 0.835
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -48,6 +50,7 @@ mouse_filter = 1
 [node name="Minimize" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 icon = ExtResource("4_h5i7h")
 icon_alignment = 1
 script = ExtResource("4_d5y26")
@@ -55,6 +58,7 @@ script = ExtResource("4_d5y26")
 [node name="Fullscreen" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 icon = ExtResource("6_xcgly")
 icon_alignment = 1
 script = ExtResource("4_d5y26")
@@ -62,6 +66,7 @@ script = ExtResource("4_d5y26")
 [node name="Close" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 icon = ExtResource("7_j5pqg")
 icon_alignment = 1
 script = ExtResource("4_d5y26")

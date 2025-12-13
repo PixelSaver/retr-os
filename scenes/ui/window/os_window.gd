@@ -32,10 +32,22 @@ var is_fullscreen := false
 ## Stores the window's position and size before it was minimized or fullscreened
 var restored_rect := Rect2()
 
-func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1) -> void:
-	size = rect_size
+var held_program : Control 
+
+func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1, program=null) -> void:
+	WindowManager.all_windows.append(self)
+	if program:
+		held_program = program
+	var new_size = rect_size 
+	if new_size.x < MIN_SIZE.x:
+		new_size.x = MIN_SIZE.x
+	if new_size.y < MIN_SIZE.y:
+		new_size.y = MIN_SIZE.y
+		
 	if init_pos == Vector2.ONE*-1:
-		self.position = get_viewport_rect().size/2 - size/2.
+		self.position = get_viewport_rect().size/2 - new_size/2.
+	
+	
 
 func _ready() -> void:
 	if title_bar:
@@ -54,9 +66,9 @@ func _ready() -> void:
 	call_deferred("bring_to_front")
 
 func _process(_delta: float) -> void:
-	print("Cursor shape: %s" % Input.get_current_cursor_shape())
 	if is_dragging:
 		global_position = get_global_mouse_position() - drag_start_offset
+		global_position.y = max(global_position.y, 3)
 	elif is_resizing:
 		_handle_resizing()
 		_update_cursor_shape(active_resize_mode) 
@@ -82,8 +94,6 @@ func _gui_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			
 			return # Handled by resize, skip other clicks
-	
-
 
 func bring_to_front() -> void:
 	if get_parent():
@@ -121,7 +131,7 @@ func _apply_fullscreen_state() -> void:
 			
 		# Set to the size and position of the viewport
 		global_position = Vector2.ZERO
-		size = viewport_size
+		size = viewport_size / self.scale
 		
 		# Disable dragging while in fullscreen
 		is_dragging = false 
@@ -223,19 +233,28 @@ func _handle_resizing() -> void:
 	size = new_size
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_released("l_click"):
+	# Check for the actual left mouse button release event, regardless of which control handled the press
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		if is_dragging:
 			is_dragging = false
 			restored_rect = Rect2(global_position, size)
 			get_viewport().set_input_as_handled()
-		elif is_resizing:
+			
+		if is_resizing: # Separate check for resizing
 			is_resizing = false
 			active_resize_mode = ResizeEdge.NONE
-			_update_cursor_shape(ResizeEdge.NONE)
+			# The cursor shape needs to be updated globally.
+			# Call _gui_input to force a new cursor shape update (next _process will also update it)
+			var current_mode = _get_resize_mode(get_local_mouse_position())
+			_update_cursor_shape(current_mode) 
 			restored_rect = Rect2(global_position, size)
 			get_viewport().set_input_as_handled()
+			
+			return
 
 func _on_title_bar_gui_input(event: InputEvent) -> void:
+	#if not is_resizing:
+	title_bar.mouse_default_cursor_shape = Control.CURSOR_DRAG
 	if event.is_action_pressed("l_click"):
 		bring_to_front()
 	

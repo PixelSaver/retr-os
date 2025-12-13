@@ -24,7 +24,7 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 	# Y is usually flipped for UI, so we subtract from 0.5
 	var v_coord = mesh_size.y/2. - local_click.y   # Y -> V (Height)
 	v_coord /= mesh_size.y
-	print("UV: ", str(Vector2(u_coord, v_coord)))
+	#print("UV: ", str(Vector2(u_coord, v_coord)))
 	# Check if the coordinates are within the quad's bounds (e.g., -0.5 to 0.5)
 	if u_coord < 0.0 or u_coord > 1.0 or v_coord < 0.0 or v_coord > 1.0:
 		return
@@ -40,9 +40,10 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 	var new_event = event.duplicate()
 	
 	if new_event is InputEventMouse:
-		new_event.position = screen_pos
+		new_event.position = screen_pos 
 		new_event.global_position = screen_pos
-		
+	if new_event is InputEventMouseMotion:
+		new_event.relative /= 2
 		# For motion events, the 'relative' property is usually calculated
 		# based on the difference from the last frame. For simplicity here, 
 		# we can skip setting 'relative' or just set it to zero for now.
