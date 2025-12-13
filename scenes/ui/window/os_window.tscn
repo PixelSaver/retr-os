@@ -1,17 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdrxnq8rrjsll"]
+[gd_scene load_steps=7 format=3 uid="uid://cdrxnq8rrjsll"]
 
 [ext_resource type="Script" uid="uid://bxaoa8qflndh0" path="res://scenes/ui/window/os_window.gd" id="1_e0mlt"]
 [ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_nolm4"]
-[ext_resource type="Script" uid="uid://0gm0j086ky1t" path="res://scenes/ui/window/title_bar.gd" id="3_2g2di"]
 [ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_d5y26"]
 [ext_resource type="Texture2D" uid="uid://blcde5h03l6bc" path="res://assets/98.css/icon/minimize.svg" id="4_h5i7h"]
 [ext_resource type="Texture2D" uid="uid://1eeqddd8v3f2" path="res://assets/98.css/icon/maximize.svg" id="6_xcgly"]
 [ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="7_j5pqg"]
 
 [node name="OSWindow" type="PanelContainer" node_paths=PackedStringArray("button_array")]
-anchors_preset = -1
-offset_right = -1445.0
-offset_bottom = -705.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_nolm4")
@@ -28,7 +27,6 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 mouse_filter = 0
 alignment = 2
-script = ExtResource("3_2g2di")
 
 [node name="Title" type="RichTextLabel" parent="VBoxContainer/TitleBar"]
 visible = false
