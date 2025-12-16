@@ -43,15 +43,108 @@ func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1) -> void:
 		new_size.x = MIN_SIZE.x
 	if new_size.y < MIN_SIZE.y:
 		new_size.y = MIN_SIZE.y
-		
+	
+	# Set the size
+	size = new_size
+	
+	# Set position (center if not specified)
 	if init_pos == Vector2.ONE*-1:
-		self.position = get_parent_control().get_rect().size/2 - new_size/2.
+		self.position = get_parent_control().get_rect().size/2 - new_size/2
+	else:
+		self.position = init_pos
+
+func load_program(prog: Program) -> void:
+	if held_program:
+		push_warning("OSWindow already has a program loaded. Call unload_program() first.")
+		return
 	
-func load_program(prog:Program):
-	held_program = prog 
+	held_program = prog
+	
+	# Add program to container (it will fill the available space)
 	program_container.add_child(prog)
-	prog.load_program_scene()
+	prog.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	
+	# Wait for program to be ready if needed
+	if not held_program.is_node_ready():
+		await held_program.ready
+	
+	# Update window title from program
+	_update_window_title(held_program.title)
+	
+	# Update window icon if program has one
+	if held_program.icon:
+		_update_window_icon(held_program.icon)
+	
+	# Connect to program signals for dynamic updates
+	_connect_program_signals()
+	
+	# Start the program
+	held_program.start_program()
+
+## Unload the current program (cleanup)
+func unload_program() -> void:
+	if held_program:
+		held_program.end_program()
+		program_container.remove_child(held_program)
+		held_program.queue_free()
+		held_program = null
+
+## Update the window title
+func _update_window_title(new_title: String) -> void:
+	var title_label = title_bar.get_node_or_null("TitleLabel")
+	if title_label and title_label is Label:
+		title_label.text = new_title
+
+## Update the window icon (if you have one in title bar)
+func _update_window_icon(icon: Texture2D) -> void:
+	var title_icon = title_bar.get_node_or_null("TitleIcon")
+	if title_icon and title_icon is TextureRect:
+		title_icon.texture = icon
+
+## Connect to program signals
+func _connect_program_signals() -> void:
+	# If programs can change their title dynamically
+	if held_program.has_signal("title_changed"):
+		held_program.title_changed.connect(_update_window_title)
+	
+	# If programs want to request window actions
+	if held_program.has_signal("request_close"):
+		held_program.request_close.connect(_close_window)
+	
+	if held_program.has_signal("request_minimize"):
+		held_program.request_minimize.connect(toggle_minimize)
+	
+	if held_program.has_signal("request_fullscreen"):
+		held_program.request_fullscreen.connect(toggle_fullscreen)
+
+## Handle window button presses
+func _on_window_button_pressed(but: WindowButton) -> void:
+	match but.name.to_lower():
+		"minimize":
+			toggle_minimize()
+		"fullscreen":
+			toggle_fullscreen()
+		"close":
+			_close_window()
+		_:
+			pass
+
+func _close_window() -> void:
+	# Give program a chance to cleanup
+	if held_program:
+		held_program.end_program()
+		
+		# If program has unsaved changes, it could cancel the close
+		if held_program.has_method("can_close"):
+			if not held_program.can_close():
+				return # Don't close
+	
+	# Remove from window manager
+	if WindowManager and WindowManager.all_windows:
+		WindowManager.all_windows.erase(self)
+	
+	hide()
+	queue_free()
 
 func _ready() -> void:
 	if title_bar:
@@ -60,6 +153,7 @@ func _ready() -> void:
 		title_bar.mouse_exited.connect(_on_title_bar_unhover)
 	else:
 		print("Warning: OSWindow requires a child node named 'TitleBar' for dragging.")
+	
 	for button in button_array:
 		button.window_button_pressed.connect(_on_window_button_pressed)
 	
@@ -70,19 +164,15 @@ func _ready() -> void:
 	call_deferred("bring_to_front")
 
 func _process(_delta: float) -> void:
-	if is_dragging:# 1. Update the position based on the drag
+	if is_dragging:
+		# 1. Update the position based on the drag
 		var new_global_position = get_global_mouse_position() - drag_start_offset
 
 		# Get the parent's boundaries (assuming the parent is the container)
 		var parent_size = get_parent().size
 		var window_size = size
 
-		# 2. Calculate the maximum allowed X and Y coordinates
-		# max_x = parent_size.x - window_size.x
-		# max_y = parent_size.y - window_size.y
-		
-		# 3. Calculate the minimum allowed X and Y coordinates
-		# The window's top-left corner (global_position) cannot go below (0, 0).
+		# 2. Calculate margins
 		var margins = [
 			4, # min x
 			3, # min y
@@ -92,17 +182,15 @@ func _process(_delta: float) -> void:
 		var min_x = margins[0]
 		var min_y = margins[1]
 		
-		
-		# 4. Clamp the new position within the bounds
+		# 3. Clamp the new position within the bounds
 		new_global_position.x = clamp(new_global_position.x, min_x, parent_size.x - window_size.x - margins[2])
-		
 		new_global_position.y = clamp(new_global_position.y, min_y, parent_size.y - window_size.y - margins[3])
 		
-		# 5. Apply the clamped position
+		# 4. Apply the clamped position
 		global_position = new_global_position
 	elif is_resizing:
 		_handle_resizing()
-		_update_cursor_shape(active_resize_mode) 
+		_update_cursor_shape(active_resize_mode)
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and not is_resizing and not is_dragging:
@@ -123,7 +211,6 @@ func _gui_input(event: InputEvent) -> void:
 			resize_start_rect = Rect2(global_position, size)
 			drag_start_offset = get_global_mouse_position()
 			get_viewport().set_input_as_handled()
-			
 			return # Handled by resize, skip other clicks
 
 func bring_to_front() -> void:
@@ -264,7 +351,7 @@ func _handle_resizing() -> void:
 	size = new_size
 
 func _input(event: InputEvent) -> void:
-	# Check for the actual left mouse button release event, regardless of which control handled the press
+	# Check for the actual left mouse button release event
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		if is_dragging:
 			is_dragging = false
@@ -274,18 +361,14 @@ func _input(event: InputEvent) -> void:
 		if is_resizing: # Separate check for resizing
 			is_resizing = false
 			active_resize_mode = ResizeEdge.NONE
-			# The cursor shape needs to be updated globally.
-			# Call _gui_input to force a new cursor shape update (next _process will also update it)
+			# Update cursor shape after resize ends
 			var current_mode = _get_resize_mode(get_local_mouse_position())
 			_update_cursor_shape(current_mode) 
 			restored_rect = Rect2(global_position, size)
 			get_viewport().set_input_as_handled()
-			
 			return
 
 func _on_title_bar_gui_input(event: InputEvent) -> void:
-	#if not is_resizing:
-	#grab_focus()
 	if event.is_action_pressed("l_click"):
 		bring_to_front()
 	
@@ -296,21 +379,9 @@ func _on_title_bar_gui_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _on_title_bar_hover():
-	title_bar.mouse_default_cursor_shape = Control.CURSOR_DRAG
-	if is_resizing or is_dragging: return
-	
-func _on_title_bar_unhover():
-	title_bar.mouse_default_cursor_shape = Control.CURSOR_ARROW
-	if is_resizing or is_dragging: return
+	if not is_resizing and not is_dragging:
+		title_bar.mouse_default_cursor_shape = Control.CURSOR_DRAG
 
-func _on_window_button_pressed(but:WindowButton):
-	match but.name.to_lower():
-		"minimize":
-			toggle_minimize()
-		"fullscreen":
-			toggle_fullscreen()
-		"close":
-			self.hide()
-			self.queue_free()
-		_:
-			pass
+func _on_title_bar_unhover():
+	if not is_resizing and not is_dragging:
+		title_bar.mouse_default_cursor_shape = Control.CURSOR_ARROW
