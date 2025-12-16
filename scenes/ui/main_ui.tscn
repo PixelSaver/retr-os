@@ -108,27 +108,11 @@ icon = ExtResource("4_46cp5")
 script = ExtResource("4_travt")
 metadata/_custom_type_script = "uid://banviqj03w41g"
 
-[node name="Alert" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Alert Dialog"
-script = ExtResource("4_travt")
-metadata/_custom_type_script = "uid://banviqj03w41g"
-
-[node name="Confirm" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Confirm Dialog"
-script = ExtResource("4_travt")
-metadata/_custom_type_script = "uid://banviqj03w41g"
-
 [node name="File" type="Button" parent="Theme/GUI/TaskBar/HBoxContainer"]
 layout_mode = 2
 text = "File Dialog"
 script = ExtResource("4_travt")
 metadata/_custom_type_script = "uid://banviqj03w41g"
 
-[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Start" to="." method="_on_Button_button_pressed"]
-[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Alert" to="." method="_on_alert_pressed"]
-[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
-[connection signal="pressed" from="Theme/GUI/TaskBar/HBoxContainer/File" to="." method="_on_file_pressed"]
+[connection signal="window_button_pressed" from="Theme/GUI/TaskBar/HBoxContainer/Start" to="." method="_on_window_button_pressed"]
+[connection signal="window_button_pressed" from="Theme/GUI/TaskBar/HBoxContainer/File" to="." method="_on_window_button_pressed"]

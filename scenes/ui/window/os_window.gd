@@ -24,6 +24,8 @@ var resize_start_rect := Rect2()
 
 @export var button_array : Array[WindowButton]
 @onready var title_bar: HBoxContainer = $VBoxContainer/TitleBar
+@onready var title_label: RichTextLabel = title_bar.get_node(^"Title")
+
 @export_group("Permanent")
 @export var program_container: Control 
 var is_dragging := false
@@ -34,7 +36,7 @@ var is_fullscreen := false
 ## Stores the window's position and size before it was minimized or fullscreened
 var restored_rect := Rect2()
 
-var held_program : Control 
+var held_program : Program 
 
 func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1) -> void:
 	WindowManager.all_windows.append(self)
@@ -60,7 +62,6 @@ func load_program(prog: Program) -> void:
 	
 	held_program = prog
 	
-	# Add program to container (it will fill the available space)
 	program_container.add_child(prog)
 	prog.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	
@@ -68,17 +69,13 @@ func load_program(prog: Program) -> void:
 	if not held_program.is_node_ready():
 		await held_program.ready
 	
-	# Update window title from program
 	_update_window_title(held_program.title)
 	
-	# Update window icon if program has one
-	if held_program.icon:
-		_update_window_icon(held_program.icon)
+	#if held_program.icon:
+		#_update_window_icon(held_program.icon)
 	
-	# Connect to program signals for dynamic updates
 	_connect_program_signals()
 	
-	# Start the program
 	held_program.start_program()
 
 ## Unload the current program (cleanup)
@@ -91,11 +88,11 @@ func unload_program() -> void:
 
 ## Update the window title
 func _update_window_title(new_title: String) -> void:
-	var title_label = title_bar.get_node_or_null("TitleLabel")
-	if title_label and title_label is Label:
+	if title_label:
 		title_label.text = new_title
 
 ## Update the window icon (if you have one in title bar)
+## TODO Implement icons in the title bar
 func _update_window_icon(icon: Texture2D) -> void:
 	var title_icon = title_bar.get_node_or_null("TitleIcon")
 	if title_icon and title_icon is TextureRect:
@@ -103,11 +100,9 @@ func _update_window_icon(icon: Texture2D) -> void:
 
 ## Connect to program signals
 func _connect_program_signals() -> void:
-	# If programs can change their title dynamically
 	if held_program.has_signal("title_changed"):
 		held_program.title_changed.connect(_update_window_title)
 	
-	# If programs want to request window actions
 	if held_program.has_signal("request_close"):
 		held_program.request_close.connect(_close_window)
 	
@@ -130,7 +125,6 @@ func _on_window_button_pressed(but: WindowButton) -> void:
 			pass
 
 func _close_window() -> void:
-	# Give program a chance to cleanup
 	if held_program:
 		held_program.end_program()
 		

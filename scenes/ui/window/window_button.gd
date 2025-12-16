@@ -5,8 +5,11 @@ signal window_button_pressed(button:WindowButton)
 
 func _enter_tree() -> void:
 	self.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	if not pressed.is_connected(_on_pressed):
+		self.pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
+	print("Clicked")
 	window_button_pressed.emit(self)
 
 func _notification(what: int) -> void:
