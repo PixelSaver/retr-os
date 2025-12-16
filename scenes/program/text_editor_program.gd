@@ -1,10 +1,6 @@
-# ============================================
-# text_editor_program.gd
-# ============================================
 extends Program
 class_name TextEditorProgram
 
-## UI References
 @onready var text_edit: TextEdit = $VBoxContainer/TextEdit
 @onready var menu_bar: HBoxContainer = $VBoxContainer/MenuBar
 @onready var file_menu: MenuButton = $VBoxContainer/MenuBar/FileMenu
@@ -13,6 +9,7 @@ class_name TextEditorProgram
 @onready var file_name_label: RichTextLabel = $VBoxContainer/StatusBar/FileNameLabel
 @onready var modified_indicator: RichTextLabel = $VBoxContainer/StatusBar/ModifiedIndicator
 @onready var line_col_label: RichTextLabel = $VBoxContainer/StatusBar/LineColLabel
+
 var current_file_path: String = ""
 var is_modified: bool = false
 
@@ -20,6 +17,7 @@ enum FileMenuId { NEW, OPEN, SAVE, SAVE_AS, CLOSE }
 enum EditMenuId { UNDO, REDO, CUT, COPY, PASTE, SELECT_ALL, FIND }
 
 func _program_ready() -> void:
+	title = "Text Editor - Untitled"
 	_setup_ui()
 	_setup_menus()
 	_connect_signals()
@@ -120,16 +118,15 @@ func _open_file() -> void:
 		_do_open_file()
 
 func _do_open_file() -> void:
-	var dialog = OSFileDialog.new(OSFileDialog.FileMode.OPEN_FILE)
+	var dialog = OSFileDialog.create(OSFileDialog.FileMode.OPEN_FILE)
 	dialog.add_filter("Text Files", PackedStringArray(["txt"]))
 	dialog.add_filter("GDScript Files", PackedStringArray(["gd"]))
 	dialog.add_filter("All Files", PackedStringArray(["*"]))
 	
-	# Add to window container (parent of this program)
-	get_window().get_parent().add_child(dialog)
+	# Add to window container (parent of the window)
+	Global.main_ui.window_container.add_child(dialog)
 	
 	dialog.file_selected.connect(_on_file_opened)
-	dialog.canceled.connect(dialog.queue_free)
 
 func _on_file_opened(path: String) -> void:
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -149,7 +146,7 @@ func _save_file() -> void:
 		_do_save_file(current_file_path)
 
 func _save_file_as() -> void:
-	var dialog = OSFileDialog.new(OSFileDialog.FileMode.SAVE_FILE)
+	var dialog = OSFileDialog.create(OSFileDialog.FileMode.SAVE_FILE)
 	dialog.add_filter("Text Files", PackedStringArray(["txt"]))
 	dialog.add_filter("GDScript Files", PackedStringArray(["gd"]))
 	dialog.add_filter("All Files", PackedStringArray(["*"]))
@@ -157,11 +154,10 @@ func _save_file_as() -> void:
 	if not current_file_path.is_empty():
 		dialog.set_current_file(current_file_path.get_file())
 		dialog.set_current_dir(current_file_path.get_base_dir())
-	
-	get_window().get_parent().add_child(dialog)
+		
+	Global.main_ui.window_container.add_child(dialog)
 	
 	dialog.file_selected.connect(_do_save_file)
-	dialog.canceled.connect(dialog.queue_free)
 
 func _do_save_file(path: String) -> void:
 	var file = FileAccess.open(path, FileAccess.WRITE)
@@ -173,9 +169,8 @@ func _do_save_file(path: String) -> void:
 		_update_status_bar()
 		
 		# Show success message
-		var success_dialog = OSAcceptDialog.new("File saved successfully!", "OK")
-		get_window().get_parent().add_child(success_dialog)
-		success_dialog.confirmed.connect(success_dialog.queue_free)
+		var success_dialog = OSAcceptDialog.create("File saved successfully!", "OK")
+		Global.main_ui.window_container.add_child(success_dialog)
 	else:
 		_show_error("Failed to save file: " + path)
 
@@ -200,11 +195,10 @@ func _select_all() -> void:
 	text_edit.select_all()
 
 func _find() -> void:
-	var dialog = OSInputDialog.new("Enter search text:", "", "Search...")
-	get_window().get_parent().add_child(dialog)
+	var dialog = OSInputDialog.create("Enter search text:", "", "Search...")
+	Global.main_ui.window_container.add_child(dialog)
 	
 	dialog.text_submitted.connect(_on_find_text)
-	dialog.canceled.connect(dialog.queue_free)
 
 func _on_find_text(search_text: String) -> void:
 	if search_text.is_empty():
@@ -256,49 +250,54 @@ func _update_status_bar() -> void:
 ## Dialogs
 
 func _show_unsaved_dialog() -> void:
-	var dialog = OSConfirmationDialog.new(
+	var dialog = OSConfirmationDialog.create(
 		"You have unsaved changes. Do you want to save before closing?",
 		"Save",
 		"Don't Save"
 	)
 	dialog.add_button("Cancel", "cancel")
 	
-	get_window().get_parent().add_child(dialog)
+	Global.main_ui.window_container.add_child(dialog)
 	
 	dialog.confirmed.connect(func():
 		_save_file()
-		_close_window()
+		# Wait for save dialog if needed
+		await get_tree().process_frame
+		if not is_modified:
+			queue_free()
 	)
-	dialog.canceled.connect(close_window)
-	dialog.custom_action.connect(func(action):
-		if action == "cancel":
-			pass # Do nothing
+	
+	dialog.canceled.connect(func():
+		queue_free()
 	)
+	
+	# Cancel does nothing - just closes the dialog
 
 func _show_unsaved_dialog_for_action(action: Callable) -> void:
-	var dialog = OSConfirmationDialog.new(
+	var dialog = OSConfirmationDialog.create(
 		"You have unsaved changes. Save before continuing?",
 		"Save",
 		"Don't Save"
 	)
 	dialog.add_button("Cancel", "cancel")
 	
-	get_window().get_parent().add_child(dialog)
+	Global.main_ui.window_container.add_child(dialog)
 	
 	dialog.confirmed.connect(func():
 		_save_file()
-		action.call()
+		# Wait for save to complete
+		await get_tree().process_frame
+		if not is_modified:
+			action.call()
 	)
+	
 	dialog.canceled.connect(action)
-	dialog.custom_action.connect(func(action_name):
-		if action_name == "cancel":
-			pass
-	)
+	
+	# Cancel does nothing
 
 func _show_error(message: String) -> void:
-	var dialog = OSAcceptDialog.new(message, "OK")
-	get_window().get_parent().add_child(dialog)
-	dialog.confirmed.connect(dialog.queue_free)
+	var dialog = OSAcceptDialog.create(message, "OK")
+	Global.main_ui.window_container.add_child(dialog)
 
 ## Signal Handlers
 
@@ -322,7 +321,8 @@ func _on_file_menu_pressed(id: int) -> void:
 		FileMenuId.SAVE_AS:
 			_save_file_as()
 		FileMenuId.CLOSE:
-			_close_window()
+			if can_close():
+				queue_free()
 
 func _on_edit_menu_pressed(id: int) -> void:
 	match id:

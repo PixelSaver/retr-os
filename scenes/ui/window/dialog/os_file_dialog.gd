@@ -22,20 +22,20 @@ var file_mode: FileMode = FileMode.OPEN_FILE
 var access_mode: Access = Access.FILESYSTEM
 var current_dir: String = ""
 var current_file: String = ""
-var filters: Array[Dictionary] = [] # {description: String, extensions: PackedStringArray}
+var filters: Array[Dictionary] = []
 var show_hidden_files: bool = false
 
 ## UI References
-@onready var dir_path_edit: LineEdit
-@onready var dir_up_button: Button
-@onready var refresh_button: Button
-@onready var show_hidden_button: Button
-@onready var favorites_list: ItemList
-@onready var file_list: ItemList
-@onready var filename_edit: LineEdit
-@onready var filter_option: OptionButton
-@onready var ok_button: Button
-@onready var cancel_button: Button
+var dir_path_edit: LineEdit
+var dir_up_button: Button
+var refresh_button: Button
+var show_hidden_button: Button
+var favorites_list: ItemList
+var file_list: ItemList
+var filename_edit: LineEdit
+var filter_option: OptionButton
+var ok_button: Button
+var cancel_button: Button
 
 var dir_access: DirAccess
 var current_items: Array[Dictionary] = []
@@ -45,13 +45,17 @@ static var global_favorites: PackedStringArray = [
 	"res://",
 	"user://",
 ]
+const OS_FILE_DIALOG = preload("uid://q0n1glrx3cko")
 
-func _init(mode: FileMode = FileMode.OPEN_FILE) -> void:
-	file_mode = mode
-	is_modal = true
+static func create(mode: FileMode = FileMode.OPEN_FILE) -> OSFileDialog:
+	var dialog = OS_FILE_DIALOG.instantiate()
+	dialog.file_mode = mode
+	dialog.is_modal = true
+	return dialog
 
 func _ready() -> void:
 	super._ready()
+	
 	_build_dialog()
 	_setup_initial_dir()
 	_update_file_list()
@@ -63,6 +67,7 @@ func _build_dialog() -> void:
 	
 	# Navigation bar
 	var nav_bar = HBoxContainer.new()
+	nav_bar.add_theme_constant_override("separation", 4)
 	vbox.add_child(nav_bar)
 	
 	dir_up_button = Button.new()
@@ -99,7 +104,7 @@ func _build_dialog() -> void:
 	
 	# Favorites sidebar
 	favorites_list = ItemList.new()
-	favorites_list.custom_minimum_size = Vector2(150, 200)
+	favorites_list.custom_minimum_size = Vector2(120, 200)
 	hsplit.add_child(favorites_list)
 	favorites_list.item_selected.connect(_on_favorite_selected)
 	_update_favorites()
@@ -112,23 +117,25 @@ func _build_dialog() -> void:
 	hsplit.add_child(file_list)
 	file_list.item_selected.connect(_on_file_selected)
 	file_list.item_activated.connect(_on_file_activated)
-	file_list.multi_selected.connect(_on_file_multi_selected)
 	
 	# Update select mode based on file mode
 	if file_mode == FileMode.OPEN_FILES:
 		file_list.select_mode = ItemList.SELECT_MULTI
+		file_list.multi_selected.connect(_on_file_multi_selected)
 	
 	# Bottom section
 	var bottom_vbox = VBoxContainer.new()
+	bottom_vbox.add_theme_constant_override("separation", 8)
 	vbox.add_child(bottom_vbox)
 	
 	# Filename input
 	var filename_hbox = HBoxContainer.new()
+	filename_hbox.add_theme_constant_override("separation", 8)
 	bottom_vbox.add_child(filename_hbox)
 	
 	var filename_label = Label.new()
-	filename_label.text = "File name:"
-	filename_label.custom_minimum_size = Vector2(80, 0)
+	filename_label.text = "File:"
+	filename_label.custom_minimum_size = Vector2(40, 0)
 	filename_hbox.add_child(filename_label)
 	
 	filename_edit = LineEdit.new()
@@ -136,14 +143,12 @@ func _build_dialog() -> void:
 	filename_hbox.add_child(filename_edit)
 	filename_edit.text_changed.connect(_on_filename_changed)
 	
-	# Filter
 	var filter_label = Label.new()
-	filter_label.text = "Filter:"
-	filter_label.custom_minimum_size = Vector2(50, 0)
+	filter_label.text = "Type:"
 	filename_hbox.add_child(filter_label)
 	
 	filter_option = OptionButton.new()
-	filter_option.custom_minimum_size = Vector2(200, 0)
+	filter_option.custom_minimum_size = Vector2(150, 0)
 	filename_hbox.add_child(filter_option)
 	filter_option.item_selected.connect(_on_filter_changed)
 	_update_filter_list()
@@ -156,12 +161,12 @@ func _build_dialog() -> void:
 	
 	cancel_button = Button.new()
 	cancel_button.text = "Cancel"
-	cancel_button.custom_minimum_size = Vector2(80, 0)
+	cancel_button.custom_minimum_size = Vector2(80, 30)
 	button_hbox.add_child(cancel_button)
 	cancel_button.pressed.connect(func(): close_dialog("cancel"))
 	
 	ok_button = Button.new()
-	ok_button.custom_minimum_size = Vector2(80, 0)
+	ok_button.custom_minimum_size = Vector2(80, 30)
 	button_hbox.add_child(ok_button)
 	ok_button.pressed.connect(_on_ok_pressed)
 	
@@ -174,21 +179,8 @@ func _build_dialog() -> void:
 		FileMode.SAVE_FILE:
 			ok_button.text = "Save"
 	
-	# Set window title
-	title_label.text = _get_dialog_title()
-	custom_init(Vector2(700, 500))
-
-func _get_dialog_title() -> String:
-	match file_mode:
-		FileMode.OPEN_FILE:
-			return "Open File"
-		FileMode.OPEN_FILES:
-			return "Open Files"
-		FileMode.OPEN_DIR:
-			return "Select Folder"
-		FileMode.SAVE_FILE:
-			return "Save File"
-	return "File Dialog"
+	# Set window properties
+	custom_init(Vector2(30, 30))
 
 func _setup_initial_dir() -> void:
 	if current_dir.is_empty():
@@ -306,7 +298,7 @@ func _update_favorites() -> void:
 		if fav == "res://":
 			display_name = "🎮 Project"
 		elif fav == "user://":
-			display_name = "👤 User Data"
+			display_name = "👤 User"
 		else:
 			display_name = "📁 " + fav.get_file()
 		
@@ -435,11 +427,10 @@ func _on_ok_pressed() -> void:
 					close_dialog("ok")
 
 func _show_overwrite_dialog(path: String) -> void:
-	var confirm = OSConfirmationDialog.new("File already exists. Overwrite?", "Overwrite", "Cancel")
-	get_parent().add_child(confirm)
+	var confirm = OSConfirmationDialog.create("File already exists. Overwrite?", "Overwrite", "Cancel")
+	get_parent_control().add_child(confirm)
 	
 	confirm.confirmed.connect(func():
 		file_selected.emit(path)
 		close_dialog("ok")
 	)
-	

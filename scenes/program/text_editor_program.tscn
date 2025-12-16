@@ -46,6 +46,7 @@ layout_mode = 2
 [node name="FileNameLabel" type="RichTextLabel" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Untitled"
 fit_content = true
@@ -54,18 +55,15 @@ scroll_active = false
 [node name="ModifiedIndicator" type="RichTextLabel" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "●"
 scroll_active = false
 
-[node name="Spacer" type="Control" parent="VBoxContainer/StatusBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 5.0
-
 [node name="LineColLabel" type="RichTextLabel" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Ln 1, Col 1"
 scroll_active = false

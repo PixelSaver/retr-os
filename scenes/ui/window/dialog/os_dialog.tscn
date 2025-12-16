@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdrxnq8rrjsll"]
+[gd_scene load_steps=7 format=3 uid="uid://d2s72jamr0hyy"]
 
-[ext_resource type="Script" uid="uid://bxaoa8qflndh0" path="res://scenes/ui/window/os_window.gd" id="1_e0mlt"]
-[ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_nolm4"]
-[ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_d5y26"]
-[ext_resource type="Texture2D" uid="uid://blcde5h03l6bc" path="res://assets/98.css/icon/minimize.svg" id="4_h5i7h"]
-[ext_resource type="Texture2D" uid="uid://1eeqddd8v3f2" path="res://assets/98.css/icon/maximize.svg" id="6_xcgly"]
-[ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="7_j5pqg"]
+[ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_yc8ba"]
+[ext_resource type="Script" uid="uid://clkyhenpfveu6" path="res://scenes/ui/window/dialog/os_dialog.gd" id="2_1sl11"]
+[ext_resource type="Texture2D" uid="uid://blcde5h03l6bc" path="res://assets/98.css/icon/minimize.svg" id="3_nrbep"]
+[ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_hdcf1"]
+[ext_resource type="Texture2D" uid="uid://1eeqddd8v3f2" path="res://assets/98.css/icon/maximize.svg" id="5_4qq0h"]
+[ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="6_pohuv"]
 
-[node name="OSWindow" type="PanelContainer"]
+[node name="OSDialog" type="PanelContainer"]
 texture_filter = 2
 anchors_preset = -1
 anchor_left = 0.08
@@ -17,9 +17,10 @@ anchor_bottom = 0.738
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("1_nolm4")
+theme = ExtResource("1_yc8ba")
 theme_type_variation = &"OSWindow"
-script = ExtResource("1_e0mlt")
+script = ExtResource("2_1sl11")
+metadata/_custom_type_script = "uid://clkyhenpfveu6"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 texture_filter = 1
@@ -52,30 +53,33 @@ mouse_filter = 2
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-icon = ExtResource("4_h5i7h")
+icon = ExtResource("3_nrbep")
 icon_alignment = 1
-script = ExtResource("4_d5y26")
+script = ExtResource("4_hdcf1")
 
 [node name="Fullscreen" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-icon = ExtResource("6_xcgly")
+icon = ExtResource("5_4qq0h")
 icon_alignment = 1
-script = ExtResource("4_d5y26")
+script = ExtResource("4_hdcf1")
 
 [node name="Close" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-icon = ExtResource("7_j5pqg")
+icon = ExtResource("6_pohuv")
 icon_alignment = 1
-script = ExtResource("4_d5y26")
+script = ExtResource("4_hdcf1")
 
 [node name="ProgramContainer" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/TitleBar/Minimize" to="VBoxContainer/TitleBar/Minimize" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Minimize" to="." method="_on_window_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitleBar/Fullscreen" to="VBoxContainer/TitleBar/Fullscreen" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Fullscreen" to="." method="_on_window_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitleBar/Close" to="VBoxContainer/TitleBar/Close" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Close" to="." method="_on_window_button_pressed"]

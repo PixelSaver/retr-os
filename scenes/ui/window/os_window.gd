@@ -22,12 +22,15 @@ var active_resize_mode : ResizeEdge = ResizeEdge.NONE  # The mode being used for
 ## Stores the original state when resizing started
 var resize_start_rect := Rect2()
 
-@export var button_array : Array[WindowButton]
+@onready var button_array : Array[WindowButton] = [
+	$VBoxContainer/TitleBar/Minimize,
+	$VBoxContainer/TitleBar/Fullscreen,
+	$VBoxContainer/TitleBar/Close,
+]
 @onready var title_bar: HBoxContainer = $VBoxContainer/TitleBar
-@onready var title_label: RichTextLabel = title_bar.get_node(^"Title")
+@onready var title_label: RichTextLabel = $VBoxContainer/TitleBar/Title
 
-@export_group("Permanent")
-@export var program_container: Control 
+@onready var program_container: Control = $VBoxContainer/ProgramContainer
 var is_dragging := false
 ## Stores the distance from the window origin to the click point
 var drag_start_offset := Vector2.ZERO 
@@ -37,8 +40,12 @@ var is_fullscreen := false
 var restored_rect := Rect2()
 
 var held_program : Program 
+const os_window_scene = preload("res://scenes/ui/window/os_window.tscn")
 
-func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1) -> void:
+static func create() -> OSWindow:
+	return os_window_scene.instantiate()
+
+func custom_init(rect_size:Vector2=Vector2.ZERO, init_pos:Vector2=Vector2.ONE*-1) -> void:
 	WindowManager.all_windows.append(self)
 	var new_size = rect_size 
 	if new_size.x < MIN_SIZE.x:
@@ -150,9 +157,6 @@ func _ready() -> void:
 		title_bar.mouse_exited.connect(_on_title_bar_unhover)
 	else:
 		print("Warning: OSWindow requires a child node named 'TitleBar' for dragging.")
-	
-	for button in button_array:
-		button.window_button_pressed.connect(_on_window_button_pressed)
 	
 	# Store initial state for restoration
 	restored_rect = Rect2(global_position, size)
