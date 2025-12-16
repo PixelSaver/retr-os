@@ -24,7 +24,8 @@ var resize_start_rect := Rect2()
 
 @export var button_array : Array[WindowButton]
 @onready var title_bar: HBoxContainer = $VBoxContainer/TitleBar
-@onready var program_container: Control = $VBoxContainer/ProgramContainer
+@export_group("Permanent")
+@export var program_container: Control 
 var is_dragging := false
 ## Stores the distance from the window origin to the click point
 var drag_start_offset := Vector2.ZERO 
@@ -44,7 +45,7 @@ func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1) -> void:
 		new_size.y = MIN_SIZE.y
 		
 	if init_pos == Vector2.ONE*-1:
-		self.position = get_viewport_rect().size/2 - new_size/2.
+		self.position = get_parent_control().get_rect().size/2 - new_size/2.
 	
 func load_program(prog:Program):
 	held_program = prog 

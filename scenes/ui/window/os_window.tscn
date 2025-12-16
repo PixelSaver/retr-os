@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1eeqddd8v3f2" path="res://assets/98.css/icon/maximize.svg" id="6_xcgly"]
 [ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="7_j5pqg"]
 
-[node name="OSWindow" type="PanelContainer" node_paths=PackedStringArray("button_array")]
+[node name="OSWindow" type="PanelContainer" node_paths=PackedStringArray("button_array", "program_container")]
 texture_filter = 2
 anchors_preset = -1
 anchor_left = 0.08
@@ -21,6 +21,7 @@ theme = ExtResource("1_nolm4")
 theme_type_variation = &"OSWindow"
 script = ExtResource("1_e0mlt")
 button_array = [NodePath("VBoxContainer/TitleBar/Minimize"), NodePath("VBoxContainer/TitleBar/Fullscreen"), NodePath("VBoxContainer/TitleBar/Close")]
+program_container = NodePath("VBoxContainer/ProgramContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 texture_filter = 1

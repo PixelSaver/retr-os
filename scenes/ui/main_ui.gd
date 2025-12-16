@@ -16,10 +16,7 @@ func _ready():
 	par = get_parent() as SubViewport
 
 func _on_Button_button_pressed() -> void:
-	var inst := os_window_scene.instantiate() as OSWindow
-	window_container.add_child(inst)
-	inst.load_program(TemplateProgram.new())
-	inst.custom_init(Vector2(100,100))
+	run_program(TemplateProgram.new())
 
 func _on_alert_pressed() -> void:
 	pass
@@ -43,3 +40,8 @@ func put_on_top(control):
 	var parent = control.get_parent()
 	parent.move_child(control, parent.get_child_count())
 	
+func run_program(prog:Program, init_pos=Vector2.ONE*-1):
+	var inst := os_window_scene.instantiate() as OSWindow
+	window_container.add_child(inst)
+	inst.load_program(prog)
+	inst.custom_init(init_pos)

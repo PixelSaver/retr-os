@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvjw483g5bljw"]
+
+[ext_resource type="Script" uid="uid://wh0ch7p3urco" path="res://scenes/program/shortcut/os_shortcut.gd" id="1_1j4v1"]
+
+[node name="Shortcut" type="Control" groups=["shortcut"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1j4v1")
+program_type = "TemplateProgram"

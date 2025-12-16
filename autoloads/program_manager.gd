@@ -1,2 +1,6 @@
 extends Node
-class_name ProgramManager
+
+var PROGRAM_CLASSES : Dictionary = {
+	" " = Program,
+	"TemplateProgram" = TemplateProgram,
+}
