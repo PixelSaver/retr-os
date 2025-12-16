@@ -3,8 +3,8 @@ class_name TextEditorProgram
 
 @onready var text_edit: TextEdit = $VBoxContainer/TextEdit
 @onready var menu_bar: HBoxContainer = $VBoxContainer/MenuBar
-@onready var file_menu: MenuButton = $VBoxContainer/MenuBar/FileMenu
-@onready var edit_menu: MenuButton = $VBoxContainer/MenuBar/EditMenu
+@onready var file_menu: OSMenuButton = $VBoxContainer/MenuBar/FileMenu
+@onready var edit_menu: OSMenuButton = $VBoxContainer/MenuBar/EditMenu
 @onready var status_bar: HBoxContainer = $VBoxContainer/StatusBar
 @onready var file_name_label: RichTextLabel = $VBoxContainer/StatusBar/FileNameLabel
 @onready var modified_indicator: RichTextLabel = $VBoxContainer/StatusBar/ModifiedIndicator
@@ -32,7 +32,6 @@ func _setup_ui() -> void:
 func _setup_menus() -> void:
 	# File menu
 	var file_popup = file_menu.get_popup()
-	file_popup.clear()
 	file_popup.add_item("New", FileMenuId.NEW)
 	file_popup.add_item("Open...", FileMenuId.OPEN)
 	file_popup.add_separator()

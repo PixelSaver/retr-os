@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://btspjidsxdw7p"]
+[gd_scene load_steps=4 format=3 uid="uid://btspjidsxdw7p"]
 
 [ext_resource type="Script" uid="uid://ceicsv7pcxry3" path="res://scenes/program/text_editor_program.gd" id="1_1ka7o"]
 [ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_ecr0y"]
+[ext_resource type="Script" uid="uid://cvwf520p0mtnt" path="res://scenes/ui/os_menu_button.gd" id="3_epvhv"]
 
 [node name="TextEditorProgram" type="Control"]
 texture_filter = 1
@@ -24,16 +25,27 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MenuBar" type="HBoxContainer" parent="VBoxContainer"]
+z_index = 1
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="FileMenu" type="MenuButton" parent="VBoxContainer/MenuBar"]
+[node name="FileMenu" type="Button" parent="VBoxContainer/MenuBar"]
 layout_mode = 2
 text = "File"
+script = ExtResource("3_epvhv")
+metadata/_custom_type_script = "uid://cvwf520p0mtnt"
 
-[node name="EditMenu" type="MenuButton" parent="VBoxContainer/MenuBar"]
+[node name="EditMenu" type="Button" parent="VBoxContainer/MenuBar"]
 layout_mode = 2
 text = "Edit"
+script = ExtResource("3_epvhv")
+metadata/_custom_type_script = "uid://cvwf520p0mtnt"
+
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/MenuBar"]
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "hey"
+popup/item_0/id = 0
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
 layout_mode = 2
