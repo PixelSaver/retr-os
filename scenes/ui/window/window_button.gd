@@ -12,10 +12,8 @@ func _on_pressed() -> void:
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_MOUSE_ENTER:
-			print("Enter")
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			self.modulate = Color(1.2, 1.2, 1.2)
 		NOTIFICATION_MOUSE_EXIT:
-			print("Exit")
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			self.modulate = Color(1.0, 1.0, 1.0)

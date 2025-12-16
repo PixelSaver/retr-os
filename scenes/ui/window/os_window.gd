@@ -69,9 +69,36 @@ func _ready() -> void:
 	call_deferred("bring_to_front")
 
 func _process(_delta: float) -> void:
-	if is_dragging:
-		global_position = get_global_mouse_position() - drag_start_offset
-		global_position.y = max(global_position.y, 3)
+	if is_dragging:# 1. Update the position based on the drag
+		var new_global_position = get_global_mouse_position() - drag_start_offset
+
+		# Get the parent's boundaries (assuming the parent is the container)
+		var parent_size = get_parent().size
+		var window_size = size
+
+		# 2. Calculate the maximum allowed X and Y coordinates
+		# max_x = parent_size.x - window_size.x
+		# max_y = parent_size.y - window_size.y
+		
+		# 3. Calculate the minimum allowed X and Y coordinates
+		# The window's top-left corner (global_position) cannot go below (0, 0).
+		var margins = [
+			5, # min x
+			3, # min y
+			5, # max x
+			2, # max y
+		]
+		var min_x = margins[0]
+		var min_y = margins[1]
+		
+		
+		# 4. Clamp the new position within the bounds
+		new_global_position.x = clamp(new_global_position.x, min_x, parent_size.x - window_size.x - margins[2])
+		
+		new_global_position.y = clamp(new_global_position.y, min_y, parent_size.y - window_size.y - margins[3])
+		
+		# 5. Apply the clamped position
+		global_position = new_global_position
 	elif is_resizing:
 		_handle_resizing()
 		_update_cursor_shape(active_resize_mode) 

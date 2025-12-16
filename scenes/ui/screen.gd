@@ -26,8 +26,8 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 	v_coord /= mesh_size.y
 	#print("UV: ", str(Vector2(u_coord, v_coord)))
 	# Check if the coordinates are within the quad's bounds (e.g., -0.5 to 0.5)
-	if u_coord < 0.0 or u_coord > 1.0 or v_coord < 0.0 or v_coord > 1.0:
-		return
+	#if u_coord < 0.0 or u_coord > 1.0 or v_coord < 0.0 or v_coord > 1.0:
+		#return
 	
 	# Screen position is the pixel coordinates within the viewport
 	var screen_pos = Vector2(

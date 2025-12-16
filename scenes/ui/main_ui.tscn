@@ -76,8 +76,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_l8t6x")
+theme_override_constants/separation = 0
 
-[node name="ProgramContainer" type="Control" parent="Theme/GUI"]
+[node name="WindowContainer" type="Control" parent="Theme/GUI"]
+clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 

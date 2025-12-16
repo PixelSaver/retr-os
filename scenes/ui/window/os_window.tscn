@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="7_j5pqg"]
 
 [node name="OSWindow" type="PanelContainer" node_paths=PackedStringArray("button_array")]
+texture_filter = 2
 anchors_preset = -1
 anchor_left = 0.08
 anchor_top = 0.114
