@@ -42,7 +42,7 @@ shader_parameter/mask_type = 1
 shader_parameter/curve = 0.0
 shader_parameter/sharpness = 0.6666667
 shader_parameter/color_offset = 0.0
-shader_parameter/mask_brightness = 1.0
+shader_parameter/mask_brightness = 0.5450000258875
 shader_parameter/scanline_brightness = 1.0
 shader_parameter/min_scanline_thickness = 0.5
 shader_parameter/aspect = 0.75
@@ -72,7 +72,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 shape = SubResource("WorldBoundaryShape3D_k2fmo")
 
 [node name="Screen" type="SubViewport" parent="." node_paths=PackedStringArray("screen_mesh", "subviewport")]
-size = Vector2i(576, 324)
+size = Vector2i(864, 486)
 script = ExtResource("2_iuonh")
 screen_mesh = NodePath("../Area3D/MeshInstance3D")
 subviewport = NodePath("Text/SubViewport")

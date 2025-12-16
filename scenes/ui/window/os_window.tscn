@@ -34,10 +34,10 @@ focus_mode = 2
 alignment = 2
 
 [node name="Title" type="RichTextLabel" parent="VBoxContainer/TitleBar"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "Title"
 fit_content = true

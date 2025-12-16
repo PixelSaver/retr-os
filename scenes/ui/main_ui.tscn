@@ -122,6 +122,87 @@ layout_mode = 2
 [node name="Shortcut9" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
+[node name="Shortcut10" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut11" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut12" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut13" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut14" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut15" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut16" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut17" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut18" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut19" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut20" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut21" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut22" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut23" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut24" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut25" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut26" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut27" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut28" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut29" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut30" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut31" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut32" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut33" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut34" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut35" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut36" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
