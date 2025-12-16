@@ -55,6 +55,7 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("4_h5i7h")
 icon_alignment = 1
 script = ExtResource("4_d5y26")
+metadata/_custom_type_script = "uid://banviqj03w41g"
 
 [node name="Fullscreen" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
@@ -63,6 +64,7 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("6_xcgly")
 icon_alignment = 1
 script = ExtResource("4_d5y26")
+metadata/_custom_type_script = "uid://banviqj03w41g"
 
 [node name="Close" type="Button" parent="VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(15, 15)
@@ -71,11 +73,15 @@ mouse_default_cursor_shape = 2
 icon = ExtResource("7_j5pqg")
 icon_alignment = 1
 script = ExtResource("4_d5y26")
+metadata/_custom_type_script = "uid://banviqj03w41g"
 
 [node name="ProgramContainer" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/TitleBar/Minimize" to="VBoxContainer/TitleBar/Minimize" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Minimize" to="." method="_on_window_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitleBar/Fullscreen" to="VBoxContainer/TitleBar/Fullscreen" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Fullscreen" to="." method="_on_window_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitleBar/Close" to="VBoxContainer/TitleBar/Close" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Close" to="." method="_on_window_button_pressed"]
