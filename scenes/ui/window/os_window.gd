@@ -111,6 +111,9 @@ func _connect_program_signals() -> void:
 	
 	if held_program.has_signal("request_fullscreen"):
 		held_program.request_fullscreen.connect(toggle_fullscreen)
+	
+	if held_program.has_signal("close_window"):
+		held_program.close_window.connect(_close_window)
 
 ## Handle window button presses
 func _on_window_button_pressed(but: WindowButton) -> void:

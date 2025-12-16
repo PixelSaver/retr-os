@@ -52,3 +52,18 @@ func _register_builtin_programs() -> void:
 			"description": "Just a template. Lorem ipsum etcetera"
 		}
 	)
+	register_program("text_editor", 
+		preload("res://scenes/program/text_editor_program.tscn"),
+		{
+			"title": "Text Editor",
+			"icon": "res://assets/win98_icons/png/document-0.png",
+			"category": "Utilities",
+			"description": "A text editor for almost nothing!"
+		}
+	)
+
+#"res://assets/win98_icons/png/console_prompt-0.png"
+#"res://assets/win98_icons/png/directory_closed-3.png"
+#"res://assets/win98_icons/png/directory_open_cool-3.png"
+#"res://assets/win98_icons/png/help_question_mark-0.png"
+#"res://assets/win98_icons/png/clock-1.png"

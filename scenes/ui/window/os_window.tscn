@@ -20,6 +20,8 @@ mouse_filter = 1
 theme = ExtResource("1_nolm4")
 theme_type_variation = &"OSWindow"
 script = ExtResource("1_e0mlt")
+MIN_SIZE = null
+RESIZE_BORDER_THICKNESS = null
 button_array = [NodePath("VBoxContainer/TitleBar/Minimize"), NodePath("VBoxContainer/TitleBar/Fullscreen"), NodePath("VBoxContainer/TitleBar/Close")]
 program_container = NodePath("VBoxContainer/ProgramContainer")
 
@@ -74,7 +76,7 @@ icon = ExtResource("7_j5pqg")
 icon_alignment = 1
 script = ExtResource("4_d5y26")
 
-[node name="ProgramContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="ProgramContainer" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 

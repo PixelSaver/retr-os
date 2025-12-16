@@ -4,14 +4,17 @@ class_name OSShortcut
 @export var program_id: String = "" :
 	set(value):
 		program_id = value
+		call_deferred("_refresh_ui")
 
 @export var icon_texture: Texture2D :
 	set(value):
 		icon_texture = value
+		call_deferred("_refresh_ui")
 
 @export var label_text: String = "" :
 	set(value):
 		label_text = value
+		call_deferred("_refresh_ui")
 
 @onready var icon_texture_rect: TextureRect = $VBoxContainer/TextureRect
 @onready var label: RichTextLabel = $VBoxContainer/RichTextLabel
@@ -19,8 +22,6 @@ class_name OSShortcut
 func _ready() -> void:
 	if not program_id.is_empty():
 		_setup_from_program_manager()
-	
-	_refresh_ui()
 
 func _setup_from_program_manager() -> void:
 	var info = ProgramManager.get_program_info(program_id)

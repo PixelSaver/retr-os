@@ -4,6 +4,7 @@ class_name Program
 signal program_end
 signal program_start
 signal program_process(delta:float)
+signal close_window
 var title: String = "Program"
 var icon: Texture2D
 var is_running: bool = false
@@ -20,6 +21,9 @@ func _program_start() -> void:
 ## Override this in subclasses for end logic  
 func _program_end() -> void:
 	pass
+	
+func _close_window():
+	close_window.emit()
 
 ## Override this in subclasses for per-frame logic
 func _program_process(delta: float) -> void:

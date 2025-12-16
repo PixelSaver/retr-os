@@ -4,6 +4,9 @@ class_name Screen
 @export var screen_mesh : MeshInstance3D
 @export var subviewport : SubViewport
 
+func _input(event: InputEvent) -> void:
+	if not (event is InputEventMouse):
+		subviewport.push_input(event)
 
 func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	#if not (event is InputEventMouseButton or event is InputEventMouseMotion):

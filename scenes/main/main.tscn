@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjr78tl586o87"]
+[gd_scene load_steps=14 format=3 uid="uid://bjr78tl586o87"]
 
+[ext_resource type="Script" uid="uid://bebui2t15quet" path="res://scenes/main/main.gd" id="1_l3cfh"]
 [ext_resource type="Script" uid="uid://d4kghif8h5k10" path="res://scenes/ui/screen.gd" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://bypm1v6132kxr" path="res://scenes/ui/main_ui.tscn" id="2_k2fmo"]
 [ext_resource type="Shader" uid="uid://cky8auk2rsgs2" path="res://shaders/crt.gdshader" id="2_l3cfh"]
@@ -49,6 +50,7 @@ shader_parameter/aspect = 0.75
 shader_parameter/wobble_strength = 0.498000023655
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_l3cfh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 0.44813126, -0.45043463, 0.77219623, -0.22176217, 0.78077435, 0.58413434, 0, 0, 0)

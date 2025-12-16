@@ -84,7 +84,7 @@ clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="Theme/GUI/WindowContainer"]
+[node name="ShortcutContainer" type="GridContainer" parent="Theme/GUI/WindowContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,112 +95,113 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 4
 columns = 9
 
-[node name="Shortcut" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut2" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut2" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+program_id = "text_editor"
+
+[node name="Shortcut3" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut3" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut4" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut4" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut5" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut5" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut6" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut6" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut7" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut7" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut8" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut8" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut9" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut9" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut10" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut10" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut11" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut11" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut12" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut12" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut13" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut13" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut14" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut14" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut15" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut15" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut16" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut16" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut17" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut17" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut18" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut18" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut19" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut19" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut20" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut20" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut21" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut21" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut22" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut22" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut23" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut23" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut24" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut24" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut25" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut25" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut26" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut26" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut27" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut27" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut28" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut28" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut29" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut29" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut30" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut30" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut31" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut31" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut32" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut32" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut33" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut33" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut34" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut34" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut35" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
-[node name="Shortcut35" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
-layout_mode = 2
-
-[node name="Shortcut36" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+[node name="Shortcut36" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
