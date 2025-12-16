@@ -6,9 +6,10 @@ var ok_button_text: String = "OK"
 
 var message_label: Label
 var ok_button: Button
+const OS_ACCEPT_DIALOG = preload("uid://cll4q5m406isp")
 
 static func create(text: String = "", ok_text: String = "OK") -> OSAcceptDialog:
-	var dialog = OSAcceptDialog.new()
+	var dialog = OS_ACCEPT_DIALOG.instantiate() as OSAcceptDialog
 	dialog.dialog_text = text
 	dialog.ok_button_text = ok_text
 	return dialog

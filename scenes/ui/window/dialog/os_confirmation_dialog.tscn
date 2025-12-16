@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7j3q5m6hyh5e"]
+
+[ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_nrytf"]
+[ext_resource type="Script" uid="uid://deje17wafchl" path="res://scenes/ui/window/dialog/os_confirmation_dialog.gd" id="2_nrytf"]
+[ext_resource type="Texture2D" uid="uid://blcde5h03l6bc" path="res://assets/98.css/icon/minimize.svg" id="3_osk4y"]
+[ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_4nekl"]
+[ext_resource type="Texture2D" uid="uid://1eeqddd8v3f2" path="res://assets/98.css/icon/maximize.svg" id="5_ki0r3"]
+[ext_resource type="Texture2D" uid="uid://d2sk626vmert0" path="res://assets/98.css/icon/close.svg" id="6_3ltdu"]
+
+[node name="OSConfirmationDialog" type="PanelContainer"]
+texture_filter = 2
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.114
+anchor_right = 0.592
+anchor_bottom = 0.738
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_nrytf")
+theme_type_variation = &"OSWindow"
+script = ExtResource("2_nrytf")
+metadata/_custom_type_script = "uid://deje17wafchl"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+focus_mode = 2
+alignment = 2
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Title"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Space" type="Control" parent="VBoxContainer/TitleBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Minimize" type="Button" parent="VBoxContainer/TitleBar"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_osk4y")
+icon_alignment = 1
+script = ExtResource("4_4nekl")
+
+[node name="Fullscreen" type="Button" parent="VBoxContainer/TitleBar"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("5_ki0r3")
+icon_alignment = 1
+script = ExtResource("4_4nekl")
+
+[node name="Close" type="Button" parent="VBoxContainer/TitleBar"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_3ltdu")
+icon_alignment = 1
+script = ExtResource("4_4nekl")
+
+[node name="ProgramContainer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/TitleBar/Minimize" to="VBoxContainer/TitleBar/Minimize" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Minimize" to="." method="_on_window_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TitleBar/Fullscreen" to="VBoxContainer/TitleBar/Fullscreen" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Fullscreen" to="." method="_on_window_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TitleBar/Close" to="VBoxContainer/TitleBar/Close" method="_on_pressed"]
+[connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Close" to="." method="_on_window_button_pressed"]

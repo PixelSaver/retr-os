@@ -8,9 +8,10 @@ var extra_buttons: Array[Dictionary] = [] # {text: String, action: String}
 
 var message_label: Label
 var button_container: HBoxContainer
+const OS_CONFIRMATION_DIALOG = preload("uid://b7j3q5m6hyh5e")
 
 static func create(text: String = "", ok_text: String = "OK", cancel_text: String = "Cancel") -> OSConfirmationDialog:
-	var dialog = OSConfirmationDialog.new()
+	var dialog = OS_CONFIRMATION_DIALOG.instantiate() as OSConfirmationDialog
 	dialog.dialog_text = text
 	dialog.ok_button_text = ok_text
 	dialog.cancel_button_text = cancel_text

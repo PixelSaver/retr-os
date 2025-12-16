@@ -13,10 +13,10 @@ var message_label: Label
 var input_field: LineEdit
 var ok_button: Button
 
-const OS_DIALOG = preload("uid://d2s72jamr0hyy")
+const OS_INPUT_DIALOG = preload("uid://ulq625ct7r4f")
 
 static func create(prompt: String = "", default: String = "", placeholder: String = "") -> OSInputDialog:
-	var dialog = OS_DIALOG.instantiate()
+	var dialog = OS_INPUT_DIALOG.instantiate() as OSInputDialog
 	dialog.dialog_text = prompt
 	dialog.default_text = default
 	dialog.placeholder_text = placeholder

@@ -259,7 +259,8 @@ func _show_unsaved_dialog() -> void:
 	
 	Global.main_ui.window_container.add_child(dialog)
 	
-	dialog.confirmed.connect(func():
+	dialog.confirmed.connect(
+	func():
 		_save_file()
 		# Wait for save dialog if needed
 		await get_tree().process_frame
