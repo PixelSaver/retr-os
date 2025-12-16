@@ -1,56 +1,46 @@
-@tool
 extends Control
 class_name Program
 
-## Emulates _process(delta) function but obeys is_running
+signal program_end
+signal program_start
 signal program_process(delta:float)
-## Emitted on program start so subclasses of Program can run specific code
-signal program_start()
-## Emitted on program end so subclasses of Program can run specific code
-signal program_end()
-## Emitted when the program scene is loaded
-signal program_loaded()
-
-var title: String = ""
-var icon: Texture2D = Texture2D.new()
+var title: String = "Program"
+var icon: Texture2D
 var is_running: bool = false
-var has_loaded = false
-@export var program_scene : PackedScene = PackedScene.new()
-# This tool button doesn't work since the scene is hardcoded in the subclass, and the parent class can't use that
-#@export_tool_button("Load Program Scene (Editor)")
-#var _editor_load_button : Callable = _editor_load_program_scene
+var program_id: String = "" ## Automatically set by the system
+
+## Override this in subclasses for initialization
+func _program_ready() -> void:
+	pass
+
+## Override this in subclasses for start logic
+func _program_start() -> void:
+	pass
+
+## Override this in subclasses for end logic  
+func _program_end() -> void:
+	pass
+
+## Override this in subclasses for per-frame logic
+func _program_process(delta: float) -> void:
+	pass
 
 func start_program() -> void:
-	is_running = true
-	program_start.emit()
+	if not is_running:
+		is_running = true
+		_program_start()
+		program_start.emit()
 
 func end_program() -> void:
-	is_running = false
-	program_end.emit()
+	if is_running:
+		is_running = false
+		_program_end()
+		program_end.emit()
 
-func load_program_scene():
-	if has_loaded: return
-	has_loaded = true
-	var inst = program_scene.instantiate()
-	add_child(inst)
-	program_loaded.emit()
-	
+func _ready() -> void:
+	_program_ready()
 
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return
-	if not is_running:
-		return
-	program_process.emit(delta)
-
-func _editor_load_program_scene() -> void:
-	if not Engine.is_editor_hint():
-		return
-
-	# Prevent duplicates in editor
-	var existing := get_node_or_null("ProgramScene")
-	if existing:
-		existing.queue_free()
-
-	has_loaded = false
-	load_program_scene()
+	if is_running:
+		_program_process(delta)
+		program_process.emit()
