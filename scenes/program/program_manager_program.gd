@@ -5,22 +5,16 @@ class_name ProgramManagerProgram
 const PROGRAM_MANAGER_PATH = "res://autoloads/ProgramManager.gd" # Adjust this path
 
 @onready var program_list: VBoxContainer = $VBoxContainer/ScrollContainer/ProgramList
-@onready var refresh_button: Button = $VBoxContainer/HBoxContainer/RefreshButton
+@onready var refresh_button: Button = $VBoxContainer/HBoxContainer/Control/RefreshButton
 
-# Assume a global reference for running programs is available. 
-# You will need to replace `Global.get_running_programs()` 
-# with the actual method in your environment.
-# Since you provided ProgramManager, I'll assume your environment 
-# tracks the *active* instances separately, for example, 
-# in a singleton called 'Global' which manages the windows/desktop.
-# For simplicity, I'll define a function to mock this data source 
-# if you don't have it yet.
 var running_programs: Array[Program] = []
 
 func _program_ready() -> void:
 	title = "Program Manager"
 	refresh_button.text = "Refresh List"
 	refresh_button.pressed.connect(_refresh_list)
+	
+	ProgramManager.running_programs_list_changed.connect(_refresh_list)
 	
 	_load_running_programs()
 	_update_program_list_gui()

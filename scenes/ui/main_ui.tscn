@@ -209,7 +209,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_filter = 2
 

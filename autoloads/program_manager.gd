@@ -1,15 +1,21 @@
 extends Node
 
 ## Registry of all available programs
+## Scene, title, icon, description, category
 var programs: Dictionary = {}
-var running_programs : Array[Program] = [] :
-	set(value):
-		running_programs = value
-		running_programs_list_changed.emit()
+var running_programs : Array[Program] = []
 signal running_programs_list_changed
 
 func _ready() -> void:
 	_register_builtin_programs()
+
+func add_running_program(program: Program) -> void:
+	running_programs.append(program)
+	running_programs_list_changed.emit()
+
+func remove_running_program(program: Program) -> void:
+	running_programs.erase(program)
+	running_programs_list_changed.emit()
 
 ## Register a program type with metadata
 func register_program(id: String, scene: PackedScene, metadata: Dictionary = {}) -> void:
@@ -29,6 +35,7 @@ func create_program(id: String) -> Program:
 	
 	var prog_data = programs[id]
 	var instance = prog_data.scene.instantiate() as Program
+	instance.title = prog_data.title
 	
 	if not instance:
 		push_error("Failed to instantiate program: " + id)

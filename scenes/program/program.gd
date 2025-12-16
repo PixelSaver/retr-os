@@ -46,14 +46,14 @@ func close_program_window():
 func start_program() -> void:
 	if not is_running:
 		is_running = true
-		ProgramManager.running_programs.append(self)
+		ProgramManager.add_running_program(self)
 		_program_start()
 		program_start.emit()
 
 func end_program() -> void:
 	if is_running:
 		is_running = false
-		ProgramManager.running_programs.erase(self)
+		ProgramManager.remove_running_program(self)
 		program_end.emit()
 
 func _ready() -> void:
