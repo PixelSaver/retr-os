@@ -83,9 +83,9 @@ func _process(_delta: float) -> void:
 		# 3. Calculate the minimum allowed X and Y coordinates
 		# The window's top-left corner (global_position) cannot go below (0, 0).
 		var margins = [
-			5, # min x
+			4, # min x
 			3, # min y
-			5, # max x
+			4, # max x
 			2, # max y
 		]
 		var min_x = margins[0]
