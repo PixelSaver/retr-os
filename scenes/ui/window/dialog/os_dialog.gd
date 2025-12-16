@@ -15,6 +15,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
+	set_minimum_size(min_size)
 	
 	if is_modal:
 		_create_modal_overlay()

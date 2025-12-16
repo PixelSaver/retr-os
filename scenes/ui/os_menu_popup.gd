@@ -1,5 +1,8 @@
-extends VBoxContainer
+extends Panel
 class_name OSMenuPopup
+
+var vbox: VBoxContainer 
+var margin_cont: MarginContainer
 
 # Emitted when an item in the popup menu is pressed, along with the item's ID.
 signal id_pressed(id: int)
@@ -9,15 +12,16 @@ signal closed
 var is_closing := false
 
 func _init():
-	# Add styling to make it look like a floating menu/popup (PanelContainer style)
-	add_theme_stylebox_override("panel", StyleBoxFlat.new())
-	var style = get_theme_stylebox("panel") as StyleBoxFlat
-	style.bg_color = Color(0.15, 0.15, 0.15)
-	style.border_width_top = 2
-	style.border_width_bottom = 2
-	style.border_width_left = 2
-	style.border_width_right = 2
-	style.border_color = Color(0.5, 0.5, 0.5)
+	var offset = 4
+	margin_cont = MarginContainer.new()
+	add_theme_constant_override("margin_top", offset)
+	add_theme_constant_override("margin_bottom", -offset)
+	add_theme_constant_override("margin_left", offset)
+	add_theme_constant_override("margin_right", -offset)
+	add_child(margin_cont)
+	vbox = VBoxContainer.new()
+	margin_cont.add_child(vbox)
+	vbox.minimum_size_changed.connect(_update_size)
 	
 	# Ensure the popup can expand to fit its content
 	size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
@@ -30,6 +34,10 @@ func _init():
 	#set_as_top_level(true)
 	visible = false
 
+func _update_size():
+	self.size = margin_cont.get_combined_minimum_size()
+	
+
 # Custom handler for button presses inside the menu
 func on_item_pressed(id: int) -> void:
 	id_pressed.emit(id)
@@ -37,7 +45,7 @@ func on_item_pressed(id: int) -> void:
 	closed.emit()
 	is_closing = false
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not visible:
 		return
 

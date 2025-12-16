@@ -56,10 +56,12 @@ placeholder_text = "Empty file..."
 [node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="FileNameLabel" type="RichTextLabel" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Untitled"
@@ -69,6 +71,7 @@ scroll_active = false
 [node name="ModifiedIndicator" type="RichTextLabel" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "●"
@@ -77,6 +80,7 @@ scroll_active = false
 [node name="LineColLabel" type="RichTextLabel" parent="VBoxContainer/StatusBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Ln 1, Col 1"

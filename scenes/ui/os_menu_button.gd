@@ -65,11 +65,11 @@ func set_item_shortcut(id: int, shortcut: Shortcut) -> void:
 # --- Internal Logic ---
 
 func _rebuild_popup() -> void:
-	if not is_instance_valid(popup_menu):
+	if not is_instance_valid(popup_menu) or not popup_menu.vbox:
 		return
 		
 	# Clear existing items
-	for child in popup_menu.get_children():
+	for child in popup_menu.vbox.get_children():
 		child.queue_free()
 	
 	popup_menu.z_index = 1
@@ -78,7 +78,7 @@ func _rebuild_popup() -> void:
 	for item in items:
 		if item.is_separator:
 			var separator = HSeparator.new()
-			popup_menu.add_child(separator)
+			popup_menu.vbox.add_child(separator)
 			continue
 			
 		
@@ -122,11 +122,14 @@ func _rebuild_popup() -> void:
 			
 			item_hbox.add_child(shortcut_label)
 
-		popup_menu.add_child(button)
+		popup_menu.vbox.add_child(button)
 
 func _on_menu_button_pressed() -> void:
-	if not is_instance_valid(popup_menu):
-		get_popup() # Initialize the popup
+	if is_instance_valid(popup_menu):
+		_close_popup()
+	else:
+		# Initialize the popup
+		get_popup()
 		_rebuild_popup()
 		
 	# Position the popup below the button

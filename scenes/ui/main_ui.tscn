@@ -93,9 +93,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 4
-columns = 9
+columns = 10
 
 [node name="Shortcut" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
@@ -114,99 +112,131 @@ program_id = "program_manager"
 
 [node name="Shortcut5" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut6" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut7" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut8" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut9" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut10" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut11" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut12" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut13" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut14" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut15" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut16" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut17" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut18" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut19" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut20" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut21" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut22" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut23" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut24" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut25" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut26" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut27" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut28" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut29" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut30" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut31" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut32" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut33" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut34" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut35" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="Shortcut36" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "empty"
 
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
 custom_minimum_size = Vector2(0, 40)

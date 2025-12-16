@@ -34,6 +34,7 @@ func create_program(id: String) -> Program:
 		return null
 	
 	var prog_data = programs[id]
+	if prog_data.scene == null: return 
 	var instance = prog_data.scene.instantiate() as Program
 	instance.title = prog_data.title
 	
@@ -55,6 +56,15 @@ func get_program_info(id: String) -> Dictionary:
 
 ## Register all built-in programs
 func _register_builtin_programs() -> void:
+	register_program("empty", 
+		null,
+		{
+			"title": "",
+			"icon": "",
+			"category": "Empty",
+			"description": "Nothing here!"
+		}
+	)
 	register_program("template", 
 		preload("res://scenes/program/template.tscn"),
 		{

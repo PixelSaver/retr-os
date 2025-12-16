@@ -10,8 +10,6 @@ const PROGRAM_MANAGER_PATH = "res://autoloads/ProgramManager.gd" # Adjust this p
 var running_programs: Array[Program] = []
 
 func _program_ready() -> void:
-	title = "Program Manager"
-	refresh_button.text = "Refresh List"
 	refresh_button.pressed.connect(_refresh_list)
 	
 	ProgramManager.running_programs_list_changed.connect(_refresh_list)
@@ -65,22 +63,22 @@ func _create_program_list_entry(name: String, status: String, index: int, is_hea
 	var name_label = Label.new()
 	name_label.text = name
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND
-	name_label.custom_minimum_size = Vector2(200, 0)
+	name_label.custom_minimum_size = Vector2(100, 0)
 	hbox.add_child(name_label)
 	
 	var status_label = Label.new()
 	status_label.text = status
-	status_label.custom_minimum_size = Vector2(100, 0)
+	status_label.custom_minimum_size = Vector2(80, 0)
 	hbox.add_child(status_label)
 	
 	if is_header:
 		# Headers don't have a Kill button
-		name_label.add_theme_font_size_override("font_size", 16)
-		status_label.add_theme_font_size_override("font_size", 16)
+		name_label.add_theme_font_size_override("font_size", 14)
+		status_label.add_theme_font_size_override("font_size", 14)
 	else:
 		var kill_button = Button.new()
 		kill_button.text = "End Task"
-		kill_button.custom_minimum_size = Vector2(80, 0)
+		kill_button.custom_minimum_size = Vector2(60, 0)
 		kill_button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 		# Use a Callable to pass the program index
 		kill_button.pressed.connect(Callable(self, "_on_kill_button_pressed").bind(index))

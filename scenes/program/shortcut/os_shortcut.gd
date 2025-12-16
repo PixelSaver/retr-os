@@ -16,20 +16,23 @@ class_name OSShortcut
 		label_text = value
 		call_deferred("_refresh_ui")
 
-@onready var icon_texture_rect: TextureRect = $VBoxContainer/TextureRect
+@onready var icon_texture_rect: TextureRect = $VBoxContainer/MarginContainer/TextureRect
 @onready var label: RichTextLabel = $VBoxContainer/RichTextLabel
+@onready var highlight: ColorRect = $Highlight
 
 func _ready() -> void:
+	highlight.modulate.a = 0
 	if not program_id.is_empty():
 		_setup_from_program_manager()
 
 func _setup_from_program_manager() -> void:
 	var info = ProgramManager.get_program_info(program_id)
 	if not info.is_empty():
-		if label_text.is_empty():
-			label_text = info.get("title", program_id)
-		if not icon_texture:
+		label_text = info.get("title", program_id)
+		if not info.get("icon").is_empty():
 			icon_texture = load(info.get("icon"))
+		else:
+			icon_texture_rect.texture = Texture2D.new().create_placeholder()
 
 func _refresh_ui() -> void:
 	if not is_node_ready():
@@ -57,3 +60,13 @@ func _on_double_click() -> void:
 		Global.main_ui.run_program_by_id(program_id)
 	else:
 		push_error("Global.main_ui not set")
+		
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_MOUSE_ENTER:
+			if program_id != "empty":
+				highlight.modulate.a = 0.3
+			else:
+				highlight.modulate.a = 0
+		NOTIFICATION_MOUSE_EXIT:
+			highlight.modulate.a = 0

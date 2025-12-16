@@ -26,14 +26,14 @@ The easiest way to use 98.css is to import it from [unpkg](https://unpkg.com/).
 
 <body>
   <div class="window" style="margin: 32px; width: 250px">
-    <div class="title-bar">
-      <div class="title-bar-text">
-        My First VB4 Program
-      </div>
-    </div>
-    <div class="window-body">
-      <p>Hello, world!</p>
-    </div>
+	<div class="title-bar">
+	  <div class="title-bar-text">
+		My First VB4 Program
+	  </div>
+	</div>
+	<div class="window-body">
+	  <p>Hello, world!</p>
+	</div>
   </div>
 </body>
 </html>

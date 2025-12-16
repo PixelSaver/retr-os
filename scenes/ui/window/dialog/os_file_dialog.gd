@@ -55,6 +55,7 @@ static func create(mode: FileMode = FileMode.OPEN_FILE) -> OSFileDialog:
 
 func _ready() -> void:
 	super._ready()
+	title_label.text = "File Explorer"
 	
 	_build_dialog()
 	_setup_initial_dir()
