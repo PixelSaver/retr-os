@@ -110,6 +110,7 @@ program_id = "calculator"
 
 [node name="Shortcut4" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
+program_id = "program_manager"
 
 [node name="Shortcut5" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2

@@ -123,17 +123,14 @@ func _connect_program_signals() -> void:
 	if held_program.has_signal("title_changed"):
 		held_program.title_changed.connect(_update_window_title)
 	
-	if held_program.has_signal("request_close"):
-		held_program.request_close.connect(_close_window)
-	
-	if held_program.has_signal("request_minimize"):
-		held_program.request_minimize.connect(toggle_minimize)
-	
-	if held_program.has_signal("request_fullscreen"):
-		held_program.request_fullscreen.connect(toggle_fullscreen)
-	
 	if held_program.has_signal("close_window"):
 		held_program.close_window.connect(_close_window)
+	
+	if held_program.has_signal("minimize_window"):
+		held_program.minimize_window.connect(toggle_minimize)
+	
+	if held_program.has_signal("fullscreen_window"):
+		held_program.fullscreen_window.connect(toggle_fullscreen)
 
 ## Handle window button presses
 func _on_window_button_pressed(but: WindowButton) -> void:
@@ -152,9 +149,8 @@ func _close_window() -> void:
 		held_program.end_program()
 		
 		# If program has unsaved changes, it could cancel the close
-		if held_program.has_method("can_close"):
-			if not held_program.can_close():
-				return # Don't close
+		if not held_program.can_close():
+			return # Don't close
 	
 	# Remove from window manager
 	if WindowManager and WindowManager.all_windows:

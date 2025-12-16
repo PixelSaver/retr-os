@@ -2,6 +2,11 @@ extends Node
 
 ## Registry of all available programs
 var programs: Dictionary = {}
+var running_programs : Array[Program] = [] :
+	set(value):
+		running_programs = value
+		running_programs_list_changed.emit()
+signal running_programs_list_changed
 
 func _ready() -> void:
 	_register_builtin_programs()
@@ -68,6 +73,15 @@ func _register_builtin_programs() -> void:
 			"icon": "res://assets/win98_icons/png/calculator-0.png",
 			"category": "Utilities",
 			"description": "Can calculate pretty much nothing"
+		}
+	)
+	register_program("program_manager", 
+		preload("res://scenes/program/program_manager_program.tscn"),
+		{
+			"title": "Program Manager",
+			"icon": "res://assets/win98_icons/png/program_manager-1.png",
+			"category": "Utilities",
+			"description": "KILL THEM ALL"
 		}
 	)
 
