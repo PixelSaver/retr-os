@@ -81,6 +81,7 @@ func load_program(prog: Program) -> void:
 	if held_program.min_size != Vector2.ONE*-1:
 		set_minimum_size(held_program.min_size)
 	
+	
 	program_container.add_child(prog)
 	prog.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	

@@ -56,7 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://bm5f8jqi8i8hb" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnH.png" id="53_jsq3x"]
 [ext_resource type="Texture2D" uid="uid://c5q3bccdc35i" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnPressed.png" id="54_rnfs7"]
 [ext_resource type="StyleBox" uid="uid://cqigxpg3a2dwr" path="res://assets/Themes/Classic95/Styles/Window/Window.tres" id="55_csw21"]
-[ext_resource type="FontFile" uid="uid://hges018tmb1i" path="res://assets/98.css/fonts/converted/ms_sans_serif.woff" id="57_badhs"]
+[ext_resource type="FontFile" uid="uid://oupk15mgr8u3" path="res://assets/98.css/fonts/src/ms-sans-serif/MS Sans Serif.ttf" id="57_badhs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nn6j"]
 content_margin_left = 10.0

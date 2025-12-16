@@ -47,10 +47,7 @@ func _build_buttons() -> void:
 		
 		# Apply custom color if specified (e.g., for AC or operator buttons)
 		if button_data[2]:
-			var style = StyleBoxFlat.new()
-			style.bg_color = button_data[2]
-			style.set_corner_radius_all(4)
-			btn.add_theme_stylebox_override("normal", style)
+			btn.modulate = button_data[2]
 			
 		# Set the action ID as metadata
 		btn.set_meta("action", button_data[1])

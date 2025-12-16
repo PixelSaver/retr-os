@@ -65,7 +65,7 @@ func _register_builtin_programs() -> void:
 		preload("res://scenes/program/calculator_program.tscn"),
 		{
 			"title": "Calculator",
-			"icon": "res://assets/win98_icons/png/help_question_mark-0.png",
+			"icon": "res://assets/win98_icons/png/calculator-0.png",
 			"category": "Utilities",
 			"description": "Can calculate pretty much nothing"
 		}
