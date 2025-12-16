@@ -13,14 +13,22 @@ class_name OSShortcut
 	set(value):
 		label_text = value
 
-@onready var button: Button = $Button
 @onready var icon_texture_rect: TextureRect = $VBoxContainer/TextureRect
 @onready var label: RichTextLabel = $VBoxContainer/RichTextLabel
 
 func _ready() -> void:
+	if not program_id.is_empty():
+		_setup_from_program_manager()
+	
 	_refresh_ui()
 
-# UI
+func _setup_from_program_manager() -> void:
+	var info = ProgramManager.get_program_info(program_id)
+	if not info.is_empty():
+		if label_text.is_empty():
+			label_text = info.get("title", program_id)
+		if not icon_texture:
+			icon_texture = load(info.get("icon"))
 
 func _refresh_ui() -> void:
 	if not is_node_ready():

@@ -47,6 +47,7 @@ func _register_builtin_programs() -> void:
 		preload("res://scenes/program/template.tscn"),
 		{
 			"title": "Template",
+			"icon": "res://assets/win98_icons/png/accesibility_window_abc.png",
 			"category": "Template",
 			"description": "Just a template. Lorem ipsum etcetera"
 		}

@@ -91,12 +91,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 10
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 4
+columns = 9
 
 [node name="Shortcut" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+
+[node name="Shortcut2" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut3" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut4" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut5" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut6" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut7" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut8" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+
+[node name="Shortcut9" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
 
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
 custom_minimum_size = Vector2(0, 50)
