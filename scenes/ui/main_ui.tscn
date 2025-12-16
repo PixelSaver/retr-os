@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bypm1v6132kxr"]
+[gd_scene load_steps=9 format=3 uid="uid://bypm1v6132kxr"]
 
 [ext_resource type="Script" uid="uid://vww78vwdgyeb" path="res://scenes/ui/main_ui.gd" id="1_hcnxy"]
 [ext_resource type="Texture2D" uid="uid://dvnq10t376dh4" path="res://icon.svg" id="1_hnesk"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dw3bolinmdvca" path="res://assets/win98_icons/png/windows-5.png" id="4_46cp5"]
 [ext_resource type="PackedScene" uid="uid://cvjw483g5bljw" path="res://scenes/program/shortcut/os_shortcut.tscn" id="4_b1beo"]
 [ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_travt"]
+[ext_resource type="Texture2D" uid="uid://d3dqaec72fm27" path="res://assets/win98_icons/png/clock-0.png" id="7_t0li6"]
+[ext_resource type="Script" uid="uid://dx8uj12cc867h" path="res://scenes/ui/clock.gd" id="8_oxwcw"]
 
 [node name="MainUI" type="CanvasLayer"]
 script = ExtResource("1_hcnxy")
@@ -235,6 +237,50 @@ layout_mode = 2
 text = "File Dialog"
 script = ExtResource("4_travt")
 metadata/_custom_type_script = "uid://banviqj03w41g"
+
+[node name="Spacer" type="Control" parent="Theme/GUI/TaskBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="Theme/GUI/TaskBar/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Theme/GUI/TaskBar/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="Theme/GUI/TaskBar/HBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Theme/GUI/TaskBar/HBoxContainer/Panel/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_t0li6")
+expand_mode = 3
+
+[node name="Clock" type="RichTextLabel" parent="Theme/GUI/TaskBar/HBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "12:01:01"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+script = ExtResource("8_oxwcw")
 
 [connection signal="window_button_pressed" from="Theme/GUI/TaskBar/HBoxContainer/Start" to="." method="_on_window_button_pressed"]
 [connection signal="window_button_pressed" from="Theme/GUI/TaskBar/HBoxContainer/File" to="." method="_on_window_button_pressed"]
