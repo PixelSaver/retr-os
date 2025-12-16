@@ -5,7 +5,7 @@ var par : SubViewport
 @export var main_menu : Control
 @export var computer_ui : Control
 @onready var theme: Control = $Theme
-@onready var program_container: Control = $Theme/GUI/ProgramContainer
+@onready var window_container: Control = $Theme/GUI/ProgramContainer
 @onready var gui = $Theme/GUI
 @onready var controlsDialog = preload ("res://assets/Themes/TestDialog.tscn")
 @onready var os_window_scene = preload("res://scenes/ui/window/os_window.tscn")
@@ -18,8 +18,8 @@ func _ready():
 func _on_Button_button_pressed() -> void:
 	var inst := os_window_scene.instantiate() as OSWindow
 	add_child(inst)
+	inst.load_program(TemplateProgram.new())
 	inst.custom_init(Vector2(100,100))
-
 
 func _on_alert_pressed() -> void:
 	pass
@@ -44,7 +44,7 @@ func put_on_top(control):
 	parent.move_child(control, parent.get_child_count())
 
 func load_program(prog:Program):
-	
-	program_container.add_child(prog)
+	prog.load_program_scene()
+	window_container.add_child(prog)
 	program_list.append(prog)
 	

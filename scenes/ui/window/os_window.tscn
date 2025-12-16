@@ -72,6 +72,10 @@ icon = ExtResource("7_j5pqg")
 icon_alignment = 1
 script = ExtResource("4_d5y26")
 
+[node name="ProgramContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [connection signal="pressed" from="VBoxContainer/TitleBar/Minimize" to="VBoxContainer/TitleBar/Minimize" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitleBar/Fullscreen" to="VBoxContainer/TitleBar/Fullscreen" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitleBar/Close" to="VBoxContainer/TitleBar/Close" method="_on_pressed"]

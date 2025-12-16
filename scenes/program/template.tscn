@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://da5pp54abwfdn"]
+[gd_scene load_steps=2 format=3 uid="uid://da5pp54abwfdn"]
 
-[ext_resource type="Script" uid="uid://eh8jscmuvki5" path="res://scenes/program/template_prog.gd" id="1_645ka"]
 [ext_resource type="Texture2D" uid="uid://dvnq10t376dh4" path="res://icon.svg" id="2_kf5ev"]
 
 [node name="Template" type="Control"]
@@ -10,8 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_645ka")
-metadata/_custom_type_script = "uid://eh8jscmuvki5"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

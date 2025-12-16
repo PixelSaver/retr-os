@@ -3,7 +3,6 @@ class_name OSWindow
 
 @export var MIN_SIZE := Vector2(200, 150)
 @export var RESIZE_BORDER_THICKNESS := 8 # Thickness of the clickable border area
-var program : Control
 
 enum ResizeEdge {
 	NONE = 0,
@@ -25,6 +24,7 @@ var resize_start_rect := Rect2()
 
 @export var button_array : Array[WindowButton]
 @onready var title_bar: HBoxContainer = $VBoxContainer/TitleBar
+@onready var program_container: Control = $VBoxContainer/ProgramContainer
 var is_dragging := false
 ## Stores the distance from the window origin to the click point
 var drag_start_offset := Vector2.ZERO 
@@ -35,10 +35,8 @@ var restored_rect := Rect2()
 
 var held_program : Control 
 
-func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1, program=null) -> void:
+func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1) -> void:
 	WindowManager.all_windows.append(self)
-	if program:
-		held_program = program
 	var new_size = rect_size 
 	if new_size.x < MIN_SIZE.x:
 		new_size.x = MIN_SIZE.x
@@ -48,6 +46,10 @@ func custom_init(rect_size:Vector2, init_pos:Vector2=Vector2.ONE*-1, program=nul
 	if init_pos == Vector2.ONE*-1:
 		self.position = get_viewport_rect().size/2 - new_size/2.
 	
+func load_program(prog:Program):
+	held_program = prog 
+	program_container.add_child(prog)
+	prog.load_program_scene()
 	
 
 func _ready() -> void:
