@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://global.gd"
-WindowManager="*res://window_manager.gd"
+Global="*res://autoloads/global.gd"
+WindowManager="*res://autoloads/window_manager.gd"
 
 [display]
 

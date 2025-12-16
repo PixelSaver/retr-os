@@ -5,10 +5,7 @@ extends Node
 @onready var controlsDialog = preload ("res://assets/Themes/TestDialog.tscn")
 
 var themes = {
-	0: ThemeItem.new("Default", "."),
-	1: ThemeItem.new("Classic 3.11", "res://Themes/Classic311/Classic311.tres"),
-	2: ThemeItem.new("Classic 95", "res://Themes/Classic95/Classic95.tres"),
-	3: ThemeItem.new("Modern 11 (WIP)", "res://Themes/Modern11/Modern11.tres")
+	2: ThemeItem.new("Classic 95", "res://assets/Themes/Classic95/Classic95.tres"),
 }
 
 func _ready():
