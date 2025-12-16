@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=72 format=3 uid="uid://drrt0lg0vdcoc"]
+[gd_resource type="Theme" load_steps=75 format=3 uid="uid://drrt0lg0vdcoc"]
 
 [ext_resource type="StyleBox" uid="uid://cqveew3fhjoni" path="res://assets/Themes/Classic95/Styles/Button/Disabled.tres" id="1_gh6ca"]
 [ext_resource type="StyleBox" uid="uid://dygx7je0yh5k" path="res://assets/Themes/Classic95/Styles/Button/Focused.tres" id="2_gpp0l"]
 [ext_resource type="StyleBox" uid="uid://jiag5vjk8mwd" path="res://assets/Themes/Classic95/Styles/Button/Button.tres" id="3_badhs"]
+[ext_resource type="Texture2D" uid="uid://8aq2652yh8gv" path="res://assets/Themes/Classic95/Styles/Button/Button.png" id="3_gpp0l"]
 [ext_resource type="StyleBox" uid="uid://7202jtdqhc4b" path="res://assets/Themes/Classic95/Styles/Button/Pressed.tres" id="4_skoli"]
 [ext_resource type="Texture2D" uid="uid://bq3p6equii8fo" path="res://assets/Themes/Classic95/Styles/CheckBox/Checked.png" id="5_nrktw"]
 [ext_resource type="Texture2D" uid="uid://r4etwbfb7aux" path="res://assets/Themes/Classic95/Styles/CheckBox/DisabledChecked.png" id="6_6n05x"]
@@ -55,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://bm5f8jqi8i8hb" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnH.png" id="53_jsq3x"]
 [ext_resource type="Texture2D" uid="uid://c5q3bccdc35i" path="res://assets/Themes/Classic95/Styles/Window/CloseBtnPressed.png" id="54_rnfs7"]
 [ext_resource type="StyleBox" uid="uid://cqigxpg3a2dwr" path="res://assets/Themes/Classic95/Styles/Window/Window.tres" id="55_csw21"]
+[ext_resource type="FontFile" uid="uid://hges018tmb1i" path="res://assets/98.css/fonts/converted/ms_sans_serif.woff" id="57_badhs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nn6j"]
 content_margin_left = 10.0
@@ -62,6 +64,17 @@ content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0.761719, 0.777344, 0.792969, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_badhs"]
+texture = ExtResource("3_gpp0l")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 6, 6)
+modulate_color = Color(1.1638972, 1.1638972, 1.1638972, 1)
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
@@ -177,6 +190,7 @@ axis_stretch_vertical = 2
 region_rect = Rect2(0, 0, 7, 7)
 
 [resource]
+default_font = ExtResource("57_badhs")
 default_font_size = 12
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_6nn6j")
 Button/colors/font_color = Color(0, 0, 0, 1)
@@ -188,7 +202,7 @@ Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/styles/disabled = ExtResource("1_gh6ca")
 Button/styles/focus = ExtResource("2_gpp0l")
-Button/styles/hover = ExtResource("3_badhs")
+Button/styles/hover = SubResource("StyleBoxTexture_badhs")
 Button/styles/normal = ExtResource("3_badhs")
 Button/styles/pressed = ExtResource("4_skoli")
 CheckBox/constants/hseparation = 2

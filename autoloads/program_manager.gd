@@ -61,6 +61,15 @@ func _register_builtin_programs() -> void:
 			"description": "A text editor for almost nothing!"
 		}
 	)
+	register_program("calculator", 
+		preload("res://scenes/program/calculator_program.tscn"),
+		{
+			"title": "Calculator",
+			"icon": "res://assets/win98_icons/png/help_question_mark-0.png",
+			"category": "Utilities",
+			"description": "Can calculate pretty much nothing"
+		}
+	)
 
 #"res://assets/win98_icons/png/console_prompt-0.png"
 #"res://assets/win98_icons/png/directory_closed-3.png"

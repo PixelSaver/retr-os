@@ -1,7 +1,7 @@
 extends PanelContainer
 class_name OSWindow
 
-@export var MIN_SIZE := Vector2(200, 150)
+@export var min_size := Vector2(200, 150)
 @export var RESIZE_BORDER_THICKNESS := 8 # Thickness of the clickable border area
 
 enum ResizeEdge {
@@ -47,20 +47,29 @@ static func create() -> OSWindow:
 
 func custom_init(rect_size:Vector2=Vector2.ZERO, init_pos:Vector2=Vector2.ONE*-1) -> void:
 	WindowManager.all_windows.append(self)
-	var new_size = rect_size 
-	if new_size.x < MIN_SIZE.x:
-		new_size.x = MIN_SIZE.x
-	if new_size.y < MIN_SIZE.y:
-		new_size.y = MIN_SIZE.y
-	
-	# Set the size
-	size = new_size
+	_update_window_size(rect_size)
 	
 	# Set position (center if not specified)
 	if init_pos == Vector2.ONE*-1:
-		self.position = get_parent_control().get_rect().size/2 - new_size/2
+		self.position = get_parent_control().get_rect().size/2 - size/2.
 	else:
 		self.position = init_pos
+
+func _update_window_size(new_size:Vector2=size):
+	if new_size.x < min_size.x:
+		new_size.x = min_size.x
+	if new_size.y < min_size.y:
+		new_size.y = min_size.y
+	
+	# Set the size
+	size = new_size
+
+func set_minimum_size(new_min:Vector2):
+	if new_min.x > 0:
+		min_size.x = new_min.x
+	if new_min.y > 0:
+		min_size.y = new_min.y
+	_update_window_size()
 
 func load_program(prog: Program) -> void:
 	if held_program:
@@ -68,6 +77,9 @@ func load_program(prog: Program) -> void:
 		return
 	
 	held_program = prog
+	
+	if held_program.min_size != Vector2.ONE*-1:
+		set_minimum_size(held_program.min_size)
 	
 	program_container.add_child(prog)
 	prog.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -325,27 +337,27 @@ func _handle_resizing() -> void:
 	if active_resize_mode & ResizeEdge.LEFT:
 		var new_x = resize_start_rect.position.x + delta.x
 		var new_w = resize_start_rect.size.x - delta.x
-		if new_w >= MIN_SIZE.x:
+		if new_w >= min_size.x:
 			new_pos.x = new_x
 			new_size.x = new_w
 		else: # Hit min size, snap position/size
-			new_pos.x = resize_start_rect.position.x + (resize_start_rect.size.x - MIN_SIZE.x)
-			new_size.x = MIN_SIZE.x
+			new_pos.x = resize_start_rect.position.x + (resize_start_rect.size.x - min_size.x)
+			new_size.x = min_size.x
 	elif active_resize_mode & ResizeEdge.RIGHT:
-		new_size.x = max(MIN_SIZE.x, resize_start_rect.size.x + delta.x)
+		new_size.x = max(min_size.x, resize_start_rect.size.x + delta.x)
 
 	# Handle Vertical Resizing
 	if active_resize_mode & ResizeEdge.TOP:
 		var new_y = resize_start_rect.position.y + delta.y
 		var new_h = resize_start_rect.size.y - delta.y
-		if new_h >= MIN_SIZE.y:
+		if new_h >= min_size.y:
 			new_pos.y = new_y
 			new_size.y = new_h
 		else: # Hit min size, snap position/size
-			new_pos.y = resize_start_rect.position.y + (resize_start_rect.size.y - MIN_SIZE.y)
-			new_size.y = MIN_SIZE.y
+			new_pos.y = resize_start_rect.position.y + (resize_start_rect.size.y - min_size.y)
+			new_size.y = min_size.y
 	elif active_resize_mode & ResizeEdge.BOTTOM:
-		new_size.y = max(MIN_SIZE.y, resize_start_rect.size.y + delta.y)
+		new_size.y = max(min_size.y, resize_start_rect.size.y + delta.y)
 
 	# Apply changes
 	global_position = new_pos

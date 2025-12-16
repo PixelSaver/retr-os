@@ -9,6 +9,7 @@ var title: String = "Program"
 var icon: Texture2D
 var is_running: bool = false
 var program_id: String = "" ## Automatically set by the system
+@export var min_size:Vector2 = Vector2.ONE*-1
 
 ## Override this in subclasses for initialization
 func _program_ready() -> void:
