@@ -1,13 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvjw483g5bljw"]
+[gd_scene load_steps=4 format=3 uid="uid://cvjw483g5bljw"]
 
 [ext_resource type="Script" uid="uid://wh0ch7p3urco" path="res://scenes/program/shortcut/os_shortcut.gd" id="1_1j4v1"]
+[ext_resource type="Texture2D" uid="uid://dvnq10t376dh4" path="res://icon.svg" id="2_g2o85"]
+[ext_resource type="Texture2D" uid="uid://jn44og4iohpl" path="res://assets/win98_icons/png/accesibility_window_abc.png" id="3_6ae4u"]
 
 [node name="Shortcut" type="Control" groups=["shortcut"]]
 layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1j4v1")
+program_id = "template"
+icon_texture = ExtResource("2_g2o85")
+label_text = "Template Program"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1j4v1")
-program_type = "TemplateProgram"
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_6ae4u")
+expand_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1

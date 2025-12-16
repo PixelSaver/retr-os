@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bypm1v6132kxr"]
+[gd_scene load_steps=7 format=3 uid="uid://bypm1v6132kxr"]
 
 [ext_resource type="Script" uid="uid://vww78vwdgyeb" path="res://scenes/ui/main_ui.gd" id="1_hcnxy"]
 [ext_resource type="Texture2D" uid="uid://dvnq10t376dh4" path="res://icon.svg" id="1_hnesk"]
 [ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="2_l8t6x"]
 [ext_resource type="Texture2D" uid="uid://dw3bolinmdvca" path="res://assets/win98_icons/png/windows-5.png" id="4_46cp5"]
+[ext_resource type="PackedScene" uid="uid://cvjw483g5bljw" path="res://scenes/program/shortcut/os_shortcut.tscn" id="4_b1beo"]
 [ext_resource type="Script" uid="uid://banviqj03w41g" path="res://scenes/ui/window/window_button.gd" id="4_travt"]
 
 [node name="MainUI" type="CanvasLayer"]
@@ -81,6 +82,20 @@ theme_override_constants/separation = 0
 [node name="WindowContainer" type="Control" parent="Theme/GUI"]
 clip_contents = true
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="Theme/GUI/WindowContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="Shortcut" parent="Theme/GUI/WindowContainer/GridContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
