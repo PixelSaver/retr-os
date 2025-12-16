@@ -3,6 +3,7 @@ class_name OSWindow
 
 @export var MIN_SIZE := Vector2(200, 150)
 @export var RESIZE_BORDER_THICKNESS := 8 # Thickness of the clickable border area
+var program : Control
 
 enum ResizeEdge {
 	NONE = 0,
@@ -254,7 +255,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_title_bar_gui_input(event: InputEvent) -> void:
 	#if not is_resizing:
-	grab_focus()
+	#grab_focus()
 	if event.is_action_pressed("l_click"):
 		bring_to_front()
 	

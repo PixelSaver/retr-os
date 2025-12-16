@@ -95,5 +95,7 @@ metadata/_edit_use_anchors_ = true
 size = Vector2i(864, 486)
 
 [node name="MainUI" parent="Screen/Text/SubViewport" instance=ExtResource("2_k2fmo")]
+scale = Vector2(1, 1)
+transform = Transform2D(1, 0, 0, 1, 0, 0)
 
 [connection signal="input_event" from="Area3D" to="Screen" method="_on_area_3d_input_event"]

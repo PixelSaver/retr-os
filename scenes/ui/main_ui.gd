@@ -28,7 +28,14 @@ func _on_confirm_pressed() -> void:
 
 
 func _on_file_pressed() -> void:
-	pass
+	var dialog = FileDialog.new()
+	dialog.title = "Save a file"
+	dialog.initial_position = Window.WINDOW_INITIAL_POSITION_CENTER_MAIN_WINDOW_SCREEN
+	dialog.size = Vector2i(720, 450)
+	dialog.dialog_hide_on_ok = true
+	dialog.dialog_close_on_escape = true
+	dialog.visible = true
+	gui.add_child(dialog)
 	
 func put_on_top(control):
 	var parent = control.get_parent()
