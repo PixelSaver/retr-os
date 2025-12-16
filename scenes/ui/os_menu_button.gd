@@ -72,6 +72,8 @@ func _rebuild_popup() -> void:
 	for child in popup_menu.get_children():
 		child.queue_free()
 	
+	popup_menu.z_index = 1
+	
 	# Populate with new items
 	for item in items:
 		if item.is_separator:
