@@ -105,7 +105,7 @@ func _build_dialog() -> void:
 	
 	# Favorites sidebar
 	favorites_list = ItemList.new()
-	favorites_list.custom_minimum_size = Vector2(120, 200)
+	favorites_list.custom_minimum_size = Vector2(80, 150)
 	hsplit.add_child(favorites_list)
 	favorites_list.item_selected.connect(_on_favorite_selected)
 	_update_favorites()
@@ -136,7 +136,7 @@ func _build_dialog() -> void:
 	
 	var filename_label = Label.new()
 	filename_label.text = "File:"
-	filename_label.custom_minimum_size = Vector2(40, 0)
+	filename_label.custom_minimum_size = Vector2(30, 0)
 	filename_hbox.add_child(filename_label)
 	
 	filename_edit = LineEdit.new()

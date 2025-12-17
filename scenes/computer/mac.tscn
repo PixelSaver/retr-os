@@ -1,89 +1,30 @@
-[gd_scene load_steps=240 format=4 uid="uid://bjr78tl586o87"]
+[gd_scene load_steps=227 format=4 uid="uid://bca1jydv04uwy"]
 
-[ext_resource type="Script" uid="uid://bebui2t15quet" path="res://scenes/main/main.gd" id="1_l3cfh"]
-[ext_resource type="Script" uid="uid://d4kghif8h5k10" path="res://scenes/ui/screen.gd" id="2_iuonh"]
-[ext_resource type="PackedScene" uid="uid://bypm1v6132kxr" path="res://scenes/ui/main_ui.tscn" id="2_k2fmo"]
-[ext_resource type="Shader" uid="uid://cky8auk2rsgs2" path="res://shaders/crt.gdshader" id="2_l3cfh"]
-[ext_resource type="Texture2D" uid="uid://bx0jqk62d66gs" path="res://assets/models/macintosh_128k/textures/hello_4_baseColor.png" id="5_ou6is"]
-[ext_resource type="Texture2D" uid="uid://c1ec54unqal86" path="res://assets/models/macintosh_128k/textures/Macintosh-128K-retro_baseColor.jpeg" id="6_necax"]
-[ext_resource type="Texture2D" uid="uid://dc15cb036pi6h" path="res://assets/models/macintosh_128k/textures/Macintosh_2_baseColor.jpeg" id="7_r4lks"]
-[ext_resource type="Texture2D" uid="uid://br0rf7feaigo5" path="res://assets/models/macintosh_128k/textures/Apple-0_baseColor.jpeg" id="8_pg34l"]
-[ext_resource type="Texture2D" uid="uid://vi52njaf70wg" path="res://assets/models/macintosh_128k/textures/decal_2_baseColor.png" id="9_m4h2d"]
-[ext_resource type="Texture2D" uid="uid://d4l7goi3eqxxk" path="res://assets/models/macintosh_128k/textures/decal_3_baseColor.png" id="10_p8abn"]
-[ext_resource type="Texture2D" uid="uid://tf0o4cxvpvvr" path="res://assets/models/macintosh_128k/textures/klava_2_1_baseColor.jpeg" id="11_s17dp"]
-[ext_resource type="Texture2D" uid="uid://c03vvx540g7hv" path="res://assets/models/macintosh_128k/textures/mahagon_3_baseColor.jpeg" id="12_37hlw"]
-[ext_resource type="Texture2D" uid="uid://dwr50md3ri7xc" path="res://assets/models/macintosh_128k/textures/apple_2_baseColor.jpeg" id="13_6llfj"]
-[ext_resource type="Texture2D" uid="uid://c1520hgyve1n7" path="res://assets/models/macintosh_128k/textures/oblogka_baseColor.jpeg" id="14_0bhws"]
-[ext_resource type="Texture2D" uid="uid://dcfof3r508axp" path="res://assets/models/macintosh_128k/textures/stranica_baseColor.jpeg" id="15_62atk"]
-[ext_resource type="Texture2D" uid="uid://dl2k8v5vxr7ys" path="res://assets/models/macintosh_128k/textures/stiv_3_baseColor.jpeg" id="16_i7in8"]
-[ext_resource type="Texture2D" uid="uid://b5v3rv7mc2yjt" path="res://assets/models/macintosh_128k/textures/stiv_2_baseColor.jpeg" id="17_gkmcc"]
-[ext_resource type="Texture2D" uid="uid://cvmxr87qork4q" path="res://assets/models/macintosh_128k/textures/knigi_baseColor.jpeg" id="18_7nlll"]
+[ext_resource type="Texture2D" uid="uid://gpmhmpigowg6" path="res://assets/models/macintosh_128k/textures/hello_baseColor.jpeg" id="1_nor37"]
+[ext_resource type="Texture2D" uid="uid://bx0jqk62d66gs" path="res://assets/models/macintosh_128k/textures/hello_4_baseColor.png" id="2_hurk4"]
+[ext_resource type="Texture2D" uid="uid://c1ec54unqal86" path="res://assets/models/macintosh_128k/textures/Macintosh-128K-retro_baseColor.jpeg" id="3_5ulcl"]
+[ext_resource type="Texture2D" uid="uid://dc15cb036pi6h" path="res://assets/models/macintosh_128k/textures/Macintosh_2_baseColor.jpeg" id="4_4wvgh"]
+[ext_resource type="Texture2D" uid="uid://br0rf7feaigo5" path="res://assets/models/macintosh_128k/textures/Apple-0_baseColor.jpeg" id="5_0rtmq"]
+[ext_resource type="Texture2D" uid="uid://vi52njaf70wg" path="res://assets/models/macintosh_128k/textures/decal_2_baseColor.png" id="8_ywmmc"]
+[ext_resource type="Texture2D" uid="uid://d4l7goi3eqxxk" path="res://assets/models/macintosh_128k/textures/decal_3_baseColor.png" id="9_d3kn2"]
+[ext_resource type="Texture2D" uid="uid://tf0o4cxvpvvr" path="res://assets/models/macintosh_128k/textures/klava_2_1_baseColor.jpeg" id="10_5hlkk"]
+[ext_resource type="Texture2D" uid="uid://c03vvx540g7hv" path="res://assets/models/macintosh_128k/textures/mahagon_3_baseColor.jpeg" id="11_ak508"]
+[ext_resource type="Texture2D" uid="uid://dwr50md3ri7xc" path="res://assets/models/macintosh_128k/textures/apple_2_baseColor.jpeg" id="12_hmbu4"]
+[ext_resource type="Texture2D" uid="uid://c1520hgyve1n7" path="res://assets/models/macintosh_128k/textures/oblogka_baseColor.jpeg" id="13_tovsu"]
+[ext_resource type="Texture2D" uid="uid://dcfof3r508axp" path="res://assets/models/macintosh_128k/textures/stranica_baseColor.jpeg" id="14_3yndw"]
+[ext_resource type="Texture2D" uid="uid://dl2k8v5vxr7ys" path="res://assets/models/macintosh_128k/textures/stiv_3_baseColor.jpeg" id="15_4ekao"]
+[ext_resource type="Texture2D" uid="uid://b5v3rv7mc2yjt" path="res://assets/models/macintosh_128k/textures/stiv_2_baseColor.jpeg" id="16_ang7o"]
+[ext_resource type="Texture2D" uid="uid://cvmxr87qork4q" path="res://assets/models/macintosh_128k/textures/knigi_baseColor.jpeg" id="17_rmylr"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hyk8p"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_iuonh"]
-sky_material = SubResource("ProceduralSkyMaterial_hyk8p")
-
-[sub_resource type="Environment" id="Environment_k2fmo"]
-background_mode = 1
-sky = SubResource("Sky_iuonh")
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.09
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ou6is"]
-viewport_path = NodePath("Screen")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_necax"]
-resource_local_to_scene = true
-shading_mode = 2
-albedo_texture = SubResource("ViewportTexture_ou6is")
-
-[sub_resource type="QuadMesh" id="QuadMesh_vom5j"]
-resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_necax")
-size = Vector2(1.25, 1)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k2fmo"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_6q06x"]
-viewport_path = NodePath("Screen/Text/SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow5a4"]
-resource_local_to_scene = true
-shader = ExtResource("2_l3cfh")
-shader_parameter/tex = SubResource("ViewportTexture_6q06x")
-shader_parameter/mask_type = 1
-shader_parameter/curve = 0.0
-shader_parameter/sharpness = 0.6666667
-shader_parameter/color_offset = 0.0
-shader_parameter/mask_brightness = 0.5450000258875
-shader_parameter/scanline_brightness = 1.0
-shader_parameter/min_scanline_thickness = 0.5
-shader_parameter/aspect = 0.75
-shader_parameter/wobble_strength = 0.498000023655
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ii537"]
-viewport_path = NodePath("Screen")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rofvo"]
-resource_local_to_scene = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8px4"]
 resource_name = "hello"
 cull_mode = 2
-albedo_texture = SubResource("ViewportTexture_ii537")
+albedo_texture = ExtResource("1_nor37")
 roughness = 0.0
 emission_enabled = true
 emission = Color(0.27070886, 0.48982882, 0.47237682, 1)
-uv1_scale = Vector3(0.805, 0.805, 0.805)
-uv1_offset = Vector3(0.495, -0.435, 0)
-uv1_triplanar = true
-uv1_world_triplanar = true
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_tbnf8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_26y3j"]
 _surfaces = [{
 "aabb": AABB(0.738608, -0.6436227, 5.290569, 0.104230046, 1.2872454, 1.0445104),
 "format": 34896613377,
@@ -98,7 +39,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_r1bmu"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_jj1uw"]
 resource_name = "Sketchfab_Scene_Cube_002_hello_0"
 _surfaces = [{
 "aabb": AABB(0.738608, -0.6436227, 5.290569, 0.104230046, 1.2872454, 1.0445104),
@@ -107,7 +48,7 @@ _surfaces = [{
 "index_count": 486,
 "index_data": PackedByteArray("NwABAAIANwADAAEAOAA3AAIAOAACAAQAOQADADcAOQAFAAMAJQA3ADgAJQA5ADcAOgA4AAQAOgAEAAoAJgAlADgAJgA4ADoAOwAFADkAOwAGAAUAJwA5ACUAJwA7ADkAPAAlACYAPAAnACUAPQAGADsAPQAHAAYAPgA7ACcAPgA9ADsAPwAnADwAPwA+ACcAQAAHAD0AQAAIAAcANgA9AD4ANgBAAD0AMwA+AD8AMwA2AD4AQQAIAEAAQQAJAAgAQgBAADYAQgBBAEAANAA2ADMANABCADYAQwAJAEEAQwALAAkARABBAEIARABDAEEANQBCADQANQBEAEIARQALAEMARQAiAAsAIwAiAEUAIwAkACIAIQAjAEUARgBFAEMAIQBFAEYARgBDAEQAIAAhAEYARwBGAEQAIABGAEcARwBEADUAHwAgAEcAHwBHAEgASABHADUAHgAfAEgASAA1ADEAHgBIAEkASQBIADEAMQA1ADQAHQAeAEkAMQA0ADIAMgA0ADMASQAxAEoASgAxADIAHQBJAEsASwBJAEoAHAAdAEsAMgAzAEwATAAzAD8ASgAyAE0ATQAyAEwASwBKADAAMABKAE0AHABLAE4ATgBLADAAGwAcAE4ATAA/AE8ATwA/ADwATQBMAFAAUABMAE8AGwBOAFEAGgAbAFEAGgBRABkAUQBOAC8ATgAwAC8AGQBRAFIAUQAvAFIAGQBSABgAMABNAFMALwAwAFMAUwBNAFAAUgAvAAAALwBTAAAAGABSAFQAUgAAAFQAGABUABcAUwBQAFUAAABTAFUAVQBQAC4AUABPAC4AAABVAFYAVAAAAFYAFwBUAFcAVABWAFcAFwBXABYAVgBVAC0AVQAuAC0AVwBWACwAVgAtACwAFgBXAFgAVwAsAFgAFgBYABUAFQBYAFkAFQBZABQAWAAsAFoAWABaAFkALAAtACsALAArAFoALQApACsALQAuACkAFABZAFsAFABbAAwAWQBaAFwAWQBcAFsAWgArACoAWgAqAFwAKwAoACoAKwApACgADABbAF0ADABdABEAEQBdABIAEQASABMAXQAQABIAWwBeAF0AXQBeABAAWwBcAF4AXgAPABAAXABfAF4AXgBfAA8AXAAqAF8AXwAOAA8AKgBgAF8AXwBgAA4AKgAoAGAAYAANAA4AYABhAA0AKABhAGAAYQAKAA0AYQA6AAoAKABiAGEAYgA6AGEAKQBiACgAYgAmADoAKQBjAGIAYwAmAGIALgBjACkAYwA8ACYALgBPAGMATwA8AGMA"),
 "lods": [0.0050633852, PackedByteArray("JQABAAIAJQADAAEAJQACAAQAJQAFAAMAJgAlAAQAJwAFACUAJwAlACYAJgAEAAoAJwAGAAUAKAAmAAoAKAAKAA0AKAANAA4AKQAmACgAKQAnACYAKgAoAA4AKgAOAA8AKwApACgAKwAoACoAEAAqAA8AFAArACoADAAqABAAFAAqAAwADAAQABEAEQAQABIAEQASABMALAArABQAFQAsABQAFgAsABUAFwAsABYALAAtACsALQApACsAFwAAACwAAAAtACwAGAAAABcALQAuACkAAAAuAC0ALgAnACkAGAAvAAAAGQAvABgAGgAvABkAGgAbAC8AGwAcAC8AHAAwAC8ALwAwAAAAHAAdADAAHQAxADAAHQAeADEAMAAyAAAAAAAyAC4AMAAxADIAHgAfADEAMgAzAC4ALgAzACcAMQA0ADIAMgA0ADMAHwA1ADEAMQA1ADQAHwAgADUAIAAhADUAMwA2ACcANAA2ADMANgAGACcANgAHAAYANgAIAAcACQAIADYANAAJADYANQAJADQANQALAAkAIQALADUAIQAiAAsAIQAjACIAIwAkACIA"), 0.13126442, PackedByteArray("AAABAAIAAAADAAEAAAACAAQAAAAFAAMAAAAGAAUAAAAHAAYAAAAIAAcACQAIAAAAAAAEAAoACwAJAAAADAAAAAoADAAKAA0ADAANAA4ADAAOAA8AEAAMAA8ADAAQABEAEQAQABIAEQASABMAFAAAAAwAFQAAABQAFgAAABUAFwAAABYAGAAAABcAGQAAABgAGgAAABkAGgAbAAAAGwAcAAAAHAAdAAAAHQALAAAAHQAeAAsAHgAfAAsAHwAgAAsAIAAhAAsAIQAiAAsAIQAjACIAIwAkACIA")],
-"material": SubResource("StandardMaterial3D_rofvo"),
+"material": SubResource("StandardMaterial3D_o8px4"),
 "name": "hello",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -115,14 +56,13 @@ _surfaces = [{
 "vertex_data": PackedByteArray("G+1UVXk50yoAAP///v3pK0si//814p8rqBqN463+NCwlQv//PsbcKjYzG8dW//IsckSqqtH/0S2lSjiO//+QLqVKxnH//x4vckRVVdH/pi9XXP//KarnKTYz4zhW//AvGrIbx28Acye0bv//BI4RKcN8///WcX0og4b//6VV6ydqiP//cDmAJz6ZjePfAH4nnYT//0sdhidFfv//TwGuJ47DqqoeAOsn1sk4jgAAayjWycZxAADRKI7DVFUeAKIpGrLjOG8AuSo+mXEc3wCcK0V+AABPAQIsnYQAAEsdZixqiAAAcDkrLYOGAAClVfwtw3wAANZxiC60bgAABI7FLldcAAApqh4vJUIAAD7Gfy+oGnEcrf7NL0siAAA14p8vAAAAAP79pC9ijRvHAsfqKwOvG8ezqtcqlKaqqjfH6Swi0hvHP3IpKZPvqqpqciEqQNkbx/FVXihw9aqqG1ZAKVH2OI6AOTAp//84jixWKCrv+jiOe3IbK9/T4zhsOQUsQNnjOPFVEi0QxOM4eI5PLoThVFWajnYtxtXGcd2qdi02y1RV06o3LgOv4zizquMux6/GcUnHXy4ZRI3jy+LtK7lpjeOtxisrpmIbx07jrizBh43jeqotKgl4qqqn45ctNsuqqtOq3ivBfziOx+NeLsevOI5Jx8YtxtU4jt2qzSzBf8Zxx+PrLgl4VVWn43YvlKZVVTfHAC+mYuM4TuPRL2KN4zgCx4AvGURxHMviwC+5aXEcrcaUL8GHcRx6qiQveptxHESOui6NqXEcCXJrLiLS4zg/ct8t+rFxHMRVxy3g7MZxpo6RLJPvVFVqct8sILBxHGU53Czg7DiOpo7XK+/6xnF7ctwrp6ZxHAcdBixnxeM40RwjK3D1VFUbVvAr7dpUVa4c/in//8ZxLFbgKlH2xnGAOc4pseLGcaIcGCmx4jiOohycKO3aqqquHP8nG+2qqnk5aShnxRvH0RxtJ9/TG8dsOawnp6aN4wcdZCcgsI3jZTl6J/qxjePEVQIojamN4wlyrCh6m43jRI5MKRDEG8d4jtwphOGqqpqO3iq2KqAsSyoOJpMq3SUHKgQmECuzJW0pMyajKO0mDSiuJ84nPihyJykpgCvjJQwnTCp1LL0puys7JscrmibqKyonHSzfJ1gsECk1LIMoQSzKKFYssSoFLJArpysuLDkr3yy/KnstUCqhLSUqjy3+KbYtgintLdgo5C04KMMtuyecLUMnMS31JoIsBycWKwEnwisnJ10rTiogJuwqdyZzKRonhSteJ/wqiCjOKwwoays2KYwr/ir6KlcqbSq2KScqgC1wKUMtMyiyLNoobSvlKI8pQSjPKp4nJSxKKOEoVCraJd8qvCW7KRwmZCv3JeYo7yYiKo4nQCjHJ7goGyhkKa4o7CdrKHcncCm2Jw0q/ianKiInYCvsJnkr9iY3LFsn7SzhJ2ItYyiULbwo+CwIKcMtgCkuKl4pyiu1Kd8t/ylAKfkpniosKrwtniqCLQsqNywdK9AsliorKzEruiuNKw4s5StpKzIsfyrlK/YpWix9KSUs2ChILMgoLSweKPMrXCfHK74msStYJlYr6yasKhEo")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_tbnf8")
+shadow_mesh = SubResource("ArrayMesh_26y3j")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mdb0"]
 resource_name = "hello_4"
 cull_mode = 2
-albedo_texture = ExtResource("5_ou6is")
-metallic_specular = 0.22
-roughness = 0.82
+albedo_texture = ExtResource("2_hurk4")
+roughness = 0.63852894
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_oo75o"]
 _surfaces = [{
@@ -138,7 +78,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6w6mm"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wxvt1"]
 resource_name = "Sketchfab_Scene_Cube_003_hello_4_0"
 _surfaces = [{
 "aabb": AABB(0.5737784, -0.77432936, 4.181909, 0.28660518, 1.5486587, 2.2802434),
@@ -171,7 +111,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_os81g"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_2s3lo"]
 resource_name = "Sketchfab_Scene_Cylinder_hello_4_0"
 _surfaces = [{
 "aabb": AABB(0.38139415, -0.7726096, 4.102167, 0.16995615, 1.5452192, 0.06517744),
@@ -205,7 +145,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1k3ck"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bags7"]
 resource_name = "Sketchfab_Scene_Cylinder_001_hello_4_0"
 _surfaces = [{
 "aabb": AABB(-0.92223537, -0.7726096, 4.102167, 0.1699562, 1.5452192, 0.06517744),
@@ -245,7 +185,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_62f45"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qsb4m"]
 resource_name = "Sketchfab_Scene_Sphere_Material_003_0"
 _surfaces = [{
 "aabb": AABB(0.3964674, -0.75753635, 4.0829535, 0.13980973, 1.5150727, 0.030974388),
@@ -279,7 +219,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6g32y"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ta88t"]
 resource_name = "Sketchfab_Scene_Sphere_001_Material_003_0"
 _surfaces = [{
 "aabb": AABB(-0.90716213, -0.75753635, 4.081053, 0.13980973, 1.5150727, 0.030974388),
@@ -321,7 +261,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5nwjq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xjgru"]
 resource_name = "Sketchfab_Scene_Cube_007_Material_002_0"
 _surfaces = [{
 "aabb": AABB(0.72211033, -0.6436227, 5.290569, 0.104230046, 1.2872454, 1.0445104),
@@ -355,7 +295,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_g2upo"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_icciq"]
 resource_name = "Sketchfab_Scene_Cube_008_hello_4_0"
 _surfaces = [{
 "aabb": AABB(-1.0004563, -0.82325387, 4.1347556, 1.7943828, 1.6465077, 2.3716493),
@@ -377,7 +317,7 @@ shadow_mesh = SubResource("ArrayMesh_hyfgn")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4x6d"]
 resource_name = "Macintosh-128K-retro"
 cull_mode = 2
-albedo_texture = ExtResource("6_necax")
+albedo_texture = ExtResource("3_5ulcl")
 roughness = 0.82111454
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1x5ny"]
@@ -394,7 +334,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_38d3o"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_0u7v6"]
 resource_name = "Sketchfab_Scene_Cube_008_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-0.99434316, -0.81525385, 4.2529454, 1.0649191, 1.6305077, 2.2478027),
@@ -427,7 +367,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_i6fjx"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_53cp5"]
 resource_name = "Sketchfab_Scene_Cube_000_hello_4_0"
 _surfaces = [{
 "aabb": AABB(0.55159307, -0.82325387, 4.1347556, 0.44615316, 1.6465077, 2.3716493),
@@ -461,7 +401,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7dg2i"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cmjs0"]
 resource_name = "Sketchfab_Scene_Plane_003_hello_4_0"
 _surfaces = [{
 "aabb": AABB(-0.1880141, -0.37895715, 6.4046683, 0.04966663, 0.7579143, 0.06671953),
@@ -495,7 +435,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_08tbl"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4a3uf"]
 resource_name = "Sketchfab_Scene_Plane_004_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-0.96853757, -0.6648287, 5.098502, 0.031124711, 0.09034157, 0.26576805),
@@ -529,7 +469,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_f4j1x"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_t2vx6"]
 resource_name = "Sketchfab_Scene_Plane_005_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0024719, -0.64621776, 5.110493, 0.10459918, 0.05311954, 0.24049044),
@@ -569,7 +509,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_wcrab"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ohjps"]
 resource_name = "Sketchfab_Scene_Plane_007_black_0"
 _surfaces = [{
 "aabb": AABB(-0.9917545, -0.6990168, 4.7726297, 0.052737772, 0.14705944, 0.17675734),
@@ -603,7 +543,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_gohbf"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_mc03t"]
 resource_name = "Sketchfab_Scene_Plane_006_black_0"
 _surfaces = [{
 "aabb": AABB(-0.9517609, -0.70979184, 4.759679, 0.012303829, 0.1686095, 0.20265913),
@@ -637,7 +577,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_jucdw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qpa32"]
 resource_name = "Sketchfab_Scene_Plane_008_hello_4_0"
 _surfaces = [{
 "aabb": AABB(-1.0155499, -0.5089247, 4.7115865, 0.02076906, 0.61614937, 0.7319908),
@@ -670,7 +610,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6miv3"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_dx1sg"]
 resource_name = "Sketchfab_Scene_Plane_008_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0008268, -0.4832586, 4.739055, 1e-05, 0.5648171, 0.67705345),
@@ -702,7 +642,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_yisfj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_25cex"]
 resource_name = "Sketchfab_Scene_Plane_009_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0019306, 0.3261007, 5.987154, 0.0070744157, 0.36274076, 0.10712147),
@@ -734,7 +674,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ftp6y"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_g1q2t"]
 resource_name = "Sketchfab_Scene_Plane_011_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0019306, 0.697932, 5.987376, 0.0070744157, 0.10667741, 0.106677055),
@@ -767,7 +707,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_pd34m"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wl6qn"]
 resource_name = "Sketchfab_Scene_Plane_010_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, -0.6115924, 4.4084196, 0.0062214136, 0.10481894, 0.10338259),
@@ -801,7 +741,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_qjyke"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6q0x6"]
 resource_name = "Sketchfab_Scene_Plane_012_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, -0.4267474, 4.4084196, 0.0062214136, 0.10481894, 0.10338259),
@@ -835,7 +775,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_o8kno"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cd4ku"]
 resource_name = "Sketchfab_Scene_Plane_013_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, -0.16648558, 4.4084196, 0.0062214136, 0.10481894, 0.10338259),
@@ -869,7 +809,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7ahn0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_iwcby"]
 resource_name = "Sketchfab_Scene_Plane_014_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, 0.15095505, 4.4084196, 0.0062214136, 0.10481894, 0.10338259),
@@ -903,7 +843,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_vyrcm"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1q6jh"]
 resource_name = "Sketchfab_Scene_Plane_015_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, 0.4545939, 4.4084196, 0.0062214136, 0.10481894, 0.10338259),
@@ -937,7 +877,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_3ql0k"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_r6cv3"]
 resource_name = "Sketchfab_Scene_Plane_016_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, -0.7539384, 4.4084196, 0.0062214136, 0.10481894, 0.10338259),
@@ -971,7 +911,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_8biwb"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bnnkq"]
 resource_name = "Sketchfab_Scene_Plane_017_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, 0.60559464, 4.4084196, 0.0062214136, 0.10481894, 0.10338259),
@@ -1005,7 +945,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_m0t6v"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_aleq1"]
 resource_name = "Sketchfab_Scene_Plane_018_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-1.0029314, 0.4900551, 4.7221203, 0.0062214136, 0.2761326, 0.3010702),
@@ -1039,7 +979,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_axmsw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_gdqjd"]
 resource_name = "Sketchfab_Scene_Plane_019_Macintosh-128K-retro_0"
 _surfaces = [{
 "aabb": AABB(-0.9464326, -0.6712161, 5.671874, 0.0062214136, 0.10481894, 0.10338211),
@@ -1073,7 +1013,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_0fdjx"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_i0ogp"]
 resource_name = "Sketchfab_Scene_Cube_009_hello_4_0"
 _surfaces = [{
 "aabb": AABB(0.7220593, -0.67234874, 4.2536283, 0.012677491, 0.08160925, 0.10767269),
@@ -1095,7 +1035,7 @@ shadow_mesh = SubResource("ArrayMesh_tk3us")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nd3b"]
 resource_name = "Macintosh_2"
 cull_mode = 2
-albedo_texture = ExtResource("7_r4lks")
+albedo_texture = ExtResource("4_4wvgh")
 roughness = 0.82111454
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1ktgc"]
@@ -1112,7 +1052,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ky173"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qgew4"]
 resource_name = "Sketchfab_Scene_Cube_006_Macintosh_2_0"
 _surfaces = [{
 "aabb": AABB(-0.992, -0.82447064, 4.207889, 1.5688422, 1.6489413, 0.23227549),
@@ -1145,7 +1085,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_scupx"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ikq7s"]
 resource_name = "Sketchfab_Scene_Plane_002_black_0"
 _surfaces = [{
 "aabb": AABB(-1.1582454, -0.67789656, 4.79573, 0.1797517, 0.10481894, 0.13055706),
@@ -1179,7 +1119,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_62gx1"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wosyc"]
 resource_name = "Sketchfab_Scene_Cylinder_005_black_0"
 _surfaces = [{
 "aabb": AABB(-1.303558, -0.6630277, 4.8234696, 0.15960848, 0.075078964, 0.075078964),
@@ -1219,7 +1159,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ae8n2"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_n5e70"]
 resource_name = "Sketchfab_Scene_BezierCurve_001_grey_0"
 _surfaces = [{
 "aabb": AABB(-1.701415, 0.4926917, 3.6997945, 3.297198, 1.7975223, 0.6205509),
@@ -1258,7 +1198,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_obdhw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4pd6r"]
 resource_name = "Sketchfab_Scene_Cube_005_Material_009_0"
 _surfaces = [{
 "aabb": AABB(-1.1723192, 0.36750415, 4.2621207, 0.20771044, 0.27909353, 0.10017538),
@@ -1298,7 +1238,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_budmp"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_fhbp5"]
 resource_name = "Sketchfab_Scene_Cube_005_Material_011_0"
 _surfaces = [{
 "aabb": AABB(-1.0620648, 0.3788405, 4.3010178, 0.09091514, 0.25456673, 0.022381306),
@@ -1332,7 +1272,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_32ji7"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ibiog"]
 resource_name = "Sketchfab_Scene_Cylinder_004_grey_0"
 _surfaces = [{
 "aabb": AABB(-1.3196949, 0.46436673, 4.273186, 0.15960848, 0.075078964, 0.075078964),
@@ -1354,7 +1294,7 @@ shadow_mesh = SubResource("ArrayMesh_rogd5")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyv0q"]
 resource_name = "Apple-0"
 cull_mode = 2
-albedo_texture = ExtResource("8_pg34l")
+albedo_texture = ExtResource("5_0rtmq")
 roughness = 0.8067816
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xiw3t"]
@@ -1372,7 +1312,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_sveqe"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cqinx"]
 resource_name = "Sketchfab_Scene_Plane_001_Apple-0_0"
 _surfaces = [{
 "aabb": AABB(1.6877185, 1.6774683, 4.0740066, 0.70180357, 0.5035269, 0.15994453),
@@ -1406,7 +1346,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_lakrh"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_7pcy4"]
 resource_name = "Sketchfab_Scene_Cylinder_007_grey_0"
 _surfaces = [{
 "aabb": AABB(1.5835516, 1.982749, 4.086042, 0.16415918, 0.09834218, 0.075078964),
@@ -1440,7 +1380,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2dp8j"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_asoiy"]
 resource_name = "Sketchfab_Scene_Plane_Apple-0_0"
 _surfaces = [{
 "aabb": AABB(1.6871638, 1.6768851, 4.177413, 0.7028394, 0.50466824, 0.077744484),
@@ -1474,7 +1414,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_t1gen"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4fktc"]
 resource_name = "Sketchfab_Scene_Cube_001_Apple-0_0"
 _surfaces = [{
 "aabb": AABB(1.7353573, 1.8390805, 4.1871247, 0.27725124, 0.2765416, 0.051133156),
@@ -1508,7 +1448,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1k25q"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_i88cf"]
 resource_name = "Sketchfab_Scene_Cylinder_010_black_0"
 _surfaces = [{
 "aabb": AABB(-2.9084404, -2.3344212, 1.238984, 0.075078964, 0.15960836, 0.075078964),
@@ -1542,7 +1482,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_sstbq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_8e5vi"]
 resource_name = "Sketchfab_Scene_BezierCurve_black_0"
 _surfaces = [{
 "aabb": AABB(-3.8551831, -2.1931527, -0.007062847, 2.614295, 2.0311563, 4.8992934),
@@ -1563,7 +1503,7 @@ shadow_mesh = SubResource("ArrayMesh_htqkp")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q58c6"]
 resource_name = "decal_2"
 cull_mode = 2
-albedo_texture = ExtResource("9_m4h2d")
+albedo_texture = ExtResource("8_ywmmc")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vy2w1"]
 _surfaces = [{
@@ -1580,7 +1520,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_h4pvl"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ohfee"]
 resource_name = "Sketchfab_Scene_Plane_025_decal_2_0"
 _surfaces = [{
 "aabb": AABB(0.9916359, 0.2544214, 4.322771, 0.11967337, 0.4686727, 0.4624977),
@@ -1602,7 +1542,7 @@ shadow_mesh = SubResource("ArrayMesh_vy2w1")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmskg"]
 resource_name = "decal_3"
 cull_mode = 2
-albedo_texture = ExtResource("10_p8abn")
+albedo_texture = ExtResource("9_d3kn2")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vq0yx"]
 _surfaces = [{
@@ -1619,7 +1559,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_tkyn8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_hnf8y"]
 resource_name = "Sketchfab_Scene_Plane_026_decal_3_0"
 _surfaces = [{
 "aabb": AABB(0.91604584, 0.68810916, 5.8214655, 0.14375621, 0.47960746, 0.47997046),
@@ -1641,7 +1581,7 @@ shadow_mesh = SubResource("ArrayMesh_vq0yx")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibrmg"]
 resource_name = "klava_2_1"
 cull_mode = 2
-albedo_texture = ExtResource("11_s17dp")
+albedo_texture = ExtResource("10_5hlkk")
 roughness = 0.5226753
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_n6x4x"]
@@ -1659,7 +1599,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6ft7t"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6jowi"]
 resource_name = "Sketchfab_Scene_korpus2_klava_2_1_0"
 _surfaces = [{
 "aabb": AABB(1.707875, -1.6421963, 4.1104717, 1.6347747, 2.931404, 0.20955849),
@@ -1698,7 +1638,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_h325i"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bg5e7"]
 resource_name = "Sketchfab_Scene_korpus2_Material_005_0"
 _surfaces = [{
 "aabb": AABB(1.9400847, -1.3934658, 4.207306, 1.2065098, 2.394054, 0.040058136),
@@ -1719,7 +1659,7 @@ shadow_mesh = SubResource("ArrayMesh_1etpq")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vy1jl"]
 resource_name = "klava_2"
 cull_mode = 2
-albedo_texture = ExtResource("11_s17dp")
+albedo_texture = ExtResource("10_5hlkk")
 roughness = 0.76048017
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2ysmh"]
@@ -1737,7 +1677,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_umklk"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_m2imi"]
 resource_name = "Sketchfab_Scene_knopki_001_klava_2_0"
 _surfaces = [{
 "aabb": AABB(1.9560804, -1.3693328, 4.234213, 1.1806879, 2.3594666, 0.13198519),
@@ -1771,7 +1711,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5deua"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_a878v"]
 resource_name = "Sketchfab_Scene_Cylinder_002_hello_4_0"
 _surfaces = [{
 "aabb": AABB(1.8194649, -1.5069307, 4.092698, 0.6366658, 2.5054617, 0.06770134),
@@ -1805,7 +1745,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7hhev"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_5t1k7"]
 resource_name = "Sketchfab_Scene_Sphere_002_Material_003_0"
 _surfaces = [{
 "aabb": AABB(1.8344233, -1.4921082, 4.074753, 0.60614085, 2.4756951, 0.03201151),
@@ -1839,7 +1779,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ia3vs"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4c33a"]
 resource_name = "Sketchfab_Scene_Cylinder_003_hello_4_0"
 _surfaces = [{
 "aabb": AABB(2.6215146, -1.3460809, 4.0930614, 0.6366658, 2.5054617, 0.06770134),
@@ -1873,7 +1813,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_xrgom"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xb1yc"]
 resource_name = "Sketchfab_Scene_Sphere_003_Material_003_0"
 _surfaces = [{
 "aabb": AABB(2.6364727, -1.3312584, 4.075116, 0.6061411, 2.4756951, 0.03201151),
@@ -1912,7 +1852,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5biqi"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_n2r5a"]
 resource_name = "Sketchfab_Scene_Cube_012_Material_010_0"
 _surfaces = [{
 "aabb": AABB(2.1297197, -1.4054188, 4.1922956, 0.05173683, 0.04477918, 0.047861576),
@@ -1945,7 +1885,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_23bmo"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_hx7sm"]
 resource_name = "Sketchfab_Scene_Cube_010_klava_2_1_0"
 _surfaces = [{
 "aabb": AABB(2.168784, -1.4156476, 4.1719656, 0.03963113, 0.07847738, 0.07599068),
@@ -1979,7 +1919,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1p6ov"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_5jg8f"]
 resource_name = "Sketchfab_Scene_Cube_011_klava_2_1_0"
 _surfaces = [{
 "aabb": AABB(2.1564283, -1.4135811, 4.176752, 0.051591635, 0.07178736, 0.06706667),
@@ -2013,7 +1953,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_wy6v6"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ej7kp"]
 resource_name = "Sketchfab_Scene_Circle_001_grey_0"
 _surfaces = [{
 "aabb": AABB(0.65737796, -1.4247794, 4.0683494, 1.4954884, 2.10287, 0.2590971),
@@ -2046,7 +1986,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5x6b6"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_0vmuk"]
 resource_name = "Sketchfab_Scene_Cube_014_black_0"
 _surfaces = [{
 "aabb": AABB(0.6446064, 0.5563732, 4.280031, 0.005228162, 0.05109322, 0.05155468),
@@ -2078,7 +2018,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_2conb"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_sa04q"]
 resource_name = "Sketchfab_Scene_Cube_013_Material_010_0"
 _surfaces = [{
 "aabb": AABB(0.6329522, 0.56364024, 4.288313, 0.04367304, 0.036558867, 0.04574299),
@@ -2099,7 +2039,7 @@ shadow_mesh = SubResource("ArrayMesh_vmc48")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfcw1"]
 resource_name = "mahagon_3"
 cull_mode = 2
-albedo_texture = ExtResource("12_37hlw")
+albedo_texture = ExtResource("11_ak508")
 roughness = 0.17511433
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_iag42"]
@@ -2116,7 +2056,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_flbmi"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4t7px"]
 resource_name = "Sketchfab_Scene_Plane_020_mahagon_3_0"
 _surfaces = [{
 "aabb": AABB(-1.6483805, -3.9871778, 0.015770912, 4.9888353, 7.9743557, 4.0582247),
@@ -2156,7 +2096,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_yv2hd"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_hs12v"]
 resource_name = "Sketchfab_Scene_Plane_027_ruchki_0"
 _surfaces = [{
 "aabb": AABB(2.7078924, -3.258021, 0.7141205, 0.13037181, 0.9311967, 1.629659),
@@ -2195,7 +2135,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_0jr6o"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rrybc"]
 resource_name = "Sketchfab_Scene_Cylinder_016_derevo_0"
 _surfaces = [{
 "aabb": AABB(2.347817, 2.9700649, 4.075137, 0.62778234, 0.7549391, 0.059583664),
@@ -2234,7 +2174,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_g0u4x"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_pm1fo"]
 resource_name = "Sketchfab_Scene_Cylinder_016_grifel_004_0"
 _surfaces = [{
 "aabb": AABB(2.330924, 2.9484212, 4.090884, 0.63200355, 0.76623416, 0.03427553),
@@ -2274,7 +2214,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_vp4ig"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_uwqkd"]
 resource_name = "Sketchfab_Scene_Cylinder_016_cvet_004_0"
 _surfaces = [{
 "aabb": AABB(2.38664, 3.0213876, 4.075137, 0.5889592, 0.7036164, 0.059583664),
@@ -2307,7 +2247,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6g21x"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ojspf"]
 resource_name = "Sketchfab_Scene_Cylinder_017_derevo_0"
 _surfaces = [{
 "aabb": AABB(0.39463034, 1.1112638, 4.1022096, 0.059583485, 0.5594629, 0.80468416),
@@ -2346,7 +2286,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_pbub2"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qxhqn"]
 resource_name = "Sketchfab_Scene_Cylinder_017_grifel_0"
 _surfaces = [{
 "aabb": AABB(0.40419146, 1.0974071, 4.11133, 0.034275383, 0.5597371, 0.8194175),
@@ -2386,7 +2326,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_4lu8e"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ohlh1"]
 resource_name = "Sketchfab_Scene_Cylinder_017_cvet_0"
 _surfaces = [{
 "aabb": AABB(0.39463034, 1.1431934, 4.1022096, 0.059583485, 0.5275333, 0.7469969),
@@ -2419,7 +2359,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_r6waj"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_df2qc"]
 resource_name = "Sketchfab_Scene_Cylinder_018_derevo_0"
 _surfaces = [{
 "aabb": AABB(0.10146052, 1.4620227, 4.1022096, 0.55610824, 0.11201358, 0.80468416),
@@ -2458,7 +2398,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_kwrw7"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_pvtbq"]
 resource_name = "Sketchfab_Scene_Cylinder_018_grifel_001_0"
 _surfaces = [{
 "aabb": AABB(0.08778119, 1.4733769, 4.11133, 0.5562866, 0.08439696, 0.8194175),
@@ -2498,7 +2438,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6sdbs"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1fj5y"]
 resource_name = "Sketchfab_Scene_Cylinder_018_cvet_001_0"
 _surfaces = [{
 "aabb": AABB(0.13195205, 1.4630262, 4.1022096, 0.5256167, 0.111010075, 0.7469969),
@@ -2531,7 +2471,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_j0t2p"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_s470d"]
 resource_name = "Sketchfab_Scene_Cylinder_019_derevo_0"
 _surfaces = [{
 "aabb": AABB(0.03702897, 1.3358915, 4.1022096, 0.5488508, 0.15374804, 0.80468416),
@@ -2570,7 +2510,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_xjab8"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_isabv"]
 resource_name = "Sketchfab_Scene_Cylinder_019_grifel_002_0"
 _surfaces = [{
 "aabb": AABB(0.02322638, 1.3519299, 4.11133, 0.54911554, 0.13279915, 0.8194175),
@@ -2610,7 +2550,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_g4cdx"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_i5xp7"]
 resource_name = "Sketchfab_Scene_Cylinder_019_cvet_002_0"
 _surfaces = [{
 "aabb": AABB(0.07058129, 1.3358915, 4.1022096, 0.5152985, 0.1519357, 0.7469969),
@@ -2632,7 +2572,7 @@ shadow_mesh = SubResource("ArrayMesh_fxk05")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i8kp"]
 resource_name = "apple_2"
 cull_mode = 2
-albedo_texture = ExtResource("13_6llfj")
+albedo_texture = ExtResource("12_hmbu4")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_cj2j7"]
 _surfaces = [{
@@ -2649,7 +2589,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_d3qcv"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_hdy67"]
 resource_name = "Sketchfab_Scene_Plane_021_apple_2_0"
 _surfaces = [{
 "aabb": AABB(1.5178816, 2.4334679, 4.077854, 1.5034328, 1.2818575, 0.06684065),
@@ -2682,7 +2622,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_a0y80"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_25jdh"]
 resource_name = "Sketchfab_Scene_Cylinder_020_derevo_0"
 _surfaces = [{
 "aabb": AABB(1.0950798, 2.7533698, 4.075137, 0.29348695, 0.9175844, 0.059583664),
@@ -2721,7 +2661,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_w1wof"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_0q5ic"]
 resource_name = "Sketchfab_Scene_Cylinder_020_grifel_005_0"
 _surfaces = [{
 "aabb": AABB(1.0939815, 2.7577899, 4.090884, 0.27883315, 0.9452338, 0.03427553),
@@ -2761,7 +2701,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_h6bdi"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1ejc6"]
 resource_name = "Sketchfab_Scene_Cylinder_020_cvet_003_0"
 _surfaces = [{
 "aabb": AABB(1.0989134, 2.7533698, 4.075137, 0.2896533, 0.84440374, 0.059583664),
@@ -2783,7 +2723,7 @@ shadow_mesh = SubResource("ArrayMesh_0i5no")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5lek"]
 resource_name = "oblogka"
 cull_mode = 2
-albedo_texture = ExtResource("14_0bhws")
+albedo_texture = ExtResource("13_tovsu")
 roughness = 0.30926067
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mauce"]
@@ -2800,7 +2740,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_40nl5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cmerd"]
 resource_name = "Sketchfab_Scene_Cube_004_oblogka_0"
 _surfaces = [{
 "aabb": AABB(-0.4302176, -2.493606, 4.06776, 1.602586, 1.2942517, 0.19224453),
@@ -2821,7 +2761,7 @@ shadow_mesh = SubResource("ArrayMesh_mauce")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtbx4"]
 resource_name = "stranica"
 cull_mode = 2
-albedo_texture = ExtResource("15_62atk")
+albedo_texture = ExtResource("14_3yndw")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1tuuv"]
 _surfaces = [{
@@ -2837,7 +2777,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_rsy6c"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_k2i6e"]
 resource_name = "Sketchfab_Scene_Cube_016_stranica_0"
 _surfaces = [{
 "aabb": AABB(-0.39702854, -2.4776652, 4.080787, 1.5433697, 1.2395568, 0.16619015),
@@ -2858,7 +2798,7 @@ shadow_mesh = SubResource("ArrayMesh_1tuuv")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8way"]
 resource_name = "stiv_3"
 cull_mode = 2
-albedo_texture = ExtResource("16_i7in8")
+albedo_texture = ExtResource("15_4ekao")
 roughness = 0.45560214
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_r372n"]
@@ -2875,7 +2815,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_cy6g1"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ctgb4"]
 resource_name = "Sketchfab_Scene_Plane_022_stiv_3_0"
 _surfaces = [{
 "aabb": AABB(1.1297588, -3.288246, 4.0844193, 0.95503426, 1.1358147, 1e-05),
@@ -2913,7 +2853,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_hoc2b"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wggli"]
 resource_name = "Sketchfab_Scene_Plane_022_Material_021_0"
 _surfaces = [{
 "aabb": AABB(1.1297588, -3.288246, 4.074794, 0.95503426, 1.1358147, 0.009625435),
@@ -2934,7 +2874,7 @@ shadow_mesh = SubResource("ArrayMesh_4jgmf")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3dbd"]
 resource_name = "stiv_2"
 cull_mode = 2
-albedo_texture = ExtResource("17_gkmcc")
+albedo_texture = ExtResource("16_ang7o")
 roughness = 0.27877286
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_thffv"]
@@ -2951,7 +2891,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_w6p3v"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_l3gsk"]
 resource_name = "Sketchfab_Scene_Plane_023_stiv_2_0"
 _surfaces = [{
 "aabb": AABB(2.2329762, -2.5633554, 4.0844193, 0.46691322, 0.5000434, 1e-05),
@@ -2984,7 +2924,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_pjhg1"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bkrv0"]
 resource_name = "Sketchfab_Scene_Plane_023_Material_021_0"
 _surfaces = [{
 "aabb": AABB(2.2245233, -2.5956328, 4.075931, 0.56786776, 0.54137325, 0.008488178),
@@ -3018,7 +2958,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_eg1d4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_x57d6"]
 resource_name = "Sketchfab_Scene_Cylinder_015_grey_0"
 _surfaces = [{
 "aabb": AABB(0.15554729, 1.2254308, 4.0791144, 0.5377495, 0.5377495, 0.5377493),
@@ -3052,7 +2992,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_61xge"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ec851"]
 resource_name = "Sketchfab_Scene_Torus_002_black_0"
 _surfaces = [{
 "aabb": AABB(0.1420176, 1.2119012, 4.5973873, 0.56480896, 0.5648091, 0.038951874),
@@ -3086,7 +3026,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bs763"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_8jacu"]
 resource_name = "Sketchfab_Scene_Torus_003_black_0"
 _surfaces = [{
 "aabb": AABB(0.14432785, 1.2142115, 4.0733175, 0.5601884, 0.56018853, 0.038633347),
@@ -3108,7 +3048,7 @@ shadow_mesh = SubResource("ArrayMesh_mve1w")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nnd3d"]
 resource_name = "knigi"
 cull_mode = 2
-albedo_texture = ExtResource("18_7nlll")
+albedo_texture = ExtResource("17_rmylr")
 roughness = 0.87779796
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3j104"]
@@ -3125,7 +3065,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_e7c2j"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1yqlo"]
 resource_name = "Sketchfab_Scene_Plane_024_knigi_0"
 _surfaces = [{
 "aabb": AABB(-0.48930323, -3.648334, 2.7800994, 2.1534667, 1.6802526, 1.0328374),
@@ -3157,7 +3097,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ai87l"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_jfed3"]
 resource_name = "Sketchfab_Scene_Cube_017_oblogka_0"
 _surfaces = [{
 "aabb": AABB(-0.3973523, -2.5056117, 4.261749, 1.537646, 1.162346, 0.19224453),
@@ -3189,7 +3129,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_fvj8v"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_28b7p"]
 resource_name = "Sketchfab_Scene_Cube_018_stranica_0"
 _surfaces = [{
 "aabb": AABB(-0.36721188, -2.492192, 4.274776, 1.4818089, 1.1120124, 0.16619015),
@@ -3207,659 +3147,605 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_phw0r")
 
-[node name="Main" type="Node3D"]
-script = ExtResource("1_l3cfh")
+[node name="Mac" type="Node3D"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.84899294, -0.42071706, 0.31969973, 0.08085808, 0.7013427, 0.7082234, -0.52218074, -0.5754265, 0.62945336, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_k2fmo")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, -3.0559022e-10, 0.2326774, 0.8521514)
-
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 0, 0)
-monitorable = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-mesh = SubResource("QuadMesh_vom5j")
-skeleton = NodePath("../../Camera3D")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_k2fmo")
-
-[node name="Screen" type="SubViewport" parent="." node_paths=PackedStringArray("screen_mesh", "subviewport")]
-size = Vector2i(1195, 680)
-script = ExtResource("2_iuonh")
-screen_mesh = NodePath("../Area3D/MeshInstance3D")
-subviewport = NodePath("Text/SubViewport")
-
-[node name="Text" type="CanvasLayer" parent="Screen"]
-
-[node name="CRTLayer" type="CanvasLayer" parent="Screen/Text"]
-
-[node name="ColorRect" type="ColorRect" parent="Screen/Text/CRTLayer"]
-material = SubResource("ShaderMaterial_ow5a4")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="Screen/Text"]
-size = Vector2i(640, 512)
-
-[node name="MainUI" parent="Screen/Text/SubViewport" instance=ExtResource("2_k2fmo")]
-
-[node name="Mac" type="Node3D" parent="."]
-transform = Transform3D(-4.3711387e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, -4.3711387e-10, 0, -5.798, -0.834)
-
-[node name="Screen" type="Node3D" parent="Mac"]
-transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
-visible = false
-
-[node name="Screen" type="MeshInstance3D" parent="Mac/Screen"]
-mesh = SubResource("ArrayMesh_r1bmu")
-skeleton = NodePath("")
-
-[node name="Cube_003" type="Node3D" parent="Mac"]
+[node name="Screen" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_003_hello_4_0" type="MeshInstance3D" parent="Mac/Cube_003"]
-mesh = SubResource("ArrayMesh_6w6mm")
+[node name="Screen" type="MeshInstance3D" parent="Screen"]
+mesh = SubResource("ArrayMesh_jj1uw")
 skeleton = NodePath("")
 
-[node name="Cylinder" type="Node3D" parent="Mac"]
+[node name="Cube_003" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_hello_4_0" type="MeshInstance3D" parent="Mac/Cylinder"]
-mesh = SubResource("ArrayMesh_os81g")
+[node name="Cube_003_hello_4_0" type="MeshInstance3D" parent="Cube_003"]
+mesh = SubResource("ArrayMesh_wxvt1")
 skeleton = NodePath("")
 
-[node name="Cylinder_001" type="Node3D" parent="Mac"]
+[node name="Cylinder" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_001_hello_4_0" type="MeshInstance3D" parent="Mac/Cylinder_001"]
-mesh = SubResource("ArrayMesh_1k3ck")
+[node name="Cylinder_hello_4_0" type="MeshInstance3D" parent="Cylinder"]
+mesh = SubResource("ArrayMesh_2s3lo")
 skeleton = NodePath("")
 
-[node name="Sphere" type="Node3D" parent="Mac"]
+[node name="Cylinder_001" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Sphere_Material_003_0" type="MeshInstance3D" parent="Mac/Sphere"]
-mesh = SubResource("ArrayMesh_62f45")
+[node name="Cylinder_001_hello_4_0" type="MeshInstance3D" parent="Cylinder_001"]
+mesh = SubResource("ArrayMesh_bags7")
 skeleton = NodePath("")
 
-[node name="Sphere_001" type="Node3D" parent="Mac"]
+[node name="Sphere" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Sphere_001_Material_003_0" type="MeshInstance3D" parent="Mac/Sphere_001"]
-mesh = SubResource("ArrayMesh_6g32y")
+[node name="Sphere_Material_003_0" type="MeshInstance3D" parent="Sphere"]
+mesh = SubResource("ArrayMesh_qsb4m")
 skeleton = NodePath("")
 
-[node name="Cube_007" type="Node3D" parent="Mac"]
+[node name="Sphere_001" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_007_Material_002_0" type="MeshInstance3D" parent="Mac/Cube_007"]
-visible = false
-mesh = SubResource("ArrayMesh_5nwjq")
+[node name="Sphere_001_Material_003_0" type="MeshInstance3D" parent="Sphere_001"]
+mesh = SubResource("ArrayMesh_ta88t")
 skeleton = NodePath("")
 
-[node name="Cube_008" type="Node3D" parent="Mac"]
+[node name="Cube_007" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_008_hello_4_0" type="MeshInstance3D" parent="Mac/Cube_008"]
-mesh = SubResource("ArrayMesh_g2upo")
+[node name="Cube_007_Material_002_0" type="MeshInstance3D" parent="Cube_007"]
+mesh = SubResource("ArrayMesh_xjgru")
 skeleton = NodePath("")
 
-[node name="Cube_008_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Cube_008"]
-mesh = SubResource("ArrayMesh_38d3o")
-skeleton = NodePath("")
-
-[node name="Cube_000" type="Node3D" parent="Mac"]
+[node name="Cube_008" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_000_hello_4_0" type="MeshInstance3D" parent="Mac/Cube_000"]
-mesh = SubResource("ArrayMesh_i6fjx")
+[node name="Cube_008_hello_4_0" type="MeshInstance3D" parent="Cube_008"]
+mesh = SubResource("ArrayMesh_icciq")
 skeleton = NodePath("")
 
-[node name="Plane_003" type="Node3D" parent="Mac"]
+[node name="Cube_008_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Cube_008"]
+mesh = SubResource("ArrayMesh_0u7v6")
+skeleton = NodePath("")
+
+[node name="Cube_000" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_003_hello_4_0" type="MeshInstance3D" parent="Mac/Plane_003"]
-mesh = SubResource("ArrayMesh_7dg2i")
+[node name="Cube_000_hello_4_0" type="MeshInstance3D" parent="Cube_000"]
+mesh = SubResource("ArrayMesh_53cp5")
 skeleton = NodePath("")
 
-[node name="Plane_004" type="Node3D" parent="Mac"]
+[node name="Plane_003" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_004_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_004"]
-mesh = SubResource("ArrayMesh_08tbl")
+[node name="Plane_003_hello_4_0" type="MeshInstance3D" parent="Plane_003"]
+mesh = SubResource("ArrayMesh_cmjs0")
 skeleton = NodePath("")
 
-[node name="Plane_005" type="Node3D" parent="Mac"]
+[node name="Plane_004" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_005_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_005"]
-mesh = SubResource("ArrayMesh_f4j1x")
+[node name="Plane_004_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_004"]
+mesh = SubResource("ArrayMesh_4a3uf")
 skeleton = NodePath("")
 
-[node name="Plane_007" type="Node3D" parent="Mac"]
+[node name="Plane_005" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_007_black_0" type="MeshInstance3D" parent="Mac/Plane_007"]
-mesh = SubResource("ArrayMesh_wcrab")
+[node name="Plane_005_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_005"]
+mesh = SubResource("ArrayMesh_t2vx6")
 skeleton = NodePath("")
 
-[node name="Plane_006" type="Node3D" parent="Mac"]
+[node name="Plane_007" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_006_black_0" type="MeshInstance3D" parent="Mac/Plane_006"]
-mesh = SubResource("ArrayMesh_gohbf")
+[node name="Plane_007_black_0" type="MeshInstance3D" parent="Plane_007"]
+mesh = SubResource("ArrayMesh_ohjps")
 skeleton = NodePath("")
 
-[node name="Plane_008" type="Node3D" parent="Mac"]
+[node name="Plane_006" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_008_hello_4_0" type="MeshInstance3D" parent="Mac/Plane_008"]
-mesh = SubResource("ArrayMesh_jucdw")
+[node name="Plane_006_black_0" type="MeshInstance3D" parent="Plane_006"]
+mesh = SubResource("ArrayMesh_mc03t")
 skeleton = NodePath("")
 
-[node name="Plane_008_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_008"]
-mesh = SubResource("ArrayMesh_6miv3")
-skeleton = NodePath("")
-
-[node name="Plane_009" type="Node3D" parent="Mac"]
+[node name="Plane_008" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_009_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_009"]
-mesh = SubResource("ArrayMesh_yisfj")
+[node name="Plane_008_hello_4_0" type="MeshInstance3D" parent="Plane_008"]
+mesh = SubResource("ArrayMesh_qpa32")
 skeleton = NodePath("")
 
-[node name="Plane_011" type="Node3D" parent="Mac"]
+[node name="Plane_008_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_008"]
+mesh = SubResource("ArrayMesh_dx1sg")
+skeleton = NodePath("")
+
+[node name="Plane_009" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_011_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_011"]
-mesh = SubResource("ArrayMesh_ftp6y")
+[node name="Plane_009_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_009"]
+mesh = SubResource("ArrayMesh_25cex")
 skeleton = NodePath("")
 
-[node name="Plane_010" type="Node3D" parent="Mac"]
+[node name="Plane_011" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_010_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_010"]
-mesh = SubResource("ArrayMesh_pd34m")
+[node name="Plane_011_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_011"]
+mesh = SubResource("ArrayMesh_g1q2t")
 skeleton = NodePath("")
 
-[node name="Plane_012" type="Node3D" parent="Mac"]
+[node name="Plane_010" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_012_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_012"]
-mesh = SubResource("ArrayMesh_qjyke")
+[node name="Plane_010_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_010"]
+mesh = SubResource("ArrayMesh_wl6qn")
 skeleton = NodePath("")
 
-[node name="Plane_013" type="Node3D" parent="Mac"]
+[node name="Plane_012" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_013_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_013"]
-mesh = SubResource("ArrayMesh_o8kno")
+[node name="Plane_012_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_012"]
+mesh = SubResource("ArrayMesh_6q0x6")
 skeleton = NodePath("")
 
-[node name="Plane_014" type="Node3D" parent="Mac"]
+[node name="Plane_013" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_014_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_014"]
-mesh = SubResource("ArrayMesh_7ahn0")
+[node name="Plane_013_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_013"]
+mesh = SubResource("ArrayMesh_cd4ku")
 skeleton = NodePath("")
 
-[node name="Plane_015" type="Node3D" parent="Mac"]
+[node name="Plane_014" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_015_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_015"]
-mesh = SubResource("ArrayMesh_vyrcm")
+[node name="Plane_014_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_014"]
+mesh = SubResource("ArrayMesh_iwcby")
 skeleton = NodePath("")
 
-[node name="Plane_016" type="Node3D" parent="Mac"]
+[node name="Plane_015" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_016_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_016"]
-mesh = SubResource("ArrayMesh_3ql0k")
+[node name="Plane_015_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_015"]
+mesh = SubResource("ArrayMesh_1q6jh")
 skeleton = NodePath("")
 
-[node name="Plane_017" type="Node3D" parent="Mac"]
+[node name="Plane_016" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_017_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_017"]
-mesh = SubResource("ArrayMesh_8biwb")
+[node name="Plane_016_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_016"]
+mesh = SubResource("ArrayMesh_r6cv3")
 skeleton = NodePath("")
 
-[node name="Plane_018" type="Node3D" parent="Mac"]
+[node name="Plane_017" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_018_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_018"]
-mesh = SubResource("ArrayMesh_m0t6v")
+[node name="Plane_017_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_017"]
+mesh = SubResource("ArrayMesh_bnnkq")
 skeleton = NodePath("")
 
-[node name="Plane_019" type="Node3D" parent="Mac"]
+[node name="Plane_018" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_019_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Mac/Plane_019"]
-mesh = SubResource("ArrayMesh_axmsw")
+[node name="Plane_018_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_018"]
+mesh = SubResource("ArrayMesh_aleq1")
 skeleton = NodePath("")
 
-[node name="Cube_009" type="Node3D" parent="Mac"]
+[node name="Plane_019" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_009_hello_4_0" type="MeshInstance3D" parent="Mac/Cube_009"]
-mesh = SubResource("ArrayMesh_0fdjx")
+[node name="Plane_019_Macintosh-128K-retro_0" type="MeshInstance3D" parent="Plane_019"]
+mesh = SubResource("ArrayMesh_gdqjd")
 skeleton = NodePath("")
 
-[node name="Cube_006" type="Node3D" parent="Mac"]
+[node name="Cube_009" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_006_Macintosh_2_0" type="MeshInstance3D" parent="Mac/Cube_006"]
-mesh = SubResource("ArrayMesh_ky173")
+[node name="Cube_009_hello_4_0" type="MeshInstance3D" parent="Cube_009"]
+mesh = SubResource("ArrayMesh_i0ogp")
 skeleton = NodePath("")
 
-[node name="Plane_002" type="Node3D" parent="Mac"]
+[node name="Cube_006" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_002_black_0" type="MeshInstance3D" parent="Mac/Plane_002"]
-mesh = SubResource("ArrayMesh_scupx")
+[node name="Cube_006_Macintosh_2_0" type="MeshInstance3D" parent="Cube_006"]
+mesh = SubResource("ArrayMesh_qgew4")
 skeleton = NodePath("")
 
-[node name="Cylinder_005" type="Node3D" parent="Mac"]
+[node name="Plane_002" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_005_black_0" type="MeshInstance3D" parent="Mac/Cylinder_005"]
-mesh = SubResource("ArrayMesh_62gx1")
+[node name="Plane_002_black_0" type="MeshInstance3D" parent="Plane_002"]
+mesh = SubResource("ArrayMesh_ikq7s")
 skeleton = NodePath("")
 
-[node name="BezierCurve_001" type="Node3D" parent="Mac"]
+[node name="Cylinder_005" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="BezierCurve_001_grey_0" type="MeshInstance3D" parent="Mac/BezierCurve_001"]
-mesh = SubResource("ArrayMesh_ae8n2")
+[node name="Cylinder_005_black_0" type="MeshInstance3D" parent="Cylinder_005"]
+mesh = SubResource("ArrayMesh_wosyc")
 skeleton = NodePath("")
 
-[node name="Cube_005" type="Node3D" parent="Mac"]
+[node name="BezierCurve_001" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_005_Material_009_0" type="MeshInstance3D" parent="Mac/Cube_005"]
-mesh = SubResource("ArrayMesh_obdhw")
+[node name="BezierCurve_001_grey_0" type="MeshInstance3D" parent="BezierCurve_001"]
+mesh = SubResource("ArrayMesh_n5e70")
 skeleton = NodePath("")
 
-[node name="Cube_005_Material_011_0" type="MeshInstance3D" parent="Mac/Cube_005"]
-mesh = SubResource("ArrayMesh_budmp")
-skeleton = NodePath("")
-
-[node name="Cylinder_004" type="Node3D" parent="Mac"]
+[node name="Cube_005" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_004_grey_0" type="MeshInstance3D" parent="Mac/Cylinder_004"]
-mesh = SubResource("ArrayMesh_32ji7")
+[node name="Cube_005_Material_009_0" type="MeshInstance3D" parent="Cube_005"]
+mesh = SubResource("ArrayMesh_4pd6r")
 skeleton = NodePath("")
 
-[node name="Plane_001" type="Node3D" parent="Mac"]
+[node name="Cube_005_Material_011_0" type="MeshInstance3D" parent="Cube_005"]
+mesh = SubResource("ArrayMesh_fhbp5")
+skeleton = NodePath("")
+
+[node name="Cylinder_004" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_001_Apple-0_0" type="MeshInstance3D" parent="Mac/Plane_001"]
-mesh = SubResource("ArrayMesh_sveqe")
+[node name="Cylinder_004_grey_0" type="MeshInstance3D" parent="Cylinder_004"]
+mesh = SubResource("ArrayMesh_ibiog")
 skeleton = NodePath("")
 
-[node name="Cylinder_007" type="Node3D" parent="Mac/Plane_001"]
+[node name="Plane_001" type="Node3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
+
+[node name="Plane_001_Apple-0_0" type="MeshInstance3D" parent="Plane_001"]
+mesh = SubResource("ArrayMesh_cqinx")
+skeleton = NodePath("")
+
+[node name="Cylinder_007" type="Node3D" parent="Plane_001"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Cylinder_007_grey_0" type="MeshInstance3D" parent="Mac/Plane_001/Cylinder_007"]
-mesh = SubResource("ArrayMesh_lakrh")
+[node name="Cylinder_007_grey_0" type="MeshInstance3D" parent="Plane_001/Cylinder_007"]
+mesh = SubResource("ArrayMesh_7pcy4")
 skeleton = NodePath("")
 
-[node name="Plane" type="Node3D" parent="Mac/Plane_001"]
+[node name="Plane" type="Node3D" parent="Plane_001"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Plane_Apple-0_0" type="MeshInstance3D" parent="Mac/Plane_001/Plane"]
-mesh = SubResource("ArrayMesh_2dp8j")
+[node name="Plane_Apple-0_0" type="MeshInstance3D" parent="Plane_001/Plane"]
+mesh = SubResource("ArrayMesh_asoiy")
 skeleton = NodePath("")
 
-[node name="Cube_001" type="Node3D" parent="Mac/Plane_001"]
+[node name="Cube_001" type="Node3D" parent="Plane_001"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Cube_001_Apple-0_0" type="MeshInstance3D" parent="Mac/Plane_001/Cube_001"]
-mesh = SubResource("ArrayMesh_t1gen")
+[node name="Cube_001_Apple-0_0" type="MeshInstance3D" parent="Plane_001/Cube_001"]
+mesh = SubResource("ArrayMesh_4fktc")
 skeleton = NodePath("")
 
-[node name="Cylinder_010" type="Node3D" parent="Mac"]
+[node name="Cylinder_010" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_010_black_0" type="MeshInstance3D" parent="Mac/Cylinder_010"]
-mesh = SubResource("ArrayMesh_1k25q")
+[node name="Cylinder_010_black_0" type="MeshInstance3D" parent="Cylinder_010"]
+mesh = SubResource("ArrayMesh_i88cf")
 skeleton = NodePath("")
 
-[node name="BezierCurve" type="Node3D" parent="Mac"]
+[node name="BezierCurve" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="BezierCurve_black_0" type="MeshInstance3D" parent="Mac/BezierCurve"]
-mesh = SubResource("ArrayMesh_sstbq")
+[node name="BezierCurve_black_0" type="MeshInstance3D" parent="BezierCurve"]
+mesh = SubResource("ArrayMesh_8e5vi")
 skeleton = NodePath("")
 
-[node name="Cube" type="Node3D" parent="Mac"]
+[node name="Cube" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_015" type="Node3D" parent="Mac"]
+[node name="Cube_015" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_006" type="Node3D" parent="Mac"]
+[node name="Cylinder_006" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_008" type="Node3D" parent="Mac"]
+[node name="Cylinder_008" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_009" type="Node3D" parent="Mac"]
+[node name="Cylinder_009" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Torus_001" type="Node3D" parent="Mac"]
+[node name="Torus_001" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Torus" type="Node3D" parent="Mac"]
+[node name="Torus" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_011" type="Node3D" parent="Mac"]
+[node name="Cylinder_011" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_014" type="Node3D" parent="Mac"]
+[node name="Cylinder_014" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_013" type="Node3D" parent="Mac"]
+[node name="Cylinder_013" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_012" type="Node3D" parent="Mac"]
+[node name="Cylinder_012" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_025" type="Node3D" parent="Mac"]
+[node name="Plane_025" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_025_decal_2_0" type="MeshInstance3D" parent="Mac/Plane_025"]
-mesh = SubResource("ArrayMesh_h4pvl")
+[node name="Plane_025_decal_2_0" type="MeshInstance3D" parent="Plane_025"]
+mesh = SubResource("ArrayMesh_ohfee")
 skeleton = NodePath("")
 
-[node name="Plane_026" type="Node3D" parent="Mac"]
+[node name="Plane_026" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_026_decal_3_0" type="MeshInstance3D" parent="Mac/Plane_026"]
-mesh = SubResource("ArrayMesh_tkyn8")
+[node name="Plane_026_decal_3_0" type="MeshInstance3D" parent="Plane_026"]
+mesh = SubResource("ArrayMesh_hnf8y")
 skeleton = NodePath("")
 
-[node name="korpus2" type="Node3D" parent="Mac"]
+[node name="korpus2" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="korpus2_klava_2_1_0" type="MeshInstance3D" parent="Mac/korpus2"]
-mesh = SubResource("ArrayMesh_6ft7t")
+[node name="korpus2_klava_2_1_0" type="MeshInstance3D" parent="korpus2"]
+mesh = SubResource("ArrayMesh_6jowi")
 skeleton = NodePath("")
 
-[node name="korpus2_Material_005_0" type="MeshInstance3D" parent="Mac/korpus2"]
-mesh = SubResource("ArrayMesh_h325i")
+[node name="korpus2_Material_005_0" type="MeshInstance3D" parent="korpus2"]
+mesh = SubResource("ArrayMesh_bg5e7")
 skeleton = NodePath("")
 
-[node name="knopki_001" type="Node3D" parent="Mac/korpus2"]
+[node name="knopki_001" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="knopki_001_klava_2_0" type="MeshInstance3D" parent="Mac/korpus2/knopki_001"]
-mesh = SubResource("ArrayMesh_umklk")
+[node name="knopki_001_klava_2_0" type="MeshInstance3D" parent="korpus2/knopki_001"]
+mesh = SubResource("ArrayMesh_m2imi")
 skeleton = NodePath("")
 
-[node name="Cylinder_002" type="Node3D" parent="Mac/korpus2"]
+[node name="Cylinder_002" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Cylinder_002_hello_4_0" type="MeshInstance3D" parent="Mac/korpus2/Cylinder_002"]
-mesh = SubResource("ArrayMesh_5deua")
+[node name="Cylinder_002_hello_4_0" type="MeshInstance3D" parent="korpus2/Cylinder_002"]
+mesh = SubResource("ArrayMesh_a878v")
 skeleton = NodePath("")
 
-[node name="Sphere_002" type="Node3D" parent="Mac/korpus2"]
+[node name="Sphere_002" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Sphere_002_Material_003_0" type="MeshInstance3D" parent="Mac/korpus2/Sphere_002"]
-mesh = SubResource("ArrayMesh_7hhev")
+[node name="Sphere_002_Material_003_0" type="MeshInstance3D" parent="korpus2/Sphere_002"]
+mesh = SubResource("ArrayMesh_5t1k7")
 skeleton = NodePath("")
 
-[node name="Cylinder_003" type="Node3D" parent="Mac/korpus2"]
+[node name="Cylinder_003" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Cylinder_003_hello_4_0" type="MeshInstance3D" parent="Mac/korpus2/Cylinder_003"]
-mesh = SubResource("ArrayMesh_ia3vs")
+[node name="Cylinder_003_hello_4_0" type="MeshInstance3D" parent="korpus2/Cylinder_003"]
+mesh = SubResource("ArrayMesh_4c33a")
 skeleton = NodePath("")
 
-[node name="Sphere_003" type="Node3D" parent="Mac/korpus2"]
+[node name="Sphere_003" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Sphere_003_Material_003_0" type="MeshInstance3D" parent="Mac/korpus2/Sphere_003"]
-mesh = SubResource("ArrayMesh_xrgom")
+[node name="Sphere_003_Material_003_0" type="MeshInstance3D" parent="korpus2/Sphere_003"]
+mesh = SubResource("ArrayMesh_xb1yc")
 skeleton = NodePath("")
 
-[node name="Cube_012" type="Node3D" parent="Mac/korpus2"]
+[node name="Cube_012" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Cube_012_Material_010_0" type="MeshInstance3D" parent="Mac/korpus2/Cube_012"]
-mesh = SubResource("ArrayMesh_5biqi")
+[node name="Cube_012_Material_010_0" type="MeshInstance3D" parent="korpus2/Cube_012"]
+mesh = SubResource("ArrayMesh_n2r5a")
 skeleton = NodePath("")
 
-[node name="Cube_010" type="Node3D" parent="Mac/korpus2"]
+[node name="Cube_010" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Cube_010_klava_2_1_0" type="MeshInstance3D" parent="Mac/korpus2/Cube_010"]
-mesh = SubResource("ArrayMesh_23bmo")
+[node name="Cube_010_klava_2_1_0" type="MeshInstance3D" parent="korpus2/Cube_010"]
+mesh = SubResource("ArrayMesh_hx7sm")
 skeleton = NodePath("")
 
-[node name="Cube_011" type="Node3D" parent="Mac/korpus2"]
+[node name="Cube_011" type="Node3D" parent="korpus2"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.646978e-23, 0, -2.646978e-23, 1, 0, 0, 0)
 
-[node name="Cube_011_klava_2_1_0" type="MeshInstance3D" parent="Mac/korpus2/Cube_011"]
-mesh = SubResource("ArrayMesh_1p6ov")
+[node name="Cube_011_klava_2_1_0" type="MeshInstance3D" parent="korpus2/Cube_011"]
+mesh = SubResource("ArrayMesh_5jg8f")
 skeleton = NodePath("")
 
-[node name="Circle_001" type="Node3D" parent="Mac"]
+[node name="Circle_001" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Circle_001_grey_0" type="MeshInstance3D" parent="Mac/Circle_001"]
-mesh = SubResource("ArrayMesh_wy6v6")
+[node name="Circle_001_grey_0" type="MeshInstance3D" parent="Circle_001"]
+mesh = SubResource("ArrayMesh_ej7kp")
 skeleton = NodePath("")
 
-[node name="Cube_014" type="Node3D" parent="Mac"]
+[node name="Cube_014" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_014_black_0" type="MeshInstance3D" parent="Mac/Cube_014"]
-mesh = SubResource("ArrayMesh_5x6b6")
+[node name="Cube_014_black_0" type="MeshInstance3D" parent="Cube_014"]
+mesh = SubResource("ArrayMesh_0vmuk")
 skeleton = NodePath("")
 
-[node name="Cube_013" type="Node3D" parent="Mac"]
+[node name="Cube_013" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_013_Material_010_0" type="MeshInstance3D" parent="Mac/Cube_013"]
-mesh = SubResource("ArrayMesh_2conb")
+[node name="Cube_013_Material_010_0" type="MeshInstance3D" parent="Cube_013"]
+mesh = SubResource("ArrayMesh_sa04q")
 skeleton = NodePath("")
 
-[node name="Plane_020" type="Node3D" parent="Mac"]
+[node name="Plane_020" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_020_mahagon_3_0" type="MeshInstance3D" parent="Mac/Plane_020"]
-mesh = SubResource("ArrayMesh_flbmi")
+[node name="Plane_020_mahagon_3_0" type="MeshInstance3D" parent="Plane_020"]
+mesh = SubResource("ArrayMesh_4t7px")
 skeleton = NodePath("")
 
-[node name="Plane_027" type="Node3D" parent="Mac"]
+[node name="Plane_027" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_027_ruchki_0" type="MeshInstance3D" parent="Mac/Plane_027"]
-mesh = SubResource("ArrayMesh_yv2hd")
+[node name="Plane_027_ruchki_0" type="MeshInstance3D" parent="Plane_027"]
+mesh = SubResource("ArrayMesh_hs12v")
 skeleton = NodePath("")
 
-[node name="Cylinder_016" type="Node3D" parent="Mac"]
+[node name="Cylinder_016" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_016_derevo_0" type="MeshInstance3D" parent="Mac/Cylinder_016"]
-mesh = SubResource("ArrayMesh_0jr6o")
+[node name="Cylinder_016_derevo_0" type="MeshInstance3D" parent="Cylinder_016"]
+mesh = SubResource("ArrayMesh_rrybc")
 skeleton = NodePath("")
 
-[node name="Cylinder_016_grifel_004_0" type="MeshInstance3D" parent="Mac/Cylinder_016"]
-mesh = SubResource("ArrayMesh_g0u4x")
+[node name="Cylinder_016_grifel_004_0" type="MeshInstance3D" parent="Cylinder_016"]
+mesh = SubResource("ArrayMesh_pm1fo")
 skeleton = NodePath("")
 
-[node name="Cylinder_016_cvet_004_0" type="MeshInstance3D" parent="Mac/Cylinder_016"]
-mesh = SubResource("ArrayMesh_vp4ig")
+[node name="Cylinder_016_cvet_004_0" type="MeshInstance3D" parent="Cylinder_016"]
+mesh = SubResource("ArrayMesh_uwqkd")
 skeleton = NodePath("")
 
-[node name="Cylinder_017" type="Node3D" parent="Mac"]
+[node name="Cylinder_017" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_017_derevo_0" type="MeshInstance3D" parent="Mac/Cylinder_017"]
-mesh = SubResource("ArrayMesh_6g21x")
+[node name="Cylinder_017_derevo_0" type="MeshInstance3D" parent="Cylinder_017"]
+mesh = SubResource("ArrayMesh_ojspf")
 skeleton = NodePath("")
 
-[node name="Cylinder_017_grifel_0" type="MeshInstance3D" parent="Mac/Cylinder_017"]
-mesh = SubResource("ArrayMesh_pbub2")
+[node name="Cylinder_017_grifel_0" type="MeshInstance3D" parent="Cylinder_017"]
+mesh = SubResource("ArrayMesh_qxhqn")
 skeleton = NodePath("")
 
-[node name="Cylinder_017_cvet_0" type="MeshInstance3D" parent="Mac/Cylinder_017"]
-mesh = SubResource("ArrayMesh_4lu8e")
+[node name="Cylinder_017_cvet_0" type="MeshInstance3D" parent="Cylinder_017"]
+mesh = SubResource("ArrayMesh_ohlh1")
 skeleton = NodePath("")
 
-[node name="Cylinder_018" type="Node3D" parent="Mac"]
+[node name="Cylinder_018" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_018_derevo_0" type="MeshInstance3D" parent="Mac/Cylinder_018"]
-mesh = SubResource("ArrayMesh_r6waj")
+[node name="Cylinder_018_derevo_0" type="MeshInstance3D" parent="Cylinder_018"]
+mesh = SubResource("ArrayMesh_df2qc")
 skeleton = NodePath("")
 
-[node name="Cylinder_018_grifel_001_0" type="MeshInstance3D" parent="Mac/Cylinder_018"]
-mesh = SubResource("ArrayMesh_kwrw7")
+[node name="Cylinder_018_grifel_001_0" type="MeshInstance3D" parent="Cylinder_018"]
+mesh = SubResource("ArrayMesh_pvtbq")
 skeleton = NodePath("")
 
-[node name="Cylinder_018_cvet_001_0" type="MeshInstance3D" parent="Mac/Cylinder_018"]
-mesh = SubResource("ArrayMesh_6sdbs")
+[node name="Cylinder_018_cvet_001_0" type="MeshInstance3D" parent="Cylinder_018"]
+mesh = SubResource("ArrayMesh_1fj5y")
 skeleton = NodePath("")
 
-[node name="Cylinder_019" type="Node3D" parent="Mac"]
+[node name="Cylinder_019" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_019_derevo_0" type="MeshInstance3D" parent="Mac/Cylinder_019"]
-mesh = SubResource("ArrayMesh_j0t2p")
+[node name="Cylinder_019_derevo_0" type="MeshInstance3D" parent="Cylinder_019"]
+mesh = SubResource("ArrayMesh_s470d")
 skeleton = NodePath("")
 
-[node name="Cylinder_019_grifel_002_0" type="MeshInstance3D" parent="Mac/Cylinder_019"]
-mesh = SubResource("ArrayMesh_xjab8")
+[node name="Cylinder_019_grifel_002_0" type="MeshInstance3D" parent="Cylinder_019"]
+mesh = SubResource("ArrayMesh_isabv")
 skeleton = NodePath("")
 
-[node name="Cylinder_019_cvet_002_0" type="MeshInstance3D" parent="Mac/Cylinder_019"]
-mesh = SubResource("ArrayMesh_g4cdx")
+[node name="Cylinder_019_cvet_002_0" type="MeshInstance3D" parent="Cylinder_019"]
+mesh = SubResource("ArrayMesh_i5xp7")
 skeleton = NodePath("")
 
-[node name="Plane_021" type="Node3D" parent="Mac"]
+[node name="Plane_021" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_021_apple_2_0" type="MeshInstance3D" parent="Mac/Plane_021"]
-mesh = SubResource("ArrayMesh_d3qcv")
+[node name="Plane_021_apple_2_0" type="MeshInstance3D" parent="Plane_021"]
+mesh = SubResource("ArrayMesh_hdy67")
 skeleton = NodePath("")
 
-[node name="Cylinder_020" type="Node3D" parent="Mac"]
+[node name="Cylinder_020" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_020_derevo_0" type="MeshInstance3D" parent="Mac/Cylinder_020"]
-mesh = SubResource("ArrayMesh_a0y80")
+[node name="Cylinder_020_derevo_0" type="MeshInstance3D" parent="Cylinder_020"]
+mesh = SubResource("ArrayMesh_25jdh")
 skeleton = NodePath("")
 
-[node name="Cylinder_020_grifel_005_0" type="MeshInstance3D" parent="Mac/Cylinder_020"]
-mesh = SubResource("ArrayMesh_w1wof")
+[node name="Cylinder_020_grifel_005_0" type="MeshInstance3D" parent="Cylinder_020"]
+mesh = SubResource("ArrayMesh_0q5ic")
 skeleton = NodePath("")
 
-[node name="Cylinder_020_cvet_003_0" type="MeshInstance3D" parent="Mac/Cylinder_020"]
-mesh = SubResource("ArrayMesh_h6bdi")
+[node name="Cylinder_020_cvet_003_0" type="MeshInstance3D" parent="Cylinder_020"]
+mesh = SubResource("ArrayMesh_1ejc6")
 skeleton = NodePath("")
 
-[node name="Cube_004" type="Node3D" parent="Mac"]
+[node name="Cube_004" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_004_oblogka_0" type="MeshInstance3D" parent="Mac/Cube_004"]
-mesh = SubResource("ArrayMesh_40nl5")
+[node name="Cube_004_oblogka_0" type="MeshInstance3D" parent="Cube_004"]
+mesh = SubResource("ArrayMesh_cmerd")
 skeleton = NodePath("")
 
-[node name="Cube_016" type="Node3D" parent="Mac"]
+[node name="Cube_016" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_016_stranica_0" type="MeshInstance3D" parent="Mac/Cube_016"]
-mesh = SubResource("ArrayMesh_rsy6c")
+[node name="Cube_016_stranica_0" type="MeshInstance3D" parent="Cube_016"]
+mesh = SubResource("ArrayMesh_k2i6e")
 skeleton = NodePath("")
 
-[node name="Plane_022" type="Node3D" parent="Mac"]
+[node name="Plane_022" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_022_stiv_3_0" type="MeshInstance3D" parent="Mac/Plane_022"]
-mesh = SubResource("ArrayMesh_cy6g1")
+[node name="Plane_022_stiv_3_0" type="MeshInstance3D" parent="Plane_022"]
+mesh = SubResource("ArrayMesh_ctgb4")
 skeleton = NodePath("")
 
-[node name="Plane_022_Material_021_0" type="MeshInstance3D" parent="Mac/Plane_022"]
-mesh = SubResource("ArrayMesh_hoc2b")
+[node name="Plane_022_Material_021_0" type="MeshInstance3D" parent="Plane_022"]
+mesh = SubResource("ArrayMesh_wggli")
 skeleton = NodePath("")
 
-[node name="Plane_023" type="Node3D" parent="Mac"]
+[node name="Plane_023" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_023_stiv_2_0" type="MeshInstance3D" parent="Mac/Plane_023"]
-mesh = SubResource("ArrayMesh_w6p3v")
+[node name="Plane_023_stiv_2_0" type="MeshInstance3D" parent="Plane_023"]
+mesh = SubResource("ArrayMesh_l3gsk")
 skeleton = NodePath("")
 
-[node name="Plane_023_Material_021_0" type="MeshInstance3D" parent="Mac/Plane_023"]
-mesh = SubResource("ArrayMesh_pjhg1")
+[node name="Plane_023_Material_021_0" type="MeshInstance3D" parent="Plane_023"]
+mesh = SubResource("ArrayMesh_bkrv0")
 skeleton = NodePath("")
 
-[node name="Cylinder_015" type="Node3D" parent="Mac"]
+[node name="Cylinder_015" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cylinder_015_grey_0" type="MeshInstance3D" parent="Mac/Cylinder_015"]
-mesh = SubResource("ArrayMesh_eg1d4")
+[node name="Cylinder_015_grey_0" type="MeshInstance3D" parent="Cylinder_015"]
+mesh = SubResource("ArrayMesh_x57d6")
 skeleton = NodePath("")
 
-[node name="Torus_002" type="Node3D" parent="Mac"]
+[node name="Torus_002" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Torus_002_black_0" type="MeshInstance3D" parent="Mac/Torus_002"]
-mesh = SubResource("ArrayMesh_61xge")
+[node name="Torus_002_black_0" type="MeshInstance3D" parent="Torus_002"]
+mesh = SubResource("ArrayMesh_ec851")
 skeleton = NodePath("")
 
-[node name="Torus_003" type="Node3D" parent="Mac"]
+[node name="Torus_003" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Torus_003_black_0" type="MeshInstance3D" parent="Mac/Torus_003"]
-mesh = SubResource("ArrayMesh_bs763")
+[node name="Torus_003_black_0" type="MeshInstance3D" parent="Torus_003"]
+mesh = SubResource("ArrayMesh_8jacu")
 skeleton = NodePath("")
 
-[node name="Plane_024" type="Node3D" parent="Mac"]
+[node name="Plane_024" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Plane_024_knigi_0" type="MeshInstance3D" parent="Mac/Plane_024"]
-mesh = SubResource("ArrayMesh_e7c2j")
+[node name="Plane_024_knigi_0" type="MeshInstance3D" parent="Plane_024"]
+mesh = SubResource("ArrayMesh_1yqlo")
 skeleton = NodePath("")
 
-[node name="Cube_017" type="Node3D" parent="Mac"]
+[node name="Cube_017" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_017_oblogka_0" type="MeshInstance3D" parent="Mac/Cube_017"]
-mesh = SubResource("ArrayMesh_ai87l")
+[node name="Cube_017_oblogka_0" type="MeshInstance3D" parent="Cube_017"]
+mesh = SubResource("ArrayMesh_jfed3")
 skeleton = NodePath("")
 
-[node name="Cube_018" type="Node3D" parent="Mac"]
+[node name="Cube_018" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="Cube_018_stranica_0" type="MeshInstance3D" parent="Mac/Cube_018"]
-mesh = SubResource("ArrayMesh_fvj8v")
+[node name="Cube_018_stranica_0" type="MeshInstance3D" parent="Cube_018"]
+mesh = SubResource("ArrayMesh_28b7p")
 skeleton = NodePath("")
 
-[node name="stul" type="Node3D" parent="Mac"]
+[node name="stul" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
 
-[node name="pol" type="Node3D" parent="Mac"]
+[node name="pol" type="Node3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, 0, 0, 0)
-
-[connection signal="input_event" from="Area3D" to="Screen" method="_on_area_3d_input_event"]

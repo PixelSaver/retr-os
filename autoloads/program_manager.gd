@@ -106,4 +106,3 @@ func _register_builtin_programs() -> void:
 #"res://assets/win98_icons/png/directory_closed-3.png"
 #"res://assets/win98_icons/png/directory_open_cool-3.png"
 #"res://assets/win98_icons/png/help_question_mark-0.png"
-#"res://assets/win98_icons/png/clock-1.png"

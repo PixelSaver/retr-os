@@ -20,12 +20,13 @@ mouse_filter = 1
 theme = ExtResource("1_bk6t1")
 theme_type_variation = &"OSWindow"
 script = ExtResource("2_bk6t1")
-min_size = Vector2(310, 320)
+min_size = Vector2(320, 270)
 metadata/_custom_type_script = "uid://ndmilspd2x6r"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 texture_filter = 1
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TitleBar" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -77,6 +78,7 @@ script = ExtResource("4_owosf")
 [node name="ProgramContainer" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [connection signal="pressed" from="VBoxContainer/TitleBar/Minimize" to="VBoxContainer/TitleBar/Minimize" method="_on_pressed"]
 [connection signal="window_button_pressed" from="VBoxContainer/TitleBar/Minimize" to="." method="_on_window_button_pressed"]

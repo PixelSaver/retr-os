@@ -3,3 +3,6 @@
 /android/
 /addons/godot_super-wakatime
 *.import
+*.zip
+/assets/models/macintosh_128k
+/assets/models/work_office_lowpoly
