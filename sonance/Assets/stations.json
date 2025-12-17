@@ -1,0 +1,20 @@
+[
+  {
+	"station_name": "Fur Elise",
+	"frequency": 55.0,
+	"range": 5.0,
+	"stream": "res://sonance/Assets/Audio/fur-elise-music-box.ogg"
+  },
+  {
+	"station_name": "Rock Radio",
+	"frequency": 60.0,
+	"range": 4.0,
+	"stream": "res://sonance/Assets/Audio/infraction.ogg"
+  },
+  {
+	"station_name": "Talk Station",
+	"frequency": 80.0,
+	"range": 6.0,
+	"stream": "res://sonance/Assets/Audio/ultimatum-orchestra-loop.ogg"
+  }
+]

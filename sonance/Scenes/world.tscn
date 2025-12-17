@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd6kgf6otx6mq"]
+
+[ext_resource type="Script" uid="uid://c0v2r8u4qv4v5" path="res://sonance/Scripts/world.gd" id="1_5a7ea"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ukr8"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.19414508, 0.18639508, 0.17739508, 1)
+ground_horizon_color = Color(0.19414508, 0.18639508, 0.17739508, 1)
+
+[sub_resource type="Sky" id="Sky_o06y3"]
+sky_material = SubResource("ProceduralSkyMaterial_5ukr8")
+
+[sub_resource type="Environment" id="Environment_k7acu"]
+background_mode = 2
+sky = SubResource("Sky_o06y3")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_density = 0.2867
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("anim_player")]
+script = ExtResource("1_5a7ea")
+anim_player = NodePath("")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k7acu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7297156, -0.4472083, 0.51722324, 0.3135652, 0.89109015, 0.32807803, -0.6076117, -0.077220485, 0.7904713, 0, 0, 0)
+light_color = Color(0.4159408, 0.759386, 0.86058676, 1)
+light_energy = 2.376
+light_specular = 3.293
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 358.5

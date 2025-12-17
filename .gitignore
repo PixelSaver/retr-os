@@ -6,3 +6,5 @@
 *.zip
 /assets/models/macintosh_128k
 /assets/models/work_office_lowpoly
+
+/ignore*

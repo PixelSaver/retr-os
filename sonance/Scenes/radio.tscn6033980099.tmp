@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://d17hg6ip2814h"]
+
+[ext_resource type="Script" uid="uid://m8rwy7m71x24" path="res://Scripts/radio.gd" id="1_bdbpc"]
+[ext_resource type="PackedScene" uid="uid://d2u5jui2amqna" path="res://Scenes/knob.tscn" id="2_ibud7"]
+[ext_resource type="Script" uid="uid://d4a5qbongjnde" path="res://Scripts/audio_manager.gd" id="3_ibud7"]
+[ext_resource type="Script" uid="uid://bcgqb1basxct6" path="res://Scripts/station.gd" id="4_ygha7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6jxtu"]
+size = Vector3(1, 0.6, 0.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_bdbpc"]
+size = Vector3(0.05, 0.1, 0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ibud7"]
+points = PackedVector3Array(0, 0.05, 0.05, 0, 0.05, -0.05, -0.025, -0.05, 0.05, 0.025, -0.05, 0.05, 0.025, -0.05, -0.05, -0.025, -0.05, -0.05)
+
+[node name="Radio" type="MeshInstance3D" node_paths=PackedStringArray("knob1", "knob2", "tuning_fork")]
+mesh = SubResource("BoxMesh_6jxtu")
+script = ExtResource("1_bdbpc")
+knob1 = NodePath("Knob")
+knob2 = NodePath("Knob2")
+tuning_fork = NodePath("TuningFork")
+
+[node name="Knob" parent="." instance=ExtResource("2_ibud7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.1, 0.25)
+
+[node name="Knob2" parent="." instance=ExtResource("2_ibud7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.1, 0.25)
+
+[node name="TuningFork" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0.25)
+gravity_scale = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TuningFork"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PrismMesh_bdbpc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TuningFork"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ibud7")
+
+[node name="AudioManager" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.25)
+script = ExtResource("3_ibud7")
+
+[node name="Station" type="AudioStreamPlayer3D" parent="AudioManager"]
+script = ExtResource("4_ygha7")
+frequency = null
+range = null

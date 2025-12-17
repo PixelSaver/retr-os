@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bp63yb4vgmgck"]
+
+[ext_resource type="Shader" uid="uid://jabitv4k4vg5" path="res://Assets/outline.gdshader" id="1_jfjby"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jfjby")
+shader_parameter/depth_threshold = 0.011
+shader_parameter/depth_artifact_correction_coef = 6.55
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 5.0

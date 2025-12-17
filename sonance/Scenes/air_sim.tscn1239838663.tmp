@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://wnbe8obgwtoh"]
+
+[ext_resource type="Script" uid="uid://dgfpk4xpo52en" path="res://Scripts/air_sim.gd" id="1_6eud0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u4j80"]
+
+[node name="AirSim" type="Node2D"]
+script = ExtResource("1_6eud0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_u4j80")
