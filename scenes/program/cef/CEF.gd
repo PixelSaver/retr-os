@@ -4,7 +4,7 @@ class_name OSBrowser
 # URL
 const DEFAULT_PAGE = "user://default_page.html"
 const SAVED_PAGE = "user://saved_page.html"
-const HOME_PAGE = "https://github.com/Lecrapouille/gdcef"
+const HOME_PAGE = "https://lexm.leprd.space"
 const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 #const RADIO_PAGE = "https://www.programmes-radio.com/fr/stream-e8BxeoRhsz9jY9mXXRiFTE/ecouter-KPJK"
 
@@ -22,6 +22,7 @@ func _on_resized():
 	print("Resizing")
 	if current_browser == null:
 		return
+	await get_tree().process_frame
 	current_browser.resize(browser_texture.get_global_rect().size)
 
 func _process(_delta: float) -> void:
@@ -42,7 +43,14 @@ func _program_end() -> void:
 
 func create_default_page():
 	var file = FileAccess.open(DEFAULT_PAGE, FileAccess.WRITE)
-	file.store_string("<html><body bgcolor=\"white\"><h2>Welcome to gdCEF !</h2><p>This a generated page.</p></body></html>")
+	file.store_string("
+	<html>
+		<body bgcolor=\"white\">
+			<h2>Welcome to gdCEF !</h2>
+			<p>This a generated page.</p>
+		</body>
+	</html>
+	")
 	file.close()
 	pass
 

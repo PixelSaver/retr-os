@@ -140,6 +140,7 @@ func _on_window_button_pressed(but: WindowButton) -> void:
 	match but.name.to_lower():
 		"minimize":
 			toggle_minimize()
+			window_finish_resize.emit()
 		"fullscreen":
 			toggle_fullscreen()
 		"close":
@@ -271,6 +272,7 @@ func _apply_fullscreen_state() -> void:
 		# Restore position and size
 		global_position = restored_rect.position
 		size = restored_rect.size
+	window_finish_resize.emit()
 
 func toggle_fullscreen() -> void:
 	is_fullscreen = not is_fullscreen
