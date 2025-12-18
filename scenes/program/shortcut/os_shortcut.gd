@@ -33,13 +33,18 @@ func _ready() -> void:
 
 func _setup_from_program_manager() -> void:
 	var info = ProgramManager.get_program_info(_id)
+	if args.size() == 1:
+		label_text = args[1]
+		return
+	elif args.size() > 1:
+		label_text = args[1]
+		icon_texture = load(args[2])
+		return
+	
 	if not info.is_empty():
 		label_text = info.get("title", _id)
 		var info_icon = info.get("icon")
 		if not info_icon.is_empty():
-			if info_icon == "custom":
-				# Use the one set in the editor
-				return
 			icon_texture = load(info_icon)
 		else:
 			icon_texture_rect.texture = Texture2D.new().create_placeholder()

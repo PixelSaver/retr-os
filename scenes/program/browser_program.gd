@@ -34,10 +34,6 @@ func _on_resized():
 func _program_start(args:Array=[]) -> void:
 	if args.size() > 0:
 		start_url = args[0]
-	if args.size() > 1:
-		title = args[1]
-	if args.size() > 2:
-		icon = load(args[2])
 	
 	create_default_page()
 
