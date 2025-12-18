@@ -112,7 +112,7 @@ program_id = "program_manager"
 
 [node name="Shortcut5" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
-program_id = "empty"
+program_id = "browser"
 
 [node name="Shortcut6" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2

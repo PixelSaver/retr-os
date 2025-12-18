@@ -1,10 +1,5 @@
-# ==============================================================================
-# Demo based on the initial asset https://godotengine.org/asset-library/asset/127
-# Basic application showing how to use CEF inside Godot with a 3D scene and mouse
-# and keyboard events.
-# ==============================================================================
-
-extends Control
+extends Program
+class_name OSBrowser
 
 # URL
 const DEFAULT_PAGE = "user://default_page.html"
@@ -14,13 +9,37 @@ const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 #const RADIO_PAGE = "https://www.programmes-radio.com/fr/stream-e8BxeoRhsz9jY9mXXRiFTE/ecouter-KPJK"
 
 # The current browser as Godot node
-@onready var current_browser = null
+@onready var current_browser : GDBrowserView = null
 # Memorize if the mouse was pressed
 @onready var mouse_pressed: bool = false
+@onready var browser_texture: TextureRect = $Panel/VBox/MarginContainer/BrowserTexture
 
-# ==============================================================================
+## PixelSaver contribution here
+func _program_ready() -> void:
+	window_parent.window_finish_resize.connect(_on_resized)
+
+func _on_resized():
+	print("Resizing")
+	if current_browser == null:
+		return
+	current_browser.resize(browser_texture.get_global_rect().size)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("r_click"):
+		
+		current_browser.resize(browser_texture.get_size())
+
+func _program_start() -> void:
+	pass
+
+func _program_end() -> void:
+	print("%s ended" % get_class())
+
+## Browser logic below
+
+# ========================================================
 # Create the home page.
-# ==============================================================================
+
 func create_default_page():
 	var file = FileAccess.open(DEFAULT_PAGE, FileAccess.WRITE)
 	file.store_string("<html><body bgcolor=\"white\"><h2>Welcome to gdCEF !</h2><p>This a generated page.</p></body></html>")
@@ -101,7 +120,7 @@ func create_browser(url):
 	#   "download_folder": "res://",
 	#   "user_gesture_required": true,
 	# }
-	var browser = $CEF.create_browser(url, $Panel/VBox/TextureRect,
+	var browser = $CEF.create_browser(url, browser_texture,
 		{
 			"javascript": true,
 			"webgl": true,
@@ -197,7 +216,7 @@ func _on_Next_pressed():
 func _on_BrowserList_item_selected(index):
 	current_browser = get_browser(str(index))
 	if current_browser != null:
-		$Panel/VBox/TextureRect.texture = current_browser.get_texture()
+		browser_texture.texture = current_browser.get_texture()
 	pass
 
 ####
@@ -325,9 +344,6 @@ func _input(event):
 # Windows has resized
 # ==============================================================================
 func _on_texture_rect_resized():
-	if current_browser == null:
-		return
-	current_browser.resize($Panel/VBox/TextureRect.get_size())
 	pass
 
 ####
@@ -338,6 +354,7 @@ func _on_texture_rect_resized():
 # Create a single browser named "current_browser" that is attached as child node to $CEF.
 # ==============================================================================
 func _ready():
+	super._ready()
 	create_default_page()
 
 	# See API.md for more details. CEF Configuration is:
@@ -381,11 +398,6 @@ func _ready():
 	current_browser = await create_browser(HOME_PAGE)
 	pass
 
-# ==============================================================================
-# $CEF is periodically updated
-# ==============================================================================
-func _process(_delta):
-	pass
 
 # ==============================================================================
 # CEF audio will be routed to this Godot stream object.

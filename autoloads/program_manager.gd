@@ -101,6 +101,15 @@ func _register_builtin_programs() -> void:
 			"description": "KILL THEM ALL"
 		}
 	)
+	register_program("browser", 
+		preload("res://scenes/program/cef/browser_program.tscn"),
+		{
+			"title": "Pixel Browser",
+			"icon": "res://assets/win98_icons/png/program_manager-1.png",
+			"category": "Utilities",
+			"description": "Big files to load this"
+		}
+	)
 
 #"res://assets/win98_icons/png/console_prompt-0.png"
 #"res://assets/win98_icons/png/directory_closed-3.png"
