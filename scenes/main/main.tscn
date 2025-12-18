@@ -1,4 +1,4 @@
-[gd_scene load_steps=205 format=4 uid="uid://bjr78tl586o87"]
+[gd_scene load_steps=206 format=4 uid="uid://bjr78tl586o87"]
 
 [ext_resource type="Script" uid="uid://bebui2t15quet" path="res://scenes/main/main.gd" id="1_l3cfh"]
 [ext_resource type="Script" uid="uid://d4kghif8h5k10" path="res://scenes/ui/screen.gd" id="2_iuonh"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://b5v3rv7mc2yjt" path="res://assets/models/macintosh_128k/textures/stiv_2_baseColor.jpeg" id="17_gkmcc"]
 [ext_resource type="Texture2D" uid="uid://cvmxr87qork4q" path="res://assets/models/macintosh_128k/textures/knigi_baseColor.jpeg" id="18_7nlll"]
 [ext_resource type="PackedScene" uid="uid://d17hg6ip2814h" path="res://sonance/Scenes/radio.tscn" id="18_r4lks"]
+[ext_resource type="Script" uid="uid://bobpk0a3kbiyy" path="res://scenes/main/camera_manager.gd" id="19_necax"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hyk8p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -49,23 +50,6 @@ material = SubResource("StandardMaterial3D_necax")
 size = Vector2(1.25, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_k2fmo"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_6q06x"]
-viewport_path = NodePath("Screen/Text/SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow5a4"]
-resource_local_to_scene = true
-shader = ExtResource("2_l3cfh")
-shader_parameter/tex = SubResource("ViewportTexture_6q06x")
-shader_parameter/mask_type = 1
-shader_parameter/curve = 0.0
-shader_parameter/sharpness = 0.6666667
-shader_parameter/color_offset = 0.0
-shader_parameter/mask_brightness = 0.5450000258875
-shader_parameter/scanline_brightness = 1.0
-shader_parameter/min_scanline_thickness = 0.5
-shader_parameter/aspect = 0.75
-shader_parameter/wobble_strength = 0.498000023655
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ii537"]
 viewport_path = NodePath("Screen")
@@ -2722,6 +2706,23 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_phw0r")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_6q06x"]
+viewport_path = NodePath("Screen/Text/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow5a4"]
+resource_local_to_scene = true
+shader = ExtResource("2_l3cfh")
+shader_parameter/tex = SubResource("ViewportTexture_6q06x")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 0.5450000258875
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.75
+shader_parameter/wobble_strength = 0.498000023655
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_l3cfh")
 
@@ -2735,10 +2736,6 @@ environment = SubResource("Environment_k2fmo")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, -3.0559022e-10, 0.2326774, 0.8521514)
 
-[node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(0.7660445, 0.3213938, -0.5566704, 0, 0.86602545, 0.5, 0.64278764, -0.38302222, 0.66341406, 2.34105, -0.89146477, 1.3257442)
-current = true
-
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 0, 0)
 monitorable = false
@@ -2750,31 +2747,6 @@ skeleton = NodePath("../../Camera3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_k2fmo")
-
-[node name="Screen" type="SubViewport" parent="." node_paths=PackedStringArray("screen_mesh", "subviewport")]
-size = Vector2i(1195, 680)
-script = ExtResource("2_iuonh")
-screen_mesh = NodePath("../Area3D/MeshInstance3D")
-subviewport = NodePath("Text/SubViewport")
-
-[node name="Text" type="CanvasLayer" parent="Screen"]
-
-[node name="CRTLayer" type="CanvasLayer" parent="Screen/Text"]
-
-[node name="ColorRect" type="ColorRect" parent="Screen/Text/CRTLayer"]
-material = SubResource("ShaderMaterial_ow5a4")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="Screen/Text"]
-size = Vector2i(640, 512)
-
-[node name="MainUI" parent="Screen/Text/SubViewport" instance=ExtResource("2_k2fmo")]
 
 [node name="Mac" type="Node3D" parent="."]
 transform = Transform3D(-4.3711387e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, -4.3711387e-10, 0, -5.798, -0.834)
@@ -3298,6 +3270,49 @@ transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-
 
 [node name="Radio" parent="." groups=["World"] instance=ExtResource("18_r4lks")]
 transform = Transform3D(1.1914471, 0, -0.91129243, 0, 1.5, 0, 0.91129243, 0, 1.1914471, 2.9831579, -1.9038544, 0.46114874)
+metadata/_edit_group_ = true
+
+[node name="RadioShell" parent="Radio" index="9"]
+transform = Transform3D(-5.9604645e-08, 1, 4.371139e-08, 0, -4.3711385e-08, 0.9999997, 1, 5.9604645e-08, 3.5527137e-15, 0, -0.005944729, 0)
+
+[node name="Screen" type="SubViewport" parent="." node_paths=PackedStringArray("screen_mesh", "subviewport")]
+size = Vector2i(1195, 680)
+script = ExtResource("2_iuonh")
+screen_mesh = NodePath("../Area3D/MeshInstance3D")
+subviewport = NodePath("Text/SubViewport")
+
+[node name="Text" type="CanvasLayer" parent="Screen"]
+
+[node name="CRTLayer" type="CanvasLayer" parent="Screen/Text"]
+
+[node name="ColorRect" type="ColorRect" parent="Screen/Text/CRTLayer"]
+material = SubResource("ShaderMaterial_ow5a4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Screen/Text"]
+size = Vector2i(640, 512)
+
+[node name="MainUI" parent="Screen/Text/SubViewport" instance=ExtResource("2_k2fmo")]
+
+[node name="CameraManager" type="Node3D" parent="." node_paths=PackedStringArray("marker_array")]
+script = ExtResource("19_necax")
+marker_array = [NodePath("Home"), NodePath("Radio"), NodePath("Mac")]
+metadata/_custom_type_script = "uid://bobpk0a3kbiyy"
+
+[node name="Home" type="Marker3D" parent="CameraManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 2.4)
+
+[node name="Radio" type="Marker3D" parent="CameraManager"]
+transform = Transform3D(0.7660445, 0.3213938, -0.5566704, 0, 0.86602545, 0.5, 0.64278764, -0.38302222, 0.66341406, 2.34105, -0.89146477, 1.3257442)
+
+[node name="Mac" type="Marker3D" parent="CameraManager"]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, -3.0559022e-10, 0.2326774, 0.8521514)
 
 [connection signal="input_event" from="Area3D" to="Screen" method="_on_area_3d_input_event"]
 

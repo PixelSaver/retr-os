@@ -1,0 +1,67 @@
+@startuml
+
+participant "GDScript" as GD
+participant "Main Process\n(Godot)" as MP
+participant "Render Process\n(CEF)" as RP
+participant "JavaScript\n(Renderer Process)" as JS
+
+== Godot to JavaScript ==
+
+JS --> GD : on page loaded
+activate GD
+JS -> JS : Registered with godotEvents.on()
+GD -> MP : Registered GDScript methods
+deactivate GD
+
+GD -> MP : emit_js("character_update", data)
+activate MP
+
+MP -> MP : Godot Variants to JSON
+MP -> RP : SendProcessMessage("godotEventsEmit", ["character_update", data])
+activate RP
+
+RP -> RP : OnProcessMessageReceived()
+RP -> JS : ExecuteJavaScript("godotEvents.emit()")
+activate JS
+
+JS -> JS : Execute registered callback
+JS --> JS : Update UI
+deactivate JS
+
+RP --> MP : Message processed
+deactivate RP
+
+MP --> GD : Complete
+deactivate MP
+
+== JavaScript to Godot ==
+
+JS --> GD : on page loaded
+JS -> JS : Create the JS Proxy
+
+JS --> JS : button clicked
+activate JS
+JS -> RP : window.godotMethods.modify_xp(42)
+activate RP
+
+RP -> RP : GodotMethodHandler::Execute()
+RP -> RP : to JSON
+deactivate JS
+
+RP -> MP : SendProcessMessage("callGodotMethod", ["modify_xp", 42])
+activate MP
+
+MP -> MP : OnProcessMessageReceived()
+MP -> MP : JSON to Godot Variants
+MP -> GD : Execute Godot Callable("modify_xp")
+activate GD
+
+GD -> GD : Update game state
+deactivate GD
+
+MP --> RP : Complete
+deactivate MP
+
+deactivate RP
+
+@enduml

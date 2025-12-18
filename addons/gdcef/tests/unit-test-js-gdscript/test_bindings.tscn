@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6x8v0j6y5n3q"]
+
+[ext_resource type="Script" path="res://test_bindings.gd" id="1_wo77e"]
+
+[node name="TestBindings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wo77e")
+
+[node name="HSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 550
+
+[node name="LeftPanel" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="CEF" type="GDCef" parent="HSplitContainer/LeftPanel"]
+unique_name_in_owner = true
+
+[node name="TextureRect" type="TextureRect" parent="HSplitContainer/LeftPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RightPanel" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="ResultsLabel" type="RichTextLabel" parent="HSplitContainer/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Godot Test Results:"
+
+[connection signal="gui_input" from="HSplitContainer/LeftPanel/TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="resized" from="HSplitContainer/LeftPanel/TextureRect" to="." method="_on_texture_rect_resized"]

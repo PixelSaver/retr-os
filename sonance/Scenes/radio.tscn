@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://d17hg6ip2814h"]
+[gd_scene load_steps=34 format=4 uid="uid://d17hg6ip2814h"]
 
 [ext_resource type="Script" uid="uid://m8rwy7m71x24" path="res://sonance/Scripts/radio.gd" id="1_bdbpc"]
 [ext_resource type="PackedScene" uid="uid://d2u5jui2amqna" path="res://sonance/Scenes/knob.tscn" id="2_ibud7"]
@@ -7,7 +7,6 @@
 [ext_resource type="JSON" path="res://sonance/Assets/stations.json" id="4_y4nnh"]
 [ext_resource type="Script" uid="uid://b7yp1cs1gdnsa" path="res://sonance/Scripts/menu_buttons.gd" id="6_jp436"]
 [ext_resource type="PackedScene" uid="uid://bq4r8pe7w6yr5" path="res://sonance/Scenes/radio_menu_button.tscn" id="7_geon2"]
-[ext_resource type="PackedScene" uid="uid://dd8aonr1mxmsa" path="res://sonance/Assets/radio_surgery/vintage_radio_surgery.glb" id="8_clxkr"]
 [ext_resource type="Texture2D" uid="uid://5b26x8brtaal" path="res://sonance/Assets/radio_surgery/vintage_radio_surgery_phong1SG_baseColor.png" id="9_5jvd1"]
 [ext_resource type="Texture2D" uid="uid://b862xkdi01yoc" path="res://sonance/Assets/radio_surgery/vintage_radio_surgery_phong1SG_metallicRoughness.png" id="10_7yf7r"]
 [ext_resource type="AudioStream" uid="uid://bu6wm6llrk0x4" path="res://sonance/Assets/Audio/am-radio-static.ogg" id="10_lmej3"]
@@ -65,40 +64,6 @@ shadow_mesh = SubResource("ArrayMesh_t04gc")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ibud7"]
 points = PackedVector3Array(0, 0.05, 0.05, 0, 0.05, -0.05, -0.025, -0.05, 0.05, 0.025, -0.05, 0.05, 0.025, -0.05, -0.05, -0.025, -0.05, -0.05)
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_8cot5"]
-_surfaces = [{
-"aabb": AABB(-1.508895, -2.026071, 0.00647, 3.029776, 4.241069, 0.197483),
-"format": 34896613377,
-"index_count": 132,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAQAQAAIAEQAAAAIAEQACABAAAQASABAAAwASAAEAAAATAAMAAwATABIAAAARABMABgAQABIABAARABAABgAEABAAEwARAAUABAAFABEAEgATAAcAEwAFAAcAEgAHAAYAFAAFAAQABwAFABUAFAAVAAUABgAHABYABwAVABYAFwAEAAYAFwAUAAQABgAWABcACQAVABQAFgAVAAoACQAKABUAFwAWAAsAFgAKAAsACAAUABcACAAJABQAFwALAAgACQAMAAoACwANAAgACAAOAAkACQAOAAwACAANAA4ACgAMAA8ACgAPAAsADwAMAA4ACwAPAA0ADwAOAA0A"),
-"lods": [0.1902653, PackedByteArray("AAABAAIAAAADAAEAAQAEAAIABQAAAAIABQACAAQAAQAGAAQAAwAGAAEAAAAHAAMAAwAHAAYAAAAFAAcACAAEAAYACQAFAAQACAAJAAQABwAFAAoACQAKAAUABgAHAAsABwAKAAsABgALAAgACQAMAAoACwANAAgACAAOAAkACQAOAAwACAANAA4ACgAMAA8ACgAPAAsADwAMAA4ACwAPAA0ADwAOAA0A")],
-"name": "phong1SG",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("tWL//wAAAABJnQAAAAAAAP//+dsAAAAAAAAFJAAAAADO/pDbNKQAAFdjK/80pAAAp5zTADSkAAAwAW4kNKQAAJCYLQbv2gAAIPfo2O/aAABuZ9H579oAAN4IFifv2gAAbmfR+f//AACQmC0G//8AACD36Nj//wAA3ggWJ///AAD///nbem0AALVi//96bQAASZ0AAHptAAAAAAUkem0AAI/7cdpFzAAAEWXo/EXMAABvBI0lRcwAAO2aFgNFzAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_v8ggg"]
-resource_name = "vintage_radio_surgery_Object_0"
-_surfaces = [{
-"aabb": AABB(-1.508895, -2.026071, 0.00647, 3.029776, 4.241069, 0.197483),
-"attribute_data": PackedByteArray("qS4OWzYmhEo2Jg5bqS6ESobWYpH8z7L0h9ZG9fzP9pH8z7L0q8uzlazL9fD8z/aRNspr8lEL4/bFzeP24A5r8moN9fAaCfaRGgmy9GoNs5XEzcWP4A49lDXKPZRRC8WPNcqzleAO9fA2yvXw4A6zlRoJ9pGPAkb1Ggmy9I8CYpFSzm/9UQvj9sQKb/3FzeP2xAo5icTNxY9RzjmJUQvFj6vLs5U2yvXwrMv18DXKs5U2ymvy4A718OAOa/I2yvXwag318OAOs5VqDbOV4A718OAOPZQ1yrOVNco9lOAOs5U20kb1NtJikc7Ni5POzR3z0gyn9ETMp/RIC4uTSAsd89IMAZJDzAGS4AZikeAGRvXECh75Us4e+VHOio3ECoqN"),
-"format": 34896613399,
-"index_count": 132,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAOAAHAAUAOAA5AAcABAA5ADgABAA4AAYACAA6ADsACAALADoAOwA6AAkAOwAJAAoADAA8AD0ADAAPADwAPQA8AA0APQANAA4AEAA+AD8AEAATAD4APwA+ABEAPwARABIAFABAAEEAFAAXAEAAQQBAABUAQQAVABYAGAAZABoAGAAbABkAQgAdAEMAQgAfAB0AHgBCAEMAHgAcAEIAIABEACIAIABFAEQAIwBEAEUAIwAhAEQAJABGACYAJABHAEYARgBHACcARgAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUA"),
-"lods": [0.1902653, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUA")],
-"material": SubResource("StandardMaterial3D_05oah"),
-"name": "phong1SG",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 72,
-"vertex_data": PackedByteArray("tWL//wAAAABJnQAAAAAAAP//+dsAAAAAAAAFJAAAAAAAAAUkAAAHI6ec0wA0pHInSZ0AAAAAByMwAW4kNKRxJ6ec0wA0pKcu3ggWJ+/a/TGQmC0G79otNDABbiQ0pKcukJgtBu/atjLO/pDbNKTrLqec0wA0pOsuIPfo2O/adjMg9+jY79r+MVdjK/80pKUuzv6Q2zSkpS5uZ9H579ovNDABbiQ0pOsubmfR+e/atjLeCBYn79p2M1djK/80pOsu3ggWJ///XDMg9+jY//9cM5CYLQb//1wzbmfR+f//XDNXYyv/NKRyJ///+dsAAAcjzv6Q2zSkcye1Yv//AAAHI0mdAAAAAAcjzv6Q2zSkpSf///nbAAAHI6ec0wA0pKUntWL//wAAByMwAW4kNKSlJwAABSQAAAcjV2Mr/zSkpSfeCBYn79oHI5CYLQb//wcjkJgtBu/aByPeCBYn//8HI5CYLQbv2gcjIPfo2P//ByMg9+jY79oHI5CYLQb//wcjIPfo2O/aByNuZ9H5//8HI25n0fnv2gcjIPfo2P//ByNuZ9H579oHI94IFif//wcj3ggWJ+/aByNuZ9H5//8HI0mdAAB6bU0lAAAFJHptTCVvBI0lRcwwLO2aFgNFzDc4j/tx2kXMyzPtmhYDRcyfMBFl6PxFzDY4j/tx2kXMMCwRZej8RcyfMG8EjSVFzMsztWL//3ptTSX///nbem1NJf//+dt6bWglSZ0AAHptaCUAAAUkem1oJbVi//96bWglTpGw7k6RsO5OkbDuTpGw7hpRyV2RVQthGlHJXZJVCmF9YANpvnKTgW19wHJ9YANpsn3WcoiWG2GIlhthWY0nfkCNa36Bn/uWgZ/7lpGCP412aeOeTIIojaVy14F2aeOe/3//f/9//3//f/9//3//f22q857krjWibarznuSuNaI1ohpRyZ7KVTWiGlHJnspVyV3krjVhNKrJXeSuNWE0qhpRyV0aUcldGlHJXRpRyV01ohpRNaIaUTWiGlE1ohpR5K41ouSuNaLkrjWi5K41osld5K7JXeSuyV3krsld5K5KU2FfSlNhX/Fni4HHeTxnqpgDfFh8z2c3hsKYDZhzfqaDL5hWZ/yDtKydoLSsnaCJoGVTiaBlU3Vfmax1X5ms")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_8cot5")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_85sjm"]
 _surfaces = [{
@@ -363,7 +328,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lmej3")
 
 [node name="Radio" type="MeshInstance3D" node_paths=PackedStringArray("knob1", "knob2", "tuning_fork", "outline_component", "audio_man")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68, 0.205, 0)
 mesh = SubResource("PlaceholderMesh_clxkr")
 script = ExtResource("1_bdbpc")
 knob1 = NodePath("Knob")
@@ -411,15 +375,6 @@ play_but = NodePath("Button4")
 [node name="Button4" parent="MenuButtons" instance=ExtResource("7_geon2")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.3, 0.286, -0.34)
 script = null
-
-[node name="vintage_radio_surgery" parent="." instance=ExtResource("8_clxkr")]
-visible = false
-
-[node name="Table" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.311937, 0.95010287, 4.1530317e-08, -8.3987494e-16, -4.371139e-08, 1, 0.95010287, -0.311937, -1.3635193e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("ArrayMesh_v8ggg")
-skeleton = NodePath("")
 
 [node name="ButtonCasing" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 0, 0)

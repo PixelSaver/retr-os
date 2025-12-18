@@ -53,7 +53,6 @@ func _input(event: InputEvent) -> void:
 	
 func _process(delta: float) -> void:
 	tuning_fork.position.x = lerp(tuning_fork.position.x, tuning_fork_target, delta*10)
-	print(tuning_fork.position)
 
 func update_knob_turn(event:InputEventMouseMotion):
 	if not dragging: return

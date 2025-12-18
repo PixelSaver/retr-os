@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GDCef JS => GDScript => JS Bindings Cheatsheet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="test-section">
+        <h1>GDCef JS => GDScript => JS Bindings Cheatsheet</h1>
+
+        <div class="main-layout">
+            <div class="tests-column">
+                <div>
+                    <h2>Test Types</h2>
+                    <div class="test-grid">
+                        <button onclick="testType('null', null)">Null</button>
+                        <button onclick="testType('boolean', true)">Boolean</button>
+                        <button onclick="testType('integer', 42)">Integer</button>
+                        <button onclick="testType('double', 3.14159)">Double</button>
+                        <button onclick="testType('string', 'Hello World')">String</button>
+                        <button onclick="testType('array', [1, 2, 3, 'test', null, true, 3.14])">Array</button>
+                        <button onclick="testType('object', { key: 'value', number: 42 })">Object</button>
+                        <button onclick="testType('binary', new Uint8Array([1, 2, 3, 4, 5]))">Binary</button>
+                        <button onclick="testType('timeout', 'timeout')">Timeout</button>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Complex tests</h2>
+                    <div class="test-grid">
+                        <button onclick="testNestedObject()">Nested Object</button>
+                        <button onclick="testNestedArray()">Nested Array</button>
+                        <button onclick="testObjectWithArray()">Object with array</button>
+                        <button onclick="testSpecialChars()">Special characters</button>
+                        <button onclick="testEmptyStructures()">Empty structures</button>
+                        <button onclick="testNumericEdgeCases()">Numeric edge cases</button>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Advanced tests</h2>
+                    <div class="test-grid">
+                        <button onclick="testDeepNestedObject()">Deep nested object</button>
+                        <button onclick="testMixedTypesArray()">Mixed types</button>
+                        <button onclick="testJsonEdgeCases()">JSON edge cases</button>
+                        <button onclick="testBinaryDifferentSizes()">Binary (medium)</button>
+                        <button onclick="testComplexStructure()">Complex structure</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-column">
+                <div>
+                    <h3 class="section-title">Test Results</h3>
+                    <div id="test-results" class="test-results"></div>
+                </div>
+
+                <div>
+                    <h3 class="section-title">Log</h3>
+                    <div id="log" class="log-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * @brief Logs a message to the log area with timestamp
+         * @param {string} message - The message to log
+         * @param {boolean} isError - Whether this is an error message
+         */
+        function log(message, isError = false) {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+
+            const time = document.createElement('span');
+            time.className = 'log-time';
+            time.textContent = `[${new Date().toLocaleTimeString()}]`;
+
+            const msg = document.createElement('span');
+            msg.className = isError ? 'log-error' : 'log-message';
+            msg.textContent = message;
+
+            entry.appendChild(time);
+            entry.appendChild(msg);
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        /**
+         * @brief Updates the test result display
+         * @param {string} type - Type name
+         * @param {boolean} success - Whether the test was successful
+         * @param {any} value - Value sent
+         * @param {any} result - Value received
+         */
+        function updateTestResult(type, success, value, result) {
+            const resultsDiv = document.getElementById('test-results');
+            let resultDiv = document.getElementById(`result-${type}`);
+
+            if (!resultDiv) {
+                resultDiv = document.createElement('div');
+                resultDiv.id = `result-${type}`;
+                resultDiv.className = `test-result ${success ? 'success' : 'error'}`;
+                resultsDiv.appendChild(resultDiv);
+            }
+
+            resultDiv.innerHTML = `
+                <div class="test-status ${success ? 'success' : 'error'}">
+                    ${success ? '✓' : '✗'} ${type}
+                </div>
+                <div class="test-details">
+                    <strong>Sent:</strong> ${JSON.stringify(value)}
+                    <strong>Received:</strong> ${JSON.stringify(result)}
+                </div>
+            `;
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        /**
+         * @brief Compares two values for deep equality, ignoring property order
+         * @param {any} a - First value
+         * @param {any} b - Second value
+         * @return {boolean} True if values are equivalent
+         */
+        function isEquivalent(a, b) {
+            // Check if primitives or references are equal
+            if (a === b) return true;
+
+            // Handle null/undefined
+            if (a == null || b == null) return a == b;
+
+            // Check type
+            if (typeof a !== typeof b) return false;
+
+            // Handle arrays
+            if (Array.isArray(a) && Array.isArray(b)) {
+                if (a.length !== b.length) return false;
+
+                // Sort arrays of primitives for comparison
+                if (a.every(item => typeof item !== 'object' || item === null)) {
+                    const sortedA = [...a].sort();
+                    const sortedB = [...b].sort();
+
+                    for (let i = 0; i < sortedA.length; i++) {
+                        if (!isEquivalent(sortedA[i], sortedB[i])) return false;
+                    }
+                    return true;
+                }
+
+                // Arrays of objects - order matters, compare each element
+                for (let i = 0; i < a.length; i++) {
+                    if (!isEquivalent(a[i], b[i])) return false;
+                }
+                return true;
+            }
+
+            // Handle objects (not null, array, or functions)
+            if (typeof a === 'object' && typeof b === 'object' &&
+                !Array.isArray(a) && !Array.isArray(b)) {
+
+                const keysA = Object.keys(a);
+                const keysB = Object.keys(b);
+
+                // Check if both objects have the same number of properties
+                if (keysA.length !== keysB.length) return false;
+
+                // Check if both objects have the same properties
+                if (!keysA.every(key => keysB.includes(key))) return false;
+
+                // Check if all properties have equivalent values
+                return keysA.every(key => isEquivalent(a[key], b[key]));
+            }
+
+            // Handle dates
+            if (a instanceof Date && b instanceof Date) {
+                return a.getTime() === b.getTime();
+            }
+
+            // Handle typed arrays (for binary data)
+            if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
+                if (a.length !== b.length) return false;
+                for (let i = 0; i < a.length; i++) {
+                    if (a[i] !== b[i]) return false;
+                }
+                return true;
+            }
+
+            // Default - not equal
+            return false;
+        }
+
+        /**
+         * @brief Sends a value to Godot and tests the Godot result.
+         * JS => Godot: window.godotEvents.on('test_result', handler);
+         * Godot => JS: window.godotMethods.test_bindings(value);
+         * @param {string} type - Type name for display.
+         * @param {any} value - Value to test.
+         */
+        async function testType(type, value) {
+            clearResults();
+            clearLog();
+            try {
+                log(`Testing ${type} with value: ${JSON.stringify(value)}`);
+
+                // Create a promise that will resolve the Godot response.
+                const result = await new Promise((resolve, reject) => {
+                    // Timeout if no response from Godot.
+                    const timeoutId = setTimeout(() => {
+                        reject(new Error('Timeout: no response from Godot'));
+                    }, 1000);
+
+                    // Register the Godot callback.
+                    window.godotEvents.on('test_result', (data) => {
+                        clearTimeout(timeoutId);
+                        resolve(data);
+                    });
+
+                    // Call the Godot function named 'test_bindings' with the value
+                    // when want to check as echoed result.
+                    window.godotMethods.test_bindings(value);
+                });
+
+                // Check if the value is the same as the result using deep comparison
+                const success = type === 'timeout' ? false : isEquivalent(value, result);
+                log(`${type}: ${success ? '✓' : '✗'} (${JSON.stringify(value)} -> ${JSON.stringify(result)})`, !success);
+                updateTestResult(type, success, value, result);
+            } catch (error) {
+                // Check if the error is a timeout
+                const success = type === 'timeout' && error.message === 'Timeout: no response from Godot';
+                log(`${type}: ${success ? '✓' : '✗'} (${error.message})`, !success);
+                updateTestResult(type, success, value, error.message);
+            }
+        }
+
+        /**
+         * @brief Clears all test results
+         */
+        function clearResults() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '';
+        }
+
+        /**
+         * @brief Clears the log
+         */
+        function clearLog() {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML = '';
+        }
+
+        /**
+         * @brief Advanced tests predefined to avoid syntax problems
+         */
+        const ADVANCED_TESTS = {
+            deepNestedObject: {
+                level1: {
+                    level2: {
+                        level3: {
+                            level4: {
+                                level5: {
+                                    value: 'Very deeply nested'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            mixedTypesArray: [
+                123,
+                'string',
+                true,
+                null,
+                { obj: 'value' },
+                [1, 2, 3]
+            ],
+
+            jsonEdgeCases: {
+                emptyValues: [null, '', 0, false],
+                longString: 'a'.repeat(1000),
+                specialNumbers: ["Infinity", "-Infinity", "NaN"]
+            },
+
+            binaryDifferentSizes: function () {
+                return new Uint8Array(Array.from({ length: 50 }, (_, i) => i % 256));
+            },
+
+            complexStructure: {
+                metadata: {
+                    id: 'complex-123',
+                    created: Date.now(),
+                    version: '1.0.0'
+                },
+                data: {
+                    items: Array.from({ length: 10 }, (_, i) => ({
+                        id: i,
+                        name: `Item ${i}`,
+                        properties: {
+                            active: i % 2 === 0,
+                            value: i * 3.14
+                        }
+                    })),
+                    stats: {
+                        min: 0,
+                        max: 9,
+                        avg: 4.5
+                    }
+                },
+                flags: {
+                    isTest: true,
+                    isDevelopment: true,
+                    status: 'running'
+                }
+            }
+        };
+
+        /**
+         * @brief Tests a nested object
+         */
+        function testNestedObject() {
+            testType('nested_object', {
+                user: {
+                    name: 'John Doe',
+                    age: 30,
+                    active: true
+                }
+            });
+        }
+
+        /**
+         * @brief Tests a nested array
+         */
+        function testNestedArray() {
+            testType('nested_array', [
+                [1, 2, 3],
+                ['a', 'b', 'c'],
+                [true, false, null]
+            ]);
+        }
+
+        /**
+         * @brief Tests an object with an array
+         */
+        function testObjectWithArray() {
+            testType('object_with_array', {
+                id: 123,
+                values: [1, 2, 3, 4],
+                metadata: {
+                    created: 'now',
+                    version: 1.0
+                }
+            });
+        }
+
+        /**
+         * @brief Tests special characters
+         */
+        function testSpecialChars() {
+            testType('special_chars', {
+                escaped: 'Quotes: \\" and \\\\ backslashes',
+                unicode: 'éàçùë€ß'
+            });
+        }
+
+        /**
+         * @brief Tests empty structures
+         */
+        function testEmptyStructures() {
+            testType('empty_structures', {
+                emptyObject: {},
+                emptyArray: [],
+                nullValue: null,
+                emptyString: ''
+            });
+        }
+
+        /**
+         * @brief Tests numeric edge cases
+         */
+        function testNumericEdgeCases() {
+            testType('numeric_edge_cases', {
+                zero: 0,
+                negative: -42,
+                float: 3.14159,
+                exponential: 1.23e-4,
+                maxInt: 9007199254740991
+            });
+        }
+
+        /**
+         * @brief Tests a deep nested object
+         */
+        function testDeepNestedObject() {
+            testType('deep_nested_object', ADVANCED_TESTS.deepNestedObject);
+        }
+
+        /**
+         * @brief Tests a mixed types array
+         */
+        function testMixedTypesArray() {
+            testType('mixed_types_array', ADVANCED_TESTS.mixedTypesArray);
+        }
+
+        /**
+         * @brief Tests JSON edge cases
+         */
+        function testJsonEdgeCases() {
+            testType('json_edge_cases', ADVANCED_TESTS.jsonEdgeCases);
+        }
+
+        /**
+         * @brief Tests a binary different sizes
+         */
+        function testBinaryDifferentSizes() {
+            testType('binary_different_sizes', ADVANCED_TESTS.binaryDifferentSizes());
+        }
+
+        /**
+         * @brief Tests a complex structure
+         */
+        function testComplexStructure() {
+            testType('complex_structure', ADVANCED_TESTS.complexStructure);
+        }
+    </script>
+</body>
+
+</html>

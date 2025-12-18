@@ -101,8 +101,31 @@ func _register_builtin_programs() -> void:
 			"description": "KILL THEM ALL"
 		}
 	)
+	register_program("browser", 
+		preload("res://scenes/program/cef/browser_program.tscn"),
+		{
+			"title": "Pixel Browser",
+			"icon": "res://assets/win98_icons/png/world-2.png",
+			"category": "Utilities",
+			"description": "Big files to load this"
+		}
+	)
 
 #"res://assets/win98_icons/png/console_prompt-0.png"
 #"res://assets/win98_icons/png/directory_closed-3.png"
 #"res://assets/win98_icons/png/directory_open_cool-3.png"
 #"res://assets/win98_icons/png/help_question_mark-0.png"
+#"res://assets/win98_icons/png/recycle_bin_empty_cool-5.png"
+#"res://assets/win98_icons/png/recycle_bin_full_cool-5.png"
+#"res://assets/win98_icons/png/amplify.png"
+#"res://assets/win98_icons/png/cassette_tape-1.png"
+#"res://assets/win98_icons/png/certificate-0.png"
+#"res://assets/win98_icons/png/certificate_excl-1.png"
+#"res://assets/win98_icons/png/envelope_closed-0.png"
+#"res://assets/win98_icons/png/envelope_open_sheet-0.png"
+#"res://assets/win98_icons/png/help_sheet-0.png"
+#"res://assets/win98_icons/png/loudspeaker_rays-0.png"
+#"res://assets/win98_icons/png/loudspeaker_muted-0.png"
+#"res://assets/win98_icons/png/notepad-1.png"
+#"res://assets/win98_icons/png/search_web-0.png"
+#"res://assets/win98_icons/png/spider-0.png"

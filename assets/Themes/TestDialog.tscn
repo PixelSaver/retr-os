@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://chfo8b0kmgwjy"]
 
-[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://assets/Themes/Classic95/Classic95.tres" id="1_iwt7x"]
+[ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_iwt7x"]
 [ext_resource type="Script" uid="uid://bvgilq3vwu6si" path="res://assets/Themes/TestDialog.gd" id="1_wxgor"]
 
 [node name="TestDialog" type="PanelContainer"]

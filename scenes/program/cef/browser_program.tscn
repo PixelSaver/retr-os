@@ -1,0 +1,196 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg0dpkfqho8xs"]
+
+[ext_resource type="Script" uid="uid://cih2e2tqa0mrq" path="res://scenes/program/cef/CEF.gd" id="1"]
+
+[node name="BrowserProgram" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1")
+min_size = Vector2(430, 300)
+
+[node name="CEF" type="GDCef" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HBox" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="New" type="Button" parent="Panel/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "New empty document"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "New"
+
+[node name="Home" type="Button" parent="Panel/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "Go to home page"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Home"
+
+[node name="URL" type="Label" parent="Panel/VBox/HBox"]
+layout_mode = 2
+mouse_filter = 0
+text = "URL:"
+
+[node name="TextEdit" type="LineEdit" parent="Panel/VBox/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Type your desired URl and then click on the go button"
+
+[node name="Go" type="Button" parent="Panel/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "Load a page given its URL"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Go"
+
+[node name="Refresh" type="Button" parent="Panel/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "Reload the page"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Refresh"
+
+[node name="Prev" type="Button" parent="Panel/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "Go to previous page"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "<"
+
+[node name="Next" type="Button" parent="Panel/VBox/HBox"]
+layout_mode = 2
+tooltip_text = "Go to next page"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = ">"
+
+[node name="TabBar" type="Label" parent="Panel/VBox/HBox"]
+visible = false
+layout_mode = 2
+mouse_filter = 0
+text = "Opened:"
+
+[node name="BrowserList" type="OptionButton" parent="Panel/VBox/HBox"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+tooltip_text = "Select opened pages"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BrowserTexture" type="TextureRect" parent="Panel/VBox/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+expand_mode = 1
+stretch_mode = 6
+
+[node name="HBox2" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="BGColor" type="Button" parent="Panel/VBox/HBox2"]
+layout_mode = 2
+tooltip_text = "Inject java script changing the body color of the html page"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Body color"
+
+[node name="Radio" type="Button" parent="Panel/VBox/HBox2"]
+layout_mode = 2
+tooltip_text = "Load a page with sound"
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Radio"
+
+[node name="RoutingAudio" type="CheckBox" parent="Panel/VBox/HBox2"]
+layout_mode = 2
+tooltip_text = "Route CEF audio to Godot and apply a sound effect"
+text = " Audio routing"
+
+[node name="Mute" type="CheckBox" parent="Panel/VBox/HBox2"]
+layout_mode = 2
+text = "Mute sound"
+
+[node name="AddBlocker" type="CheckBox" parent="Panel/VBox/HBox2"]
+layout_mode = 2
+tooltip_text = "Block or allows adds"
+button_pressed = true
+text = "Adds blocker"
+
+[node name="Info2" type="Label" parent="Panel/VBox/HBox2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 0
+text = "Info:"
+horizontal_alignment = 3
+
+[node name="Info" type="Label" parent="Panel/VBox/HBox2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+
+[node name="ColorPopup" type="Popup" parent="."]
+size = Vector2i(298, 471)
+
+[node name="ColorPicker" type="ColorPicker" parent="ColorPopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+edit_alpha = false
+presets_visible = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+
+[connection signal="pressed" from="Panel/VBox/HBox/New" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Go" to="." method="_on_go_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Prev" to="." method="_on_Prev_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox/Next" to="." method="_on_Prev_pressed"]
+[connection signal="item_selected" from="Panel/VBox/HBox/BrowserList" to="." method="_on_BrowserList_item_selected"]
+[connection signal="gui_input" from="Panel/VBox/MarginContainer/BrowserTexture" to="." method="_on_TextureRect_gui_input"]
+[connection signal="resized" from="Panel/VBox/MarginContainer/BrowserTexture" to="." method="_on_texture_rect_resized"]
+[connection signal="pressed" from="Panel/VBox/HBox2/BGColor" to="." method="_on_BGColor_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox2/Radio" to="." method="_on_radio_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox2/RoutingAudio" to="." method="_on_routing_audio_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox2/Mute" to="." method="_on_mute_pressed"]
+[connection signal="pressed" from="Panel/VBox/HBox2/AddBlocker" to="." method="_on_add_blocker_pressed"]
+[connection signal="color_changed" from="ColorPopup/ColorPicker" to="." method="_on_ColorPicker_color_changed"]
