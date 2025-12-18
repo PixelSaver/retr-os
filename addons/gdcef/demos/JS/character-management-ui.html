@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Character Management UI</title>
+    <style>
+        /* Root variables for consistent theming */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #ecf0f1;
+        }
+
+        /* Base styles for the page layout */
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            background-color: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Main container for the character management interface */
+        .character-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Two-column layout for better organization */
+        .two-column-layout {
+            display: flex;
+            gap: 20px;
+        }
+
+        .left-column {
+            flex: 1;
+        }
+
+        .right-column {
+            flex: 1;
+            border-left: 1px solid #e0e0e0;
+            padding-left: 20px;
+        }
+
+        /* Header styling */
+        .character-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .character-header h1 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        /* Section styling */
+        .character-section {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        /* Weapon selection grid */
+        .weapon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        /* Button styling */
+        .weapon-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .weapon-button:hover {
+            background-color: #2980b9;
+        }
+
+        .weapon-button.active {
+            background-color: #27ae60;
+        }
+
+        /* XP management controls */
+        .xp-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .xp-input {
+            flex-grow: 1;
+            padding: 6px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* Character name form */
+        .character-name-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Stats display */
+        .stat-row {
+            margin-bottom: 6px;
+            font-size: 0.95em;
+        }
+
+        #characterStatus {
+            margin-top: 15px;
+            text-align: center;
+            color: #2ecc71;
+            font-size: 0.9em;
+        }
+
+        /* Right column specific styles */
+        .right-column .character-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .right-column .section-title {
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+        }
+
+        /* Stats container styling */
+        .stats-container {
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .stat-row {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat-label {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-value {
+            color: var(--secondary-color);
+        }
+
+        /* Binary data section styling */
+        .binary-section {
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .binary-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .binary-preview {
+            width: 100%;
+            height: 150px;
+            border: 1px dashed #3498db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f9fc;
+            overflow: hidden;
+        }
+
+        .binary-preview canvas,
+        .binary-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .binary-info {
+            background-color: #eee;
+            padding: 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main container for the character management interface -->
+    <div class="character-container">
+        <div class="character-header">
+            <h1>Character Management UI</h1>
+        </div>
+
+        <!-- Two-column layout -->
+        <div class="two-column-layout">
+            <!-- Left column: Controls and inputs -->
+            <div class="left-column">
+                <!-- Character name section -->
+                <div class="character-section">
+                    <h2 class="section-title">Name of the character</h2>
+                    <div class="character-name-form">
+                        <input type="text" id="characterNameInput" placeholder="Enter the character name"
+                            class="xp-input">
+                        <button onclick="setCharacterName()" class="weapon-button">Set Name</button>
+                    </div>
+                </div>
+
+                <!-- Weapon selection section -->
+                <div class="character-section">
+                    <h2 class="section-title">Weapon Selection</h2>
+                    <div class="weapon-grid">
+                        <button onclick="selectWeapon('sword')" class="weapon-button" id="weapon-sword">Sword</button>
+                        <button onclick="selectWeapon('bow')" class="weapon-button" id="weapon-bow">Bow</button>
+                        <button onclick="selectWeapon('axe')" class="weapon-button" id="weapon-axe">Axe</button>
+                        <button onclick="selectWeapon('spear')" class="weapon-button" id="weapon-spear">Spear</button>
+                        <button onclick="selectWeapon('staff')" class="weapon-button" id="weapon-staff">Staff</button>
+                        <button onclick="selectWeapon('dagger')" class="weapon-button"
+                            id="weapon-dagger">Dagger</button>
+                    </div>
+                </div>
+
+                <!-- Advanced weapon configuration section -->
+                <div class="character-section">
+                    <h2 class="section-title">Advanced Weapon Configuration</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button onclick="sendComplexWeaponData()" class="weapon-button">Send Complex Weapon
+                            Data</button>
+                        <button onclick="sendWeaponArray()" class="weapon-button">Send Weapon Array</button>
+                    </div>
+                    <div id="complexDataResult" style="font-size: 0.9em; color: #3498db; margin-top: 5px;"></div>
+                </div>
+
+                <!-- XP management section -->
+                <div class="character-section">
+                    <h2 class="section-title">XP Management</h2>
+                    <div class="xp-controls">
+                        <input type="number" id="xpInput" placeholder="Number of XP" class="xp-input">
+                        <button onclick="addXP()" class="weapon-button">Add XP</button>
+                        <button onclick="removeXP()" class="weapon-button">Remove XP</button>
+                    </div>
+                </div>
+
+                <!-- Binary data exchange section -->
+                <div class="character-section">
+                    <h2 class="section-title">Binary Data Exchange</h2>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <button onclick="sendBinaryDataToGodot()" class="weapon-button">Send Binary to Godot</button>
+                        <button onclick="clearBinaryData()" class="weapon-button">Clear Image Data</button>
+                    </div>
+
+                    <!-- Binary data type selector -->
+                    <div style="margin-top: 15px;">
+                        <h3 style="font-size: 1em; margin-bottom: 8px;">Request Binary Data Type:</h3>
+                        <select id="binaryDataTypeSelect" style="padding: 6px; border-radius: 4px; margin-right: 10px;">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                        <button onclick="requestBinaryDataType()" class="weapon-button">Request</button>
+                    </div>
+
+                    <div id="binaryDataMessage" style="font-size: 0.9em; color: #e67e22; margin-top: 5px;"></div>
+                </div>
+            </div>
+
+            <!-- Right column: Character stats and details -->
+            <div class="right-column">
+                <!-- Character stats section -->
+                <div class="character-section">
+                    <h2 class="section-title">Character Stats</h2>
+                    <div class="stats-container">
+                        <div class="stat-row">
+                            <span class="stat-label">Name:</span>
+                            <span id="statName" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Weapon:</span>
+                            <span id="statWeapon" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">XP:</span>
+                            <span id="statXP" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Level:</span>
+                            <span id="statLevel" class="stat-value">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weapon details section -->
+                <div id="weaponDetails" style="margin-top: 15px; display: none;">
+                    <h3
+                        style="font-size: 1.2em; color: #2c3e50; margin-bottom: 10px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px;">
+                        Weapon Details</h3>
+                    <div id="weaponDetailsContent"
+                        style="background-color: white; padding: 12px; border-radius: 5px; font-size: 0.9em; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                    </div>
+                </div>
+
+                <!-- Inventory section -->
+                <div id="inventorySection" style="margin-top: 15px; display: none;">
+                    <h3
+                        style="font-size: 1.2em; color: #2c3e50; margin-bottom: 10px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px;">
+                        Inventory</h3>
+                    <div id="inventoryContent"
+                        style="background-color: white; padding: 12px; border-radius: 5px; font-size: 0.9em; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+                    </div>
+                </div>
+
+                <!-- Binary data preview section -->
+                <div class="binary-section">
+                    <h3
+                        style="font-size: 1.2em; color: #2c3e50; margin-bottom: 10px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px;">
+                        Binary Data from Godot</h3>
+                    <div class="binary-container">
+                        <div class="binary-preview" id="binaryPreview">
+                            <div style="color: #999;">Image will be displayed here</div>
+                        </div>
+                        <div class="binary-info" id="binaryInfo">No binary data received yet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status message display -->
+        <div id="characterStatus"></div>
+    </div>
+
+    <script>
+        // Global state variables
+        let currentWeapon = null;
+        let characterName = '';
+        let characterXP = 0;
+        let lastReceivedBinaryData = null;  // Store the last received binary data
+
+        /**
+         * Selects a weapon and updates the UI
+         * @param {string} weapon - The weapon to select
+         * @param {boolean} fromGodot - Whether the selection was triggered by Godot
+         */
+        function selectWeapon(weapon, fromGodot = false) {
+            // Disable all buttons
+            document.querySelectorAll('.weapon-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate the selected button
+            const weaponBtn = document.getElementById(`weapon-${weapon}`);
+            weaponBtn.classList.add('active');
+            currentWeapon = weapon;
+
+            // Call the Godot method only if not triggered by Godot
+            if (!fromGodot && window.godotMethods && window.godotMethods.change_weapon) {
+                window.godotMethods.change_weapon(weapon);
+                updateStatus(`Weapon changed to : ${weapon}`);
+            }
+        }
+
+        /**
+         * Sends complex weapon data to Godot
+         * Creates a weapon object with random properties for demonstration
+         */
+        function sendComplexWeaponData() {
+            // Create a complex weapon object
+            const weaponData = {
+                id: Math.floor(Math.random() * 1000),
+                name: currentWeapon || 'sword',
+                properties: {
+                    damage: Math.floor(Math.random() * 100) + 10,
+                    durability: Math.floor(Math.random() * 90) + 10,
+                    magicEffects: ["fire", "ice", "lightning"]
+                },
+                rarity: "legendary",
+                equipped: true,
+                stats: {
+                    strength: Math.floor(Math.random() * 20) + 5,
+                    agility: Math.floor(Math.random() * 15),
+                    intelligence: Math.floor(Math.random() * 25)
+                }
+            };
+
+            // Display data in the interface
+            document.getElementById('complexDataResult').textContent =
+                `Sending weapon: ${weaponData.name} (ID: ${weaponData.id}, Damage: ${weaponData.properties.damage})`;
+
+            // Send complex object to Godot
+            if (window.godotMethods && window.godotMethods.update_weapon_details) {
+                window.godotMethods.update_weapon_details(weaponData);
+                updateStatus(`Complex weapon data sent to Godot!`);
+            }
+        }
+
+        /**
+         * Sends an array of weapons to Godot
+         * Creates a sample inventory for demonstration
+         */
+        function sendWeaponArray() {
+            // Create a weapon inventory array
+            const weaponInventory = [
+                { id: 1, name: "Sword of Truth", damage: 75 },
+                { id: 2, name: "Magic Bow", damage: 45 },
+                { id: 3, name: "Battle Axe", damage: 90 },
+                { id: 4, name: "Ancient Staff", damage: 60 },
+                { id: 5, name: "Shadow Dagger", damage: 50 }
+            ];
+
+            // Display data in the interface
+            document.getElementById('complexDataResult').textContent =
+                `Sending inventory with ${weaponInventory.length} weapons`;
+
+            // Send array to Godot
+            if (window.godotMethods && window.godotMethods.update_inventory) {
+                window.godotMethods.update_inventory(weaponInventory);
+                updateStatus(`Weapon inventory sent to Godot!`);
+            }
+        }
+
+        /**
+         * Sets the character name and updates Godot
+         */
+        function setCharacterName() {
+            const nameInput = document.getElementById('characterNameInput');
+            characterName = nameInput.value;
+
+            if (characterName) {
+                // Call the Godot method to set the name
+                if (window.godotMethods && window.godotMethods.set_character_name) {
+                    window.godotMethods.set_character_name(characterName);
+                    updateStatus(`Character name set to : ${characterName}`);
+                }
+                nameInput.value = ''; // Reset the input
+            }
+        }
+
+        /**
+         * Adds XP to the character
+         */
+        function addXP() {
+            const xpInput = document.getElementById('xpInput');
+            const xpToAdd = parseInt(xpInput.value) || 0;
+
+            if (xpToAdd > 0) {
+                characterXP += xpToAdd;
+
+                // Call the Godot method to add XP
+                if (window.godotMethods && window.godotMethods.modify_xp) {
+                    window.godotMethods.modify_xp(xpToAdd);
+                    updateStatus(`${xpToAdd} XP added. Total : ${characterXP}`);
+                }
+                xpInput.value = ''; // Reset the input
+            }
+        }
+
+        /**
+         * Removes XP from the character
+         */
+        function removeXP() {
+            const xpInput = document.getElementById('xpInput');
+            const xpToRemove = parseInt(xpInput.value) || 0;
+
+            if (xpToRemove > 0 && characterXP >= xpToRemove) {
+                characterXP -= xpToRemove;
+
+                // Call the Godot method to remove XP
+                if (window.godotMethods && window.godotMethods.modify_xp) {
+                    window.godotMethods.modify_xp(-xpToRemove);
+                    updateStatus(`${xpToRemove} XP removed. Total : ${characterXP}`);
+                }
+                xpInput.value = ''; // Reset the input
+            }
+        }
+
+        /**
+         * Updates the status message display
+         * @param {string} message - The message to display
+         */
+        function updateStatus(message) {
+            const statusElement = document.getElementById('characterStatus');
+            statusElement.textContent = message;
+
+            // Clear the message after 3 seconds
+            setTimeout(() => {
+                statusElement.textContent = '';
+            }, 3000);
+        }
+
+        /**
+         * Sends binary data to Godot
+         */
+        async function sendBinaryDataToGodot() {
+            try {
+                if (!lastReceivedBinaryData) {
+                    console.error('No binary data available to send');
+                    document.getElementById('binaryDataMessage').textContent = 'Error: No binary data available to send';
+                    return;
+                }
+
+                // Convert base64 to ArrayBuffer
+                const binaryString = atob(lastReceivedBinaryData.data);
+                const bytes = new Uint8Array(binaryString.length);
+                for (let i = 0; i < binaryString.length; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                const arrayBuffer = bytes.buffer;
+
+                // Send the ArrayBuffer back to Godot
+                console.log("Sending ArrayBuffer back to Godot...");
+                window.godotMethods.receive_binary_data(arrayBuffer);
+
+                document.getElementById('binaryDataMessage').textContent =
+                    `Sending binary data back to Godot (${arrayBuffer.byteLength} bytes)...`;
+                updateStatus(`Binary data sent back to Godot (${arrayBuffer.byteLength} bytes)!`);
+                console.log("Binary data sent successfully");
+            } catch (error) {
+                console.error('Error sending binary data:', error);
+                document.getElementById('binaryDataMessage').textContent = `Error: ${error.message}`;
+            }
+        }
+
+        /**
+         * Converts an ArrayBuffer to a base64 string
+         * @param {ArrayBuffer} buffer - The buffer to convert
+         * @returns {string} The base64 string
+         */
+        function arrayBufferToBase64(buffer) {
+            const bytes = new Uint8Array(buffer);
+            let binary = '';
+            for (let i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
+
+        /**
+         * Converts a base64 string to an ArrayBuffer
+         * @param {string} base64 - The base64 string to convert
+         * @returns {ArrayBuffer} The resulting ArrayBuffer
+         */
+        function base64ToArrayBuffer(base64) {
+            const binaryString = atob(base64);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        /**
+         * Clears the binary data display
+         */
+        function clearBinaryData() {
+            const previewElement = document.getElementById('binaryPreview');
+            previewElement.innerHTML = '<div style="color: #999;">Image will be displayed here</div>';
+
+            document.getElementById('binaryInfo').textContent = 'No binary data available';
+            document.getElementById('binaryDataMessage').textContent = '';
+        }
+
+        // Listen for updates coming from Godot
+        window.godotEvents.on('character_update', function (data) {
+            try {
+                // Update character name
+                if (data.name) {
+                    characterName = data.name;
+                    document.getElementById('statName').textContent = data.name;
+                }
+
+                // Update weapon selection
+                if (data.weapon) {
+                    selectWeapon(data.weapon, true);
+                    document.getElementById('statWeapon').textContent = data.weapon;
+                }
+
+                // Update XP and Level
+                if (data.xp !== undefined) {
+                    characterXP = data.xp;
+                    document.getElementById('statXP').textContent = data.xp;
+                    document.getElementById('statLevel').textContent = data.level || Math.floor(data.xp / 100) + 1;
+                }
+
+                // Display weapon details if available
+                const weaponDetailsSection = document.getElementById('weaponDetails');
+                const weaponDetailsContent = document.getElementById('weaponDetailsContent');
+
+                if (data.weaponDetails && Object.keys(data.weaponDetails).length > 0) {
+                    weaponDetailsSection.style.display = 'block';
+
+                    // Create HTML representation of weapon details
+                    let detailsHTML = '<ul style="margin: 0; padding-left: 20px;">';
+
+                    if (data.weaponDetails.id) {
+                        detailsHTML += `<li><strong>ID:</strong> ${data.weaponDetails.id}</li>`;
+                    }
+
+                    if (data.weaponDetails.rarity) {
+                        detailsHTML += `<li><strong>Rarity:</strong> ${data.weaponDetails.rarity}</li>`;
+                    }
+
+                    if (data.weaponDetails.properties) {
+                        const props = data.weaponDetails.properties;
+                        detailsHTML += '<li><strong>Properties:</strong><ul style="padding-left: 20px;">';
+
+                        if (props.damage !== undefined) {
+                            detailsHTML += `<li>Damage: ${props.damage}</li>`;
+                        }
+
+                        if (props.durability !== undefined) {
+                            detailsHTML += `<li>Durability: ${props.durability}</li>`;
+                        }
+
+                        if (props.magicEffects && props.magicEffects.length) {
+                            detailsHTML += `<li>Magic Effects: ${props.magicEffects.join(', ')}</li>`;
+                        }
+
+                        detailsHTML += '</ul></li>';
+                    }
+
+                    if (data.weaponDetails.stats) {
+                        const stats = data.weaponDetails.stats;
+                        detailsHTML += '<li><strong>Stats Bonus:</strong><ul style="padding-left: 20px;">';
+
+                        for (const [key, value] of Object.entries(stats)) {
+                            detailsHTML += `<li>${key.charAt(0).toUpperCase() + key.slice(1)}: +${value}</li>`;
+                        }
+
+                        detailsHTML += '</ul></li>';
+                    }
+
+                    detailsHTML += '</ul>';
+                    weaponDetailsContent.innerHTML = detailsHTML;
+                } else {
+                    weaponDetailsSection.style.display = 'none';
+                }
+
+                // Display inventory if available
+                const inventorySection = document.getElementById('inventorySection');
+                const inventoryContent = document.getElementById('inventoryContent');
+
+                if (data.inventory && data.inventory.length > 0) {
+                    inventorySection.style.display = 'block';
+
+                    // Create HTML representation of inventory
+                    let inventoryHTML = '<table style="width: 100%; border-collapse: collapse;">';
+                    inventoryHTML += '<thead><tr style="background-color: #e0e0e0;">' +
+                        '<th style="text-align: left; padding: 5px;">Name</th>' +
+                        '<th style="text-align: center; padding: 5px;">ID</th>' +
+                        '<th style="text-align: right; padding: 5px;">Damage</th>' +
+                        '</tr></thead><tbody>';
+
+                    data.inventory.forEach(item => {
+                        inventoryHTML += `<tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 5px;">${item.name || 'Unknown'}</td>
+                            <td style="text-align: center; padding: 5px;">${item.id || '?'}</td>
+                            <td style="text-align: right; padding: 5px;">${item.damage || 0}</td>
+                        </tr>`;
+                    });
+
+                    inventoryHTML += '</tbody></table>';
+                    inventoryContent.innerHTML = inventoryHTML;
+                } else {
+                    inventorySection.style.display = 'none';
+                }
+
+            } catch (e) {
+                console.error('[GodotEventSystem] Error processing update:', e);
+            }
+        });
+
+        // Listen for binary data events from Godot
+        window.godotEvents.on('binary_data', function (binaryData) {
+            console.log('Received binary data from Godot:', binaryData);
+
+            try {
+                // Check if data is valid
+                if (binaryData && binaryData.type === 'binary' && binaryData.data) {
+                    console.log('Binary data format:', binaryData.format);
+                    console.log('Binary data size:', binaryData.size);
+
+                    const previewElement = document.getElementById('binaryPreview');
+                    const infoElement = document.getElementById('binaryInfo');
+
+                    // Clear previous content
+                    previewElement.innerHTML = '';
+
+                    // Convert base64 to ArrayBuffer
+                    const arrayBuffer = base64ToArrayBuffer(binaryData.data);
+
+                    // Create URL for image display
+                    const blob = new Blob([arrayBuffer], { type: 'image/png' });
+                    console.log('Created blob:', blob.type, blob.size);
+
+                    const imageUrl = URL.createObjectURL(blob);
+                    console.log('Created image URL:', imageUrl);
+
+                    // Create image element
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageUrl;
+                    imgElement.alt = 'Image from Godot';
+
+                    // Add error handling for image loading
+                    imgElement.onerror = function (e) {
+                        console.error('Error loading image:', e);
+                        infoElement.textContent += '\nError loading image';
+                    };
+
+                    imgElement.onload = function () {
+                        console.log('Image loaded successfully:', imgElement.naturalWidth, 'x', imgElement.naturalHeight);
+                    };
+
+                    // Add image to container
+                    previewElement.appendChild(imgElement);
+
+                    // Store the binary data for later use
+                    lastReceivedBinaryData = binaryData;
+
+                    // Display binary data info
+                    infoElement.textContent = `Received ${binaryData.size} bytes of binary data from Godot.`;
+                    if (binaryData.format) {
+                        infoElement.textContent += `\nFormat: ${binaryData.format}`;
+                    }
+
+                    updateStatus('Binary data received from Godot!');
+                } else {
+                    console.error('Invalid binary data format received:', binaryData);
+                    document.getElementById('binaryInfo').textContent = 'Invalid binary data received';
+                }
+            } catch (e) {
+                console.error('Error processing binary data:', e);
+                document.getElementById('binaryInfo').textContent = `Error: ${e.message}`;
+            }
+        });
+
+        // Listen for binary data info events
+        window.godotEvents.on('binary_data_info', function (info) {
+            console.log('Received binary data info:', info);
+            const infoElement = document.getElementById('binaryInfo');
+            infoElement.textContent += `\nType: ${info.type_name} (${info.type_index})`;
+        });
+
+        // Listen for available binary data types
+        window.godotEvents.on('binary_data_types', function (types) {
+            console.log('Received binary data types:', types);
+
+            // Populate selector with available types
+            const select = document.getElementById('binaryDataTypeSelect');
+            select.innerHTML = ''; // Clear previous options
+
+            types.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type.index;
+                option.textContent = type.name;
+                select.appendChild(option);
+            });
+
+            updateStatus('Binary data types loaded!');
+        });
+
+        // Listen for binary data receipt acknowledgments
+        window.godotEvents.on('binary_received', function (data) {
+            console.log('Binary data receipt acknowledgment:', data);
+            document.getElementById('binaryDataMessage').textContent =
+                `Godot received ${data.size} bytes of binary data at ${new Date(data.timestamp * 1000).toLocaleTimeString()}.`;
+        });
+
+        // Listen for clear binary data event from Godot
+        window.godotEvents.on('clear_binary_data', function () {
+            console.log('Clearing binary data buffer');
+            lastReceivedBinaryData = null;
+
+            // Clear the preview
+            const previewElement = document.getElementById('binaryPreview');
+            previewElement.innerHTML = '<div style="color: #999;">Image will be displayed here</div>';
+
+            // Clear the info
+            document.getElementById('binaryInfo').textContent = 'No binary data available';
+            document.getElementById('binaryDataMessage').textContent = '';
+
+            updateStatus('Binary data buffer cleared');
+        });
+
+        /**
+         * Requests a specific type of binary data from Godot
+         */
+        function requestBinaryDataType() {
+            const select = document.getElementById('binaryDataTypeSelect');
+            const typeIndex = parseInt(select.value, 10);
+            const typeName = select.options[select.selectedIndex].text;
+
+            document.getElementById('binaryDataMessage').textContent =
+                `Requesting binary data of type: ${typeName} (${typeIndex})...`;
+
+            if (window.godotMethods && window.godotMethods.select_binary_data_type) {
+                window.godotMethods.select_binary_data_type(typeIndex);
+                updateStatus(`Requested binary data type: ${typeName}`);
+            } else {
+                console.error('godot.select_binary_data_type not available');
+                document.getElementById('binaryDataMessage').textContent += ' ERROR: Method not available';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+#!python
+###############################################################################
+## MIT License
+##
+## Copyright (c) 2022 Alain Duron <duron.alain@gmail.com>
+## Copyright (c) 2022 Quentin Quadrat <lecrapouille@gmail.com>
+##
+## Permission is hereby granted, free of charge, to any person obtaining a copy
+## of this software and associated documentation files (the "Software"), to deal
+## in the Software without restriction, including without limitation the rights
+## to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+## copies of the Software, and to permit persons to whom the Software is
+## furnished to do so, subject to the following conditions:
+##
+## The above copyright notice and this permission notice shall be included in all
+## copies or substantial portions of the Software.
+##
+## THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+## IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+## FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+## AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+## LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+## OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+## SOFTWARE.
+###############################################################################
+
+import os
+
+# We let SCons build its default ENV as it includes OS-specific things which we don't
+# want to have to pull in manually.
+# Then we prepend PATH to make it take precedence, while preserving SCons' own entries.
+custom_tools = ["default"]
+env = Environment(tools=custom_tools)
+env.PrependENVPath("PATH", os.getenv("PATH"))
+env.PrependENVPath("PKG_CONFIG_PATH", os.getenv("PKG_CONFIG_PATH"))
+if "TERM" in os.environ:  # Used for colored output.
+    env["ENV"]["TERM"] = os.environ["TERM"]
+opts = Variables([], ARGUMENTS)
+
+# Define our options
+platforms = ['windows', 'x11', 'linux', 'linuxbsd', 'macos', 'osx']
+archis = ['x86_64', 'arm64']
+
+# Define our options
+opts.Add(EnumVariable('target', 'Compilation target', '', ['d', 'debug', 'r', 'release']))
+opts.Add(EnumVariable('platform', 'Compilation platform', '', platforms + ['']))
+opts.Add(EnumVariable('arch', 'Platform architecture', 'x86_64', ['x86_64', 'arm64']))
+opts.Add(BoolVariable('use_llvm', 'Use the LLVM / Clang compiler', 'no'))
+opts.Add(PathVariable('api_path', 'Godot C++ API', ''))
+opts.Add(PathVariable('build_path', 'Build path', ''))
+opts.Add(PathVariable('cef_artifacts_folder', 'CEF artifacts folder', '', PathVariable.PathAccept))
+opts.Add(BoolVariable('cpu_parallelism', 'Use CPU parallelism', 'yes'))
+
+# Updates the environment with the option variables.
+opts.Update(env)
+
+# X86 or ARM
+archi = env['arch']
+
+# Process platform arguments. Here we use the same names as GDNative.
+platform = env['platform']
+if platform == 'osx':
+    platform = 'macos'
+elif platform in ('x11', 'linuxbsd'):
+    platform = 'linux'
+elif platform == 'bsd':
+    platform = 'freebsd'
+if platform == '':
+    print('No valid target platform selected.')
+    quit()
+
+# Process some arguments.
+# For the reference:
+# - CCFLAGS are compilation flags shared between C and C++
+# - CFLAGS are for C-specific compilation flags
+# - CXXFLAGS are for C++-specific compilation flags
+# - CPPFLAGS are for pre-processor flags
+# - CPPDEFINES are for pre-processor defines
+# - LINKFLAGS are for linking flags
+if env['use_llvm'] or platform == 'macos':
+    env['CC'] = 'clang'
+    env['CXX'] = 'clang++'
+
+# Check if Godot exists
+godot_api_path = env['api_path']
+if not os.path.isdir(godot_api_path):
+    print('The Godot path ' + godot_api_path + ' is invalid.')
+    quit()
+
+# Compile either in release or debug mode
+compile_mode = env['target']
+if compile_mode == 'd':
+    compile_mode = 'debug'
+elif compile_mode == 'r':
+    compile_mode = 'release'
+
+# Compile CEF either in 'Release' or 'Debug' mode
+cef_compile_mode = compile_mode.capitalize()
+
+# The godot library we want to create
+target_path = env['build_path']
+target_library = 'libgdcef'
+sources = Glob('src/*.cpp')
+
+# User defines
+env.Append(CXXFLAGS=['-DCEF_ARTIFACTS_FOLDER=' + env['cef_artifacts_folder']])
+
+# Platform specific compilation
+if platform == 'macos':
+    env.Append(CXXFLAGS=['--std=c++17'])
+    env.Append(LINKFLAGS=['-arch', archi])
+    env.Append(CCFLAGS=['-arch', archi])
+    if compile_mode == 'debug':
+        env.Append(CCFLAGS=['-g', '-O2'])
+        env.Append(CPPDEFINES=['DEBUG'])
+    else:
+        env.Append(CCFLAGS=['-g', '-O3'])
+        env.Append(CPPDEFINES=['NDEBUG'])
+    env.Append(CCFLAGS=['-fPIC'])
+    env.Append(CPPDEFINES=['CEF_USE_SANDBOX', 'WRAPPING_CEF_SHARED',
+                          '__STDC_CONSTANT_MACROS', '__STDC_FORMAT_MACROS'])
+
+elif platform == 'linux':
+    # C++20 may not available on all Linux distributions
+    env.Append(CXXFLAGS=['--std=c++17'])
+    if compile_mode == 'debug':
+        env.Append(CCFLAGS=['-g3', '-Og'])
+        env.Append(CPPDEFINES=['DEBUG'])
+    else:
+        env.Append(CCFLAGS=['-g', '-O3'])
+        env.Append(CPPDEFINES=['NDEBUG'])
+    env.Append(CCFLAGS=['-fPIC'])
+    env.Append(CPPDEFINES=['CEF_USE_SANDBOX', '_FILE_OFFSET_BITS=64',
+                          '__STDC_CONSTANT_MACROS', '__STDC_FORMAT_MACROS'])
+
+elif platform == 'windows':
+    # C++17 seems buggy on Windows and std::filesystem
+    env.Append(CXXFLAGS='/std:c++20')
+    # This makes sure to keep the session environment variables on windows,
+    # that way you can run scons in a vs 2017 prompt and it will find all the required tools
+    env.Append(ENV=os.environ)
+    env.Append(CPPDEFINES=['WIN32', '_WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS', 'TYPED_METHOD_BIND'])
+    env.Append(CCFLAGS=['/W3', '/GR'])
+
+    if compile_mode == 'debug':
+        env.Append(CPPDEFINES=['_DEBUG', '_ITERATOR_DEBUG_LEVEL=0'])
+        env.Append(CCFLAGS=['/EHsc', '/MDd', '/ZI', '/FS'])
+        env.Append(LINKFLAGS=['/DEBUG'])
+    else:
+        env.Append(CPPDEFINES=['NDEBUG'])
+        env.Append(CCFLAGS=['/O2', '/EHsc', '/MD'])
+
+# Unix compilation flags
+if platform == 'linux' or platform == 'macos':
+    # gcc/clang compilation flags
+    env.Append(CXXFLAGS=['-Wall', '-Wextra', '-Wuninitialized', '-Wundef',
+                         '-Wunused', '-Wunused-result', '-Wunused-parameter',
+                         '-Wtype-limits', '-Wcast-align', '-Wcast-qual',
+                         '-Wconversion', '-Wfloat-equal', '-Wpointer-arith',
+                         '-Wswitch-enum', '-Wpacked', '-Wold-style-cast',
+                         '-Wdeprecated', '-Wvariadic-macros', '-Wvla',
+                         '-Wsign-conversion',
+                         # Disable warnings
+                         '-Wno-unused-parameter', '-Wno-unused-parameter', '-Wno-conversion',
+                         '-Wno-cast-qual', '-Wno-float-equal',  '-Wno-unused-but-set-parameter',
+                         '-Wno-old-style-cast', '-Wno-sign-conversion', '-Wno-undef'
+])
+
+    # clang specific flags
+    if env['use_llvm']:
+        env.Append(CXXFLAGS=['-Wused-but-marked-unused', '-Wzero-length-array',
+                             '-Wunused-member-function', '-Wvector-conversion',
+                             '-Wunused-getter-return-value', '-Wthread-safety',
+                             '-Wunneeded-member-function', '-Wshadow-all',
+                             '-Wunused-exception-parameter',
+                             '-Wunneeded-internal-declaration',
+                             '-Wunreachable-code-aggressive',
+                             '-Wsuper-class-method-mismatch',
+                             '-Werror=implicit-function-declaration',
+                             '-Wtautological-compare'])
+
+# OpenMP
+if env['cpu_parallelism']:
+    if platform == 'windows':
+        env.Append(CCFLAGS=['-openmp'])
+        env.Append(CXXFLAGS=['-openmp'])
+    elif platform == 'linux':
+        env.Append(CCFLAGS=['-fopenmp'])
+        env.Append(CXXFLAGS=['-fopenmp'])
+        env.Append(LINKFLAGS=['-fopenmp'])
+    else:
+        # FIXME no openmp installed by default on MacOS :(
+        # https://gist.github.com/ijleesw/4f863543a50294e3ba54acf588a4a421
+        print("Sorry for MacOS there is no openmp !!!")
+
+# Paths of Godot header files
+env.Append(CPPPATH=[godot_api_path + '/gdextension',
+                    godot_api_path + '/gen/include',
+                    godot_api_path + '/include'])
+
+# Godot library that is linked against our library
+libgodot = 'libgodot-cpp.' + platform + '.template_' + compile_mode + '.' + archi
+env.Append(LIBS=[libgodot], LIBPATH=[godot_api_path + '/bin'])
+
+# Paths of CEF header files
+cef_folder = '../thirdparty/cef_binary'
+env.Append(CPPPATH = [cef_folder, cef_folder + '/include'])
+
+# CEF libraries that are linked against our library
+libcef = 'libcef'
+if platform == 'macos':
+    env.Append(LIBS=File(cef_folder + '/' + cef_compile_mode + '/cef_sandbox.a'))
+    libcef = ''
+env.Append(LIBS = [libcef, 'libcef_dll_wrapper'],
+           LIBPATH = [cef_folder + '/' + cef_compile_mode,
+                      cef_folder + '/build',
+                      cef_folder + '/build/libcef_dll_wrapper',
+                      cef_folder + '/libcef_dll_wrapper/' + cef_compile_mode])
+
+# Paths header files of our module
+env.Append(CPPPATH=['src/'])
+
+# Add artifacts folder to (embedded into output binary file) list of paths to search for shared libraries
+# [2:-2] because we need value of cef_artifacts_folder without protected quotation marks
+env.Append(RPATH=[env['cef_artifacts_folder'][2:-2]])
+
+# Compile the library
+library = env.SharedLibrary(target=target_path + '/' + target_library, source=sources)
+Default(library)
+
+# Generates help for the -h scons option.
+Help(opts.GenerateHelpText(env))

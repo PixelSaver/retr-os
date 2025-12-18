@@ -1,0 +1,5 @@
+gdCEF Version: 0.17.0
+gdCEF Git Branch: godot-4.x
+gdCEF Git SHA1: 27202c7a291f36847042c3f7fdbddedec8331125
+CEF Version: 131.3.1+gcb062df+chromium-131.0.6778.109
+Godot Version: 4.3
