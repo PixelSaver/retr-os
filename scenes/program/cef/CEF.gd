@@ -13,10 +13,14 @@ const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 # Memorize if the mouse was pressed
 @onready var mouse_pressed: bool = false
 @onready var browser_texture: TextureRect = $Panel/VBox/MarginContainer/BrowserTexture
+@onready var url_edit: LineEdit = $Panel/VBox/HBox/TextEdit
 
 ## PixelSaver contribution here
 func _program_ready() -> void:
 	window_parent.window_finish_resize.connect(_on_resized)
+	while current_browser == null:
+		await get_tree().process_frame
+	current_browser.on_page_loaded.connect(_on_page_load)
 
 func _on_resized():
 	print("Resizing")
@@ -24,6 +28,9 @@ func _on_resized():
 		return
 	await get_tree().process_frame
 	current_browser.resize(browser_texture.get_global_rect().size)
+
+func _on_page_load(browser:GDBrowserView):
+	url_edit.text = browser.get_url()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("r_click"):
@@ -295,7 +302,8 @@ func _on_TextureRect_gui_input(event):
 		elif event.button_index == MOUSE_BUTTON_LEFT:
 			mouse_pressed = event.pressed
 			if mouse_pressed:
-				current_browser.set_mouse_left_down()
+				print("Pressed")
+				current_browser.set_mouse_left_click()
 			else:
 				current_browser.set_mouse_left_up()
 		elif event.button_index == MOUSE_BUTTON_RIGHT:

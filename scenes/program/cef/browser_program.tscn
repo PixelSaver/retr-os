@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1")
-min_size = Vector2(500, 300)
+min_size = Vector2(430, 300)
 
 [node name="CEF" type="GDCef" parent="."]
 
@@ -62,6 +62,7 @@ text = "URL:"
 [node name="TextEdit" type="LineEdit" parent="Panel/VBox/HBox"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "Type your desired URl and then click on the go button"
 
 [node name="Go" type="Button" parent="Panel/VBox/HBox"]
