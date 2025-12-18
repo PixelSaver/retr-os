@@ -80,7 +80,7 @@ func _connect_signals() -> void:
 	file_menu.get_popup().id_pressed.connect(_on_file_menu_pressed)
 	edit_menu.get_popup().id_pressed.connect(_on_edit_menu_pressed)
 
-func _program_start() -> void:
+func _program_start(args:Array=[]) -> void:
 	print("Text Editor started")
 	text_edit.grab_focus()
 	_new_file()

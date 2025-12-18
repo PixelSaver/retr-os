@@ -17,7 +17,7 @@ func _program_ready() -> void:
 	_load_running_programs()
 	_update_program_list_gui()
 
-func _program_start() -> void:
+func _program_start(args:Array=[]) -> void:
 	print("Program Manager started")
 	# Initial update on start
 	_refresh_list()

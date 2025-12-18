@@ -21,7 +21,7 @@ func _program_ready() -> void:
 	pass
 
 ## Override this in subclasses for start logic
-func _program_start() -> void:
+func _program_start(args:Array=[]) -> void:
 	pass
 
 ## Override this in subclasses for end logic

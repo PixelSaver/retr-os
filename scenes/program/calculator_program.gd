@@ -160,7 +160,7 @@ func _calculate_result() -> void:
 # --- Program Lifecycle ---
 # Not strictly necessary for a simple calculator, but kept for structure
 
-func _program_start() -> void:
+func _program_start(args:Array=[]) -> void:
 	print("Calculator started")
 
 func _program_end() -> void:
