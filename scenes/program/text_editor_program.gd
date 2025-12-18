@@ -23,6 +23,11 @@ func _program_ready() -> void:
 	_connect_signals()
 	_update_status_bar()
 
+func _program_start(args:Array=[]) -> void:
+	print("Text Editor started")
+	text_edit.grab_focus()
+	_new_file()
+
 func _setup_ui() -> void:
 	text_edit.syntax_highlighter = null
 	text_edit.wrap_mode = TextEdit.LINE_WRAPPING_NONE
@@ -80,10 +85,6 @@ func _connect_signals() -> void:
 	file_menu.get_popup().id_pressed.connect(_on_file_menu_pressed)
 	edit_menu.get_popup().id_pressed.connect(_on_edit_menu_pressed)
 
-func _program_start(args:Array=[]) -> void:
-	print("Text Editor started")
-	text_edit.grab_focus()
-	_new_file()
 
 func _program_end() -> void:
 	print("Text Editor ended")

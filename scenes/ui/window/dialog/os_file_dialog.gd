@@ -24,6 +24,7 @@ var current_dir: String = ""
 var current_file: String = ""
 var filters: Array[Dictionary] = []
 var show_hidden_files: bool = false
+var is_standalone: bool = true
 
 ## UI References
 var dir_path_edit: LineEdit
@@ -44,13 +45,15 @@ var selected_files: PackedStringArray = []
 static var global_favorites: PackedStringArray = [
 	"res://",
 	"user://",
+	"res://user",
 ]
 const OS_FILE_DIALOG = preload("uid://q0n1glrx3cko")
 
-static func create(mode: FileMode = FileMode.OPEN_FILE) -> OSFileDialog:
-	var dialog = OS_FILE_DIALOG.instantiate()
+static func create(mode: FileMode = FileMode.OPEN_FILE, standalone:bool=true) -> OSFileDialog:
+	var dialog = OS_FILE_DIALOG.instantiate() as OSDialog
 	dialog.file_mode = mode
 	dialog.is_modal = true
+	dialog.is_standalone = standalone
 	return dialog
 
 func _ready() -> void:
@@ -181,7 +184,8 @@ func _build_dialog() -> void:
 			ok_button.text = "Save"
 	
 	# Set window properties
-	custom_init(Vector2(30, 30))
+	if is_standalone:
+		custom_init(Vector2(30, 30))
 
 func _setup_initial_dir() -> void:
 	if current_dir.is_empty():

@@ -83,6 +83,15 @@ func _register_builtin_programs() -> void:
 			"description": "A text editor for almost nothing!"
 		}
 	)
+	register_program("file_explorer", 
+		preload("res://scenes/program/file_explorer_program.tscn"),
+		{
+			"title": "Pixel Files",
+			"icon": "res://assets/win98_icons/png/directory_open_cool-3.png",
+			"category": "Utilities",
+			"description": "Get exploring!"
+		}
+	)
 	register_program("calculator", 
 		preload("res://scenes/program/calculator_program.tscn"),
 		{
@@ -102,10 +111,28 @@ func _register_builtin_programs() -> void:
 		}
 	)
 	if OS.has_feature("web"): return
+	register_program("browser", 
+		load("res://scenes/program/browser_program.tscn"),
+		{
+			"title": "Pixel Browser",
+			"icon": "res://assets/win98_icons/png/world-2.png",
+			"category": "Utilities",
+			"description": "Big files to load this"
+		}
+	)
+	register_program("website", 
+		load("res://scenes/program/browser_program.tscn"),
+		{
+			"title": "Pixel Browser",
+			"icon": "res://assets/win98_icons/png/web_file-3.png",
+			"category": "Utilities",
+			"description": "Hopefully passes arguments correctly"
+		}
+	)
 
 #"res://assets/win98_icons/png/console_prompt-0.png"
 #"res://assets/win98_icons/png/directory_closed-3.png"
-#"res://assets/win98_icons/png/directory_open_cool-3.png"
+#
 #"res://assets/win98_icons/png/help_question_mark-0.png"
 #"res://assets/win98_icons/png/recycle_bin_empty_cool-5.png"
 #"res://assets/win98_icons/png/recycle_bin_full_cool-5.png"
