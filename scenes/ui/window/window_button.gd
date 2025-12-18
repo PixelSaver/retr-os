@@ -9,7 +9,6 @@ func _enter_tree() -> void:
 		self.pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
-	print("Clicked")
 	window_button_pressed.emit(self)
 
 func _notification(what: int) -> void:
