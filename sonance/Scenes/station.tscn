@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bndw2cxa7hrwg"]
+[gd_scene load_steps=2 format=3 uid="uid://bndw2cxa7hrwg"]
 
-[ext_resource type="Script" uid="uid://bcgqb1basxct6" path="res://Scripts/station.gd" id="1_807qb"]
-
-[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_ygha7"]
+[ext_resource type="Script" uid="uid://bcgqb1basxct6" path="res://sonance/Scripts/station.gd" id="1_807qb"]
 
 [node name="Station" type="AudioStreamPlayer3D"]
-stream = SubResource("AudioStreamWAV_ygha7")
-bus = &"Radio"
 script = ExtResource("1_807qb")
