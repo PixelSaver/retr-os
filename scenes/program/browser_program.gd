@@ -128,7 +128,7 @@ func _on_download_updated(file, percentage, browser):
 
 
 ## Callback when a page has ended to load with success (200): we print a message
-func _on_page_loaded(browser):
+func _on_page_loaded(browser:GDBrowserView):
 	var L = $Panel/VBox/HBox/BrowserList
 	var url = browser.get_url()
 	L.set_item_text(L.get_selected_id(), url)
@@ -136,6 +136,7 @@ func _on_page_loaded(browser):
 	print("Browser named '" + browser.name + "' inserted on list at index " + str(L.get_selected_id()) + ": " + url)
 	
 	url_edit.text = browser.get_url()
+	window_parent.title_label.text = "Pixel Browser - %s" % String(browser.get_title())
 	pass
 
 
