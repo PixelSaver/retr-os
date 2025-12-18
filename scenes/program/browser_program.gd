@@ -14,13 +14,11 @@ const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 @onready var mouse_pressed: bool = false
 @onready var browser_texture: TextureRect = $Panel/VBox/MarginContainer/BrowserTexture
 @onready var url_edit: LineEdit = $Panel/VBox/HBox/TextEdit
+var start_url:String = ""
 
 ## PixelSaver contribution here
 func _program_ready() -> void:
 	window_parent.window_finish_resize.connect(_on_resized)
-	while current_browser == null:
-		await get_tree().process_frame
-	current_browser.on_page_loaded.connect(_on_page_load)
 
 func _on_resized():
 	print("Resizing")
@@ -29,15 +27,63 @@ func _on_resized():
 	await get_tree().process_frame
 	current_browser.resize(browser_texture.get_global_rect().size)
 
-func _on_page_load(browser:GDBrowserView):
-	url_edit.text = browser.get_url()
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("r_click"):
-
-		current_browser.resize(browser_texture.get_size())
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed("r_click"):
+		#current_browser.resize(browser_texture.get_size())
 
 func _program_start(args:Array=[]) -> void:
+	if args.size() > 0:
+		start_url = args[0]
+	if args.size() > 1:
+		title = args[1]
+	if args.size() > 2:
+		icon = load(args[2])
+	
+	create_default_page()
+
+	# See API.md for more details. CEF Configuration is:
+	# {
+	#   "incognito": false,
+	#   "cache_path": resource_path / "cache",
+	#   "root_cache_path": resource_path / "cache",
+	#   "browser_subprocess_path": resource_path / SUBPROCESS_NAME,
+	#   "log_file": resource_path / "debug.log",
+	#   "log_severity": "warning",
+	#   "remote_debugging_port": 7777,
+	#   "remote_allow_origin": "*",
+	#   "exception_stack_size": 5,
+	#   "enable_media_stream": false,
+	#   "user_gesture_required": true,
+	#   "allow_downloads": false,
+	#   "download_folder": "res://",
+	#   "user_agent": "",
+	# }
+	#
+	# Configure CEF. In incognito mode cache directories not used and in-memory
+	# caches are used instead and no data is persisted to disk.
+	#
+	# artifacts: allows path such as "build" or "res://cef_artifacts/". Note that "res://"
+	# will use ProjectSettings.globalize_path but exported projects don't support globalize_path:
+	# https://docs.godotengine.org/en/3.5/classes/class_projectsettings.html#class-projectsettings-method-globalize-path
+	if !$CEF.initialize({
+			"incognito": true,
+			"locale": "en-US",
+			"enable_media_stream": true,
+			"remote_debugging_port": 7777,
+			"remote_allow_origin": "*",
+			"log_severity": "fatal",
+		}):
+		$Panel/VBox/HBox2/Info.set_text($CEF.get_error())
+		push_error($CEF.get_error())
+		return
+	print("CEF version: " + $CEF.get_full_version())
+	print("You are listening CEF native audio")
+
+	# Wait one frame for the texture rect to get its size
+	print("Start url: %s" % start_url)
+	var _url = HOME_PAGE if start_url.is_empty() else start_url
+	print("Final url is: %s" % _url)
+	current_browser = await create_browser(_url)
 	pass
 
 func _program_end() -> void:
@@ -92,6 +138,8 @@ func _on_page_loaded(browser):
 	L.set_item_text(L.get_selected_id(), url)
 	$Panel/VBox/HBox2/Info.set_text(url + " loaded as ID " + browser.name)
 	print("Browser named '" + browser.name + "' inserted on list at index " + str(L.get_selected_id()) + ": " + url)
+	
+	url_edit.text = browser.get_url()
 	pass
 
 
@@ -345,51 +393,6 @@ func _on_texture_rect_resized():
 ####
 
 
-## Create a single browser named "current_browser" that is attached as child node to $CEF.
-func _ready():
-	super._ready()
-	create_default_page()
-
-	# See API.md for more details. CEF Configuration is:
-	# {
-	#   "incognito": false,
-	#   "cache_path": resource_path / "cache",
-	#   "root_cache_path": resource_path / "cache",
-	#   "browser_subprocess_path": resource_path / SUBPROCESS_NAME,
-	#   "log_file": resource_path / "debug.log",
-	#   "log_severity": "warning",
-	#   "remote_debugging_port": 7777,
-	#   "remote_allow_origin": "*",
-	#   "exception_stack_size": 5,
-	#   "enable_media_stream": false,
-	#   "user_gesture_required": true,
-	#   "allow_downloads": false,
-	#   "download_folder": "res://",
-	#   "user_agent": "",
-	# }
-	#
-	# Configure CEF. In incognito mode cache directories not used and in-memory
-	# caches are used instead and no data is persisted to disk.
-	#
-	# artifacts: allows path such as "build" or "res://cef_artifacts/". Note that "res://"
-	# will use ProjectSettings.globalize_path but exported projects don't support globalize_path:
-	# https://docs.godotengine.org/en/3.5/classes/class_projectsettings.html#class-projectsettings-method-globalize-path
-	if !$CEF.initialize({
-			"incognito": true,
-			"locale": "en-US",
-			"enable_media_stream": true,
-			"remote_debugging_port": 7777,
-			"remote_allow_origin": "*"
-		}):
-		$Panel/VBox/HBox2/Info.set_text($CEF.get_error())
-		push_error($CEF.get_error())
-		return
-	print("CEF version: " + $CEF.get_full_version())
-	print("You are listening CEF native audio")
-
-	# Wait one frame for the texture rect to get its size
-	current_browser = await create_browser(HOME_PAGE)
-	pass
 
 
 

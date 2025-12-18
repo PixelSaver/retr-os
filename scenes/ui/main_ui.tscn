@@ -116,7 +116,7 @@ program_id = "browser"
 
 [node name="Shortcut6" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
-program_id = "empty"
+program_id = "website https://www.google.com Google res://assets/images/images.jpg"
 
 [node name="Shortcut7" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2

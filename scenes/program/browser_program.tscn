@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cg0dpkfqho8xs"]
 
-[ext_resource type="Script" uid="uid://mkvfkq0mhplf" path="res://scenes/program/cef/CEF.gd" id="1"]
+[ext_resource type="Script" uid="uid://mkvfkq0mhplf" path="res://scenes/program/browser_program.gd" id="1"]
 
 [node name="BrowserProgram" type="Control"]
 texture_filter = 1

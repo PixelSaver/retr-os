@@ -102,12 +102,21 @@ func _register_builtin_programs() -> void:
 		}
 	)
 	register_program("browser", 
-		preload("res://scenes/program/cef/browser_program.tscn"),
+		preload("res://scenes/program/browser_program.tscn"),
 		{
 			"title": "Pixel Browser",
 			"icon": "res://assets/win98_icons/png/world-2.png",
 			"category": "Utilities",
 			"description": "Big files to load this"
+		}
+	)
+	register_program("website", 
+		preload("res://scenes/program/browser_program.tscn"),
+		{
+			"title": "Pixel Browser",
+			"icon": "res://assets/win98_icons/png/world-2.png",
+			"category": "Utilities",
+			"description": "Hopefully passes arguments correctly"
 		}
 	)
 

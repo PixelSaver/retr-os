@@ -16,20 +16,20 @@ func _ready() -> void:
 	par = get_parent() as SubViewport
 
 ## Run a program by ID (from ProgramManager)
-func run_program_by_id(program_id: String, init_pos: Vector2 = Vector2.ONE * -1, window_size: Vector2 = Vector2(-1, -1)) -> OSWindow:
+func run_program_by_id(program_id: String, args:Array=[], init_pos: Vector2 = Vector2.ONE * -1, window_size: Vector2 = Vector2(-1, -1)) -> OSWindow:
 	var prog = ProgramManager.create_program(program_id)
 	if not prog:
 		push_error("Failed to create program: " + program_id)
 		return null
 	
-	return run_program(prog, init_pos, window_size)
+	return run_program(prog, args, init_pos, window_size)
 
 ## Run a program instance directly
-func run_program(prog: Program, init_pos: Vector2 = Vector2.ONE * -1, window_size: Vector2 = Vector2(-1,-1)) -> OSWindow:
+func run_program(prog: Program, args:Array=[], init_pos: Vector2 = Vector2.ONE * -1, window_size: Vector2 = Vector2(-1,-1)) -> OSWindow:
 	var window := os_window_scene.instantiate() as OSWindow
 	window_container.add_child(window)
 	window.custom_init(window_size, init_pos)
-	window.load_program(prog)
+	window.load_program(prog, args)
 	
 	active_windows.append(window)
 	window.tree_exiting.connect(_on_window_closed.bind(window))

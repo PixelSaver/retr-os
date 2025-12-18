@@ -19,18 +19,28 @@ class_name OSShortcut
 @onready var icon_texture_rect: TextureRect = $VBoxContainer/MarginContainer/TextureRect
 @onready var label: RichTextLabel = $VBoxContainer/RichTextLabel
 @onready var highlight: ColorRect = $Highlight
+var _id : String = ""
+var args : Array = []
 
 func _ready() -> void:
 	highlight.modulate.a = 0
 	if not program_id.is_empty():
+		var stuff = program_id.split(" ")
+		_id = stuff[0]
+		stuff.remove_at(0)
+		args = stuff
 		_setup_from_program_manager()
 
 func _setup_from_program_manager() -> void:
-	var info = ProgramManager.get_program_info(program_id)
+	var info = ProgramManager.get_program_info(_id)
 	if not info.is_empty():
-		label_text = info.get("title", program_id)
-		if not info.get("icon").is_empty():
-			icon_texture = load(info.get("icon"))
+		label_text = info.get("title", _id)
+		var info_icon = info.get("icon")
+		if not info_icon.is_empty():
+			if info_icon == "custom":
+				# Use the one set in the editor
+				return
+			icon_texture = load(info_icon)
 		else:
 			icon_texture_rect.texture = Texture2D.new().create_placeholder()
 
@@ -57,7 +67,7 @@ func _on_double_click() -> void:
 		return
 
 	if Global.main_ui:
-		Global.main_ui.run_program_by_id(program_id)
+		Global.main_ui.run_program_by_id(_id, args)
 	else:
 		push_error("Global.main_ui not set")
 		

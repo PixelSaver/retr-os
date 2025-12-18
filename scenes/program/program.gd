@@ -47,11 +47,12 @@ func can_close() -> bool:
 func close_program_window():
 	close_window.emit()
 
-func start_program() -> void:
+func start_program(args:Array=[]) -> void:
+	print("Started")
 	if not is_running:
 		is_running = true
 		ProgramManager.add_running_program(self)
-		_program_start()
+		_program_start(args)
 		program_start.emit()
 
 func end_program() -> void:

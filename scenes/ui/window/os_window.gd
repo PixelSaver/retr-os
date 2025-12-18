@@ -73,7 +73,7 @@ func set_minimum_size(new_min:Vector2):
 		min_size.y = new_min.y
 	_update_window_size()
 
-func load_program(prog: Program) -> void:
+func load_program(prog: Program, args:Array=[]) -> void:
 	if held_program:
 		push_warning("OSWindow already has a program loaded. Call unload_program() first.")
 		return
@@ -99,7 +99,7 @@ func load_program(prog: Program) -> void:
 	
 	_connect_program_signals()
 	
-	held_program.start_program()
+	held_program.start_program(args)
 
 ## Unload the current program (cleanup)
 func unload_program() -> void:
