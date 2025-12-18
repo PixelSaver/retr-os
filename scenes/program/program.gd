@@ -8,6 +8,7 @@ signal close_window
 signal minimize_window
 signal fullscreen_window
 signal title_changed
+var window_parent : OSWindow
 var title: String = "Program"
 var icon: Texture2D
 var is_running: bool = false
@@ -15,6 +16,9 @@ var program_id: String = ""
 ## Flag to check if the program can close or if it needs to finish an operation before closing
 var is_closable: bool = true
 @export var min_size:Vector2 = Vector2.ONE*-1
+
+func _ready() -> void:
+	_program_ready()
 
 ## Override this in subclasses for initialization
 func _program_ready() -> void:
@@ -55,9 +59,6 @@ func end_program() -> void:
 		is_running = false
 		ProgramManager.remove_running_program(self)
 		program_end.emit()
-
-func _ready() -> void:
-	_program_ready()
 
 func _process(delta: float) -> void:
 	if is_running:

@@ -16,7 +16,9 @@ enum ResizeEdge {
 	BOTTOM_RIGHT = BOTTOM | RIGHT
 }
 
-## Resizing state variables
+# Resizing state variables
+## Emitted once the resizing operation is finished
+signal window_finish_resize()
 var is_resizing := false
 var active_resize_mode : ResizeEdge = ResizeEdge.NONE  # The mode being used for active resize
 ## Stores the original state when resizing started
@@ -77,6 +79,7 @@ func load_program(prog: Program) -> void:
 		return
 	
 	held_program = prog
+	held_program.window_parent = self
 	
 	if held_program.min_size != Vector2.ONE*-1:
 		set_minimum_size(held_program.min_size)
@@ -137,6 +140,7 @@ func _on_window_button_pressed(but: WindowButton) -> void:
 	match but.name.to_lower():
 		"minimize":
 			toggle_minimize()
+			window_finish_resize.emit()
 		"fullscreen":
 			toggle_fullscreen()
 		"close":
@@ -268,6 +272,7 @@ func _apply_fullscreen_state() -> void:
 		# Restore position and size
 		global_position = restored_rect.position
 		size = restored_rect.size
+	window_finish_resize.emit()
 
 func toggle_fullscreen() -> void:
 	is_fullscreen = not is_fullscreen
@@ -369,6 +374,7 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			
 		if is_resizing: # Separate check for resizing
+			window_finish_resize.emit()
 			is_resizing = false
 			active_resize_mode = ResizeEdge.NONE
 			# Update cursor shape after resize ends

@@ -11,14 +11,14 @@ var t : Tween
 func _ready() -> void:
 	camera = get_viewport().get_camera_3d()
 	target_transform = camera.get_global_transform()
-	await get_tree().create_timer(1).timeout
-	cam_to_marker("radio")
-	await camera_tween_finished
-	await get_tree().create_timer(1).timeout
-	cam_to_marker("home")
-	await camera_tween_finished
-	await get_tree().create_timer(1).timeout
-	cam_to_marker("mac")
+	#await get_tree().create_timer(1).timeout
+	#cam_to_marker("radio")
+	#await camera_tween_finished
+	#await get_tree().create_timer(1).timeout
+	#cam_to_marker("home")
+	#await camera_tween_finished
+	#await get_tree().create_timer(1).timeout
+	#cam_to_marker("mac")
 
 func cam_to_marker(which:String):
 	print("Tweening")
