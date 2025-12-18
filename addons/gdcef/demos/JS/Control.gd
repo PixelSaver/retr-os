@@ -1,4 +1,4 @@
-# ==============================================================================
+
 # Basic application made in HTML/JS/CSS with interaction with Godot.
 #
 # This demo is a simple character management system. The user can change the
@@ -6,26 +6,26 @@
 # HTML page. When the user clicks on a button, the JS code is called and the
 # Godot script is notified. The Godot script updates the character's stats and
 # sends them back to the HTML page.
-# ==============================================================================
+
 extends Control
 
-# ==============================================================================
+
 # Binary data types enum
-# ==============================================================================
+
 enum BinaryDataType {
 	WARRIOR1_SVG, # SVG image
 	WARRIOR2_PNG, # PNG image
 }
 
-# ==============================================================================
+
 # CEF variables
-# ==============================================================================
+
 const BROWSER_NAME = "player_stats"
 @onready var mouse_pressed: bool = false
 
-# ==============================================================================
+
 # Variables for character stats
-# ==============================================================================
+
 @onready var player_name: String = "Anonymous"
 @onready var weapon: String = "sword"
 @onready var xp: int = 0
@@ -34,34 +34,34 @@ const BROWSER_NAME = "player_stats"
 @onready var inventory: Array = []
 @onready var current_texture_rect: TextureRect = null
 
-# ==============================================================================
+
 # Initialize CEF and create the GUI as HTML/JS/CSS page.
-# ==============================================================================
+
 func _ready():
 	initialize_cef()
 	pass
 
-# ==============================================================================
+
 # JS callback: Change character's weapon.
-# ==============================================================================
+
 func _change_weapon(new_weapon: String):
 	print("Weapon changed to: ", new_weapon)
 	weapon = new_weapon
 	_refresh_page_character_stats()
 	pass
 
-# ==============================================================================
+
 # JS callback: Set character's name.
-# ==============================================================================
+
 func _set_character_name(new_name: String):
 	print("New name: ", new_name)
 	player_name = new_name
 	_refresh_page_character_stats()
 	pass
 
-# ==============================================================================
+
 # Check for level up.
-# ==============================================================================
+
 func _level_up_check():
 	var previous_level = level
 	level = 1 + floor(xp / 100) # Simple progression example
@@ -71,18 +71,18 @@ func _level_up_check():
 	pass
 
 
-# ==============================================================================
+
 # JS callback: Modify XP (can be positive or negative).
-# ==============================================================================
+
 func _modify_xp(xp_change: int):
 	xp += xp_change
 	_level_up_check()
 	_refresh_page_character_stats()
 	pass
 
-# ==============================================================================
+
 # JS callback: Update weapon details with complex data.
-# ==============================================================================
+
 func _update_weapon_details(data: Dictionary):
 	print("Received complex weapon data: ", data)
 	weapon_details = data
@@ -102,9 +102,9 @@ func _update_weapon_details(data: Dictionary):
 	_refresh_page_character_stats()
 	pass
 
-# ==============================================================================
+
 # JS callback: Update inventory with array of weapons.
-# ==============================================================================
+
 func _update_inventory(weapons_array: Array):
 	print("Received weapon inventory: ", weapons_array)
 	inventory = weapons_array
@@ -121,9 +121,9 @@ func _update_inventory(weapons_array: Array):
 	_refresh_page_character_stats()
 	pass
 
-# ==============================================================================
+
 # JS callback: Receive binary data type selection from JavaScript
-# ==============================================================================
+
 func _select_binary_data_type(type_index: int):
 	print("Received binary data type selection: ", type_index)
 
@@ -137,9 +137,9 @@ func _select_binary_data_type(type_index: int):
 	_send_binary_data_to_js(data_type)
 	pass
 
-# ==============================================================================
+
 # JS callback: Receive binary data from JavaScript
-# ==============================================================================
+
 func _receive_binary_data(data: PackedByteArray):
 	print("Received binary data from JavaScript")
 
@@ -165,9 +165,9 @@ func _receive_binary_data(data: PackedByteArray):
 	print("Acknowledgment sent back to JavaScript")
 	pass
 
-# ==============================================================================
+
 # Create a dynamic visualization of binary data
-# ==============================================================================
+
 func _create_binary_visualization(binary: PackedByteArray):
 	# Create a new Control node for visualization
 	var visualization = Control.new()
@@ -274,9 +274,9 @@ func _create_binary_visualization(binary: PackedByteArray):
 		visualization.queue_free()
 	pass
 
-# ==============================================================================
+
 # Close button callback for visualization
-# ==============================================================================
+
 func _on_close_visualization(visualization: Control):
 	if is_instance_valid(visualization):
 		# Reset the TextureRect reference if this is the current visualization
@@ -286,9 +286,9 @@ func _on_close_visualization(visualization: Control):
 		visualization.queue_free()
 	pass
 
-# ==============================================================================
+
 # Save binary data callback
-# ==============================================================================
+
 func _on_save_binary_data(binary: PackedByteArray):
 	var file = FileAccess.open("user://received_binary.dat", FileAccess.WRITE)
 	if file:
@@ -299,18 +299,18 @@ func _on_save_binary_data(binary: PackedByteArray):
 		push_error("Failed to save binary data")
 	pass
 
-# ==============================================================================
+
 # Clear visualization callback
-# ==============================================================================
+
 func _on_clear_visualizations():
 	# Efface la texture du TextureRect
 	if current_texture_rect and is_instance_valid(current_texture_rect):
 		current_texture_rect.texture = null
 	pass
 
-# ==============================================================================
+
 # Send binary data to JavaScript
-# ==============================================================================
+
 func _send_binary_data_to_js(data_type: int):
 	print("Sending binary data to JavaScript, type: ", data_type)
 
@@ -357,16 +357,16 @@ func _send_binary_data_to_js(data_type: int):
 		push_error("ERROR: Could not create binary data to send")
 	pass
 
-# ==============================================================================
+
 # Refresh the HTML page with the new character statistics.
-# ==============================================================================
+
 func _refresh_page_character_stats():
 	$CEF.get_node(BROWSER_NAME).js_emit("character_update", _get_character_state())
 	pass
 
-# ==============================================================================
+
 # Optional method to get complete character state
-# ==============================================================================
+
 func _get_character_state() -> Dictionary:
 	var character_info = {
 		"name": player_name,
@@ -386,9 +386,9 @@ func _get_character_state() -> Dictionary:
 	print("Character update: ", character_info)
 	return character_info
 
-# ==============================================================================
+
 # CEF Callback when a page has ended to load with success.
-# ==============================================================================
+
 func _on_page_loaded(browser):
 	print("The browser " + browser.name + " has loaded " + browser.get_url())
 
@@ -417,10 +417,10 @@ func _on_page_loaded(browser):
 	_send_binary_data_to_js(BinaryDataType.WARRIOR1_SVG)
 	pass
 
-# ==============================================================================
+
 # Callback when a page has ended to load with failure.
 # Display a load error message using a data: URI.
-# ==============================================================================
+
 func _on_page_failed_loading(_err_code, _err_msg, browser):
 	$AcceptDialog.title = "Alert!"
 	$AcceptDialog.dialog_text = "The browser " + browser.name + " did not load " + browser.get_url()
@@ -428,10 +428,10 @@ func _on_page_failed_loading(_err_code, _err_msg, browser):
 	$AcceptDialog.show()
 	pass
 
-# ==============================================================================
+
 # Split the browser vertically to display two browsers (aka tabs) rendered in
 # two separate textures.
-# ==============================================================================
+
 func initialize_cef():
 	# CEF initialization
 	if !$CEF.initialize({
@@ -454,9 +454,9 @@ func initialize_cef():
 	browser.resize($TextureRect.get_size())
 	pass
 
-# ==============================================================================
+
 # Get the browser node interacting with the JavaScript code.
-# ==============================================================================
+
 func get_browser():
 	var browser = $CEF.get_node(BROWSER_NAME)
 	if browser == null:
@@ -464,9 +464,9 @@ func get_browser():
 		get_tree().quit()
 	return browser
 
-# ==============================================================================
+
 # Get mouse events and broadcast them to CEF
-# ==============================================================================
+
 func _on_TextureRect_gui_input(event: InputEvent):
 	var current_browser = get_browser()
 	if event is InputEventMouseButton:
@@ -498,9 +498,9 @@ func _on_TextureRect_gui_input(event: InputEvent):
 		current_browser.set_mouse_moved(event.position.x, event.position.y)
 	pass
 
-# ==============================================================================
+
 # Make the CEF browser reacts from keyboard events.
-# ==============================================================================
+
 func _input(event):
 	if event is InputEventKey:
 		get_browser().set_key_pressed(
@@ -509,8 +509,8 @@ func _input(event):
 			event.is_command_or_control_pressed())
 	pass
 
-# ==============================================================================
+
 # CEF is implicitly updated by this function.
-# ==============================================================================
+
 func _process(_delta):
 	pass

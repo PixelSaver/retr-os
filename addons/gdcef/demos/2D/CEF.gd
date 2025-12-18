@@ -1,8 +1,8 @@
-# ==============================================================================
+
 # Demo based on the initial asset https://godotengine.org/asset-library/asset/127
 # Basic application showing how to use CEF inside Godot with a 3D scene and mouse
 # and keyboard events.
-# ==============================================================================
+
 
 extends Control
 
@@ -18,18 +18,18 @@ const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 # Memorize if the mouse was pressed
 @onready var mouse_pressed: bool = false
 
-# ==============================================================================
+
 # Create the home page.
-# ==============================================================================
+
 func create_default_page():
 	var file = FileAccess.open(DEFAULT_PAGE, FileAccess.WRITE)
 	file.store_string("<html><body bgcolor=\"white\"><h2>Welcome to gdCEF !</h2><p>This a generated page.</p></body></html>")
 	file.close()
 	pass
 
-# ==============================================================================
+
 # Save page as html.
-# ==============================================================================
+
 func _on_saving_page(html, browser):
 	var path = ProjectSettings.globalize_path(SAVED_PAGE)
 	var file = FileAccess.open(SAVED_PAGE, FileAccess.WRITE)
@@ -45,18 +45,18 @@ func _on_saving_page(html, browser):
 	$AcceptDialog.show()
 	pass
 
-# ==============================================================================
+
 # Callback when a download file is updated
-# ==============================================================================
+
 func _on_download_updated(file, percentage, browser):
 	$AcceptDialog.title = "Downloading!"
 	$AcceptDialog.dialog_text = file + " " + str(percentage) + " %"
 	$AcceptDialog.popup_centered(Vector2(0, 0))
 	$AcceptDialog.show()
 
-# ==============================================================================
+
 # Callback when a page has ended to load with success (200): we print a message
-# ==============================================================================
+
 func _on_page_loaded(browser):
 	var L = $Panel/VBox/HBox/BrowserList
 	var url = browser.get_url()
@@ -65,12 +65,12 @@ func _on_page_loaded(browser):
 	print("Browser named '" + browser.name + "' inserted on list at index " + str(L.get_selected_id()) + ": " + url)
 	pass
 
-# ==============================================================================
+
 # Callback when a page has ended to load with failure.
 # Display an error message in a generated HTML page, using data URI.
 # List of error are defined in the following file:
 # gdcef/addons/gdcef/thirdparty/cef_binary/include/base/internal/cef_net_error_list.h
-# ==============================================================================
+
 func _on_page_failed_loading(err_code, err_msg, browser):
 	var html = "<html><body bgcolor=\"white\">" \
 		+"<h2>Failed to load URL " + browser.get_url() + "!</h2>" \
@@ -80,9 +80,9 @@ func _on_page_failed_loading(err_code, err_msg, browser):
 	browser.load_data_uri(html, "text/html")
 	pass
 
-# ==============================================================================
+
 # Create a new browser and return it or return null if failed.
-# ==============================================================================
+
 func create_browser(url):
 	# Wait one frame for the texture rect to get its size
 	await get_tree().process_frame
@@ -123,10 +123,10 @@ func create_browser(url):
 	print("Browser named '" + browser.name + "' created with URL " + url)
 	return browser
 
-# ==============================================================================
+
 # Search the desired by its name. Return the browser as Godot node or null if
 # not found.
-# ==============================================================================
+
 func get_browser(name):
 	if not $CEF.is_alive():
 		return null
@@ -140,60 +140,60 @@ func get_browser(name):
 #### Top menu
 ####
 
-# ==============================================================================
+
 # Create a new browser node. Note: Godot does not show children nodes so you
 # will not see created browsers as sub nodes.
-# ==============================================================================
+
 func _on_Add_pressed():
 	var browser = await create_browser("file://" + ProjectSettings.globalize_path(DEFAULT_PAGE))
 	if browser != null:
 		current_browser = browser
 	pass
 
-# ==============================================================================
+
 # Home button pressed: load a local HTML document.
-# ==============================================================================
+
 func _on_Home_pressed():
 	if current_browser != null:
 		current_browser.load_url(HOME_PAGE)
 	pass
 
-# ==============================================================================
+
 # Go to the URL given by the text edit widget.
-# ==============================================================================
+
 func _on_go_pressed():
 	if current_browser != null:
 		current_browser.load_url($Panel/VBox/HBox/TextEdit.text)
 	pass
 
-# ==============================================================================
+
 # Reload the current page
-# ==============================================================================
+
 func _on_refresh_pressed():
 	if current_browser == null:
 		return
 	current_browser.reload()
 	pass
 
-# ==============================================================================
+
 # Go to previously visited page
-# ==============================================================================
+
 func _on_Prev_pressed():
 	if current_browser != null:
 		current_browser.previous_page()
 	pass
 
-# ==============================================================================
+
 # Go to next visited page
-# ==============================================================================
+
 func _on_Next_pressed():
 	if current_browser != null:
 		current_browser.next_page()
 	pass
 
-# ==============================================================================
+
 # Select the new desired browser from the list of tabs.
-# ==============================================================================
+
 func _on_BrowserList_item_selected(index):
 	current_browser = get_browser(str(index))
 	if current_browser != null:
@@ -204,9 +204,9 @@ func _on_BrowserList_item_selected(index):
 #### Bottom menu
 ####
 
-# ==============================================================================
+
 # Color button pressed: present a pop-up to change the background color
-# ==============================================================================
+
 func _on_BGColor_pressed():
 	if $ColorPopup.visible:
 		$ColorPopup.popup_hide()
@@ -214,26 +214,26 @@ func _on_BGColor_pressed():
 		$ColorPopup.popup_centered(Vector2(0, 0))
 	pass
 
-# ==============================================================================
+
 # Color picker changed: inject javascript to change the background color
-# ==============================================================================
+
 func _on_ColorPicker_color_changed(color):
 	if current_browser != null:
 		var js_string = 'document.body.style.background = "#%s"' % color.to_html(false)
 		current_browser.execute_javascript(js_string)
 	pass
 
-# ==============================================================================
+
 # Radio button pressed: load a page with radio for testing the sound.
-# ==============================================================================
+
 func _on_radio_pressed():
 	if current_browser != null:
 		current_browser.load_url(RADIO_PAGE)
 	pass
 
-# ==============================================================================
+
 # Mute/unmute the sound
-# ==============================================================================
+
 func _on_mute_pressed():
 	if current_browser == null:
 		return
@@ -241,9 +241,9 @@ func _on_mute_pressed():
 	$AudioStreamPlayer2D.stream_paused = $Panel/VBox/HBox2/Mute.button_pressed
 	pass
 
-# ==============================================================================
+
 # Block/Unblock adds
-# ==============================================================================
+
 func _on_add_blocker_pressed() -> void:
 	if current_browser == null:
 		return
@@ -254,9 +254,9 @@ func _on_add_blocker_pressed() -> void:
 #### CEF inputs
 ####
 
-# ==============================================================================
+
 # Get mouse events and broadcast them to CEF
-# ==============================================================================
+
 func _on_TextureRect_gui_input(event):
 	if current_browser == null:
 		return
@@ -289,9 +289,9 @@ func _on_TextureRect_gui_input(event):
 		current_browser.set_mouse_moved(event.position.x, event.position.y)
 	pass
 
-# ==============================================================================
+
 # Make the CEF browser reacts from keyboard events.
-# ==============================================================================
+
 func _input(event):
 	if current_browser == null:
 		return
@@ -321,9 +321,9 @@ func _input(event):
 				event.is_command_or_control_pressed())
 	pass
 
-# ==============================================================================
+
 # Windows has resized
-# ==============================================================================
+
 func _on_texture_rect_resized():
 	if current_browser == null:
 		return
@@ -334,9 +334,9 @@ func _on_texture_rect_resized():
 #### Godot
 ####
 
-# ==============================================================================
+
 # Create a single browser named "current_browser" that is attached as child node to $CEF.
-# ==============================================================================
+
 func _ready():
 	create_default_page()
 
@@ -381,15 +381,15 @@ func _ready():
 	current_browser = await create_browser(HOME_PAGE)
 	pass
 
-# ==============================================================================
+
 # $CEF is periodically updated
-# ==============================================================================
+
 func _process(_delta):
 	pass
 
-# ==============================================================================
+
 # CEF audio will be routed to this Godot stream object.
-# ==============================================================================
+
 func _on_routing_audio_pressed():
 	if current_browser == null:
 		return

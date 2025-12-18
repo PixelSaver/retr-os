@@ -1,12 +1,12 @@
-# ==============================================================================
+
 # Hello CEF: basic application showing how to use CEF inside Godot with a 2D
 # scene. This demo manages several browser tabs (one named "left", the second
 # "right) on a vertically splitted GUI. A timer makes load new URL. The API can
 # manage more cases but in this demo the mouse and the keyboard are not managed.
-# ==============================================================================
+
 extends Control
 
-# ==============================================================================
+
 # Hold URLs we want to load.
 const pages = [
 	"https://github.com/Lecrapouille/gdcef",
@@ -25,31 +25,31 @@ const pages = [
 # Memorize the browser having the focus
 @onready var browser_focus = null
 
-# ==============================================================================
+
 # Timer callback: every X seconds load a new webpage.
-# ==============================================================================
+
 func _on_Timer_timeout():
 	print("Timer is up! A new page will be reloaded!")
 	iterator = (iterator + 1) % pages.size()
 	get_node("CEF/right").load_url(pages[iterator])
 
-# ==============================================================================
+
 # CEF Callback when a page has ended to load with success.
-# ==============================================================================
+
 func _on_page_loaded(node):
 	print("The browser " + node.name + " has loaded " + node.get_url())
 
-# ==============================================================================
+
 # Callback when a page has ended to load with failure.
 # Display a load error message using a data: URI.
-# ==============================================================================
+
 func _on_page_failed_loading(aborted, msg_err, node):
 	print("The browser " + node.name + " did not load " + node.get_url())
 	pass
 
-# ==============================================================================
+
 # Make the CEF browser reacts to mouse events.
-# ==============================================================================
+
 func _react_to_mouse_event(event, name):
 	var browser = $CEF.get_node(name)
 	if browser == null:
@@ -83,9 +83,9 @@ func _react_to_mouse_event(event, name):
 			browser.set_mouse_left_down()
 		browser.set_mouse_moved(event.position.x, event.position.y)
 
-# ==============================================================================
+
 # Get mouse events and broadcast them to CEF
-# ==============================================================================
+
 func _on_TextRectLeft_gui_input(event):
 	_react_to_mouse_event(event, "left")
 	pass
@@ -94,9 +94,9 @@ func _on_TextRectRight_gui_input(event):
 	_react_to_mouse_event(event, "right")
 	pass
 
-# ==============================================================================
+
 # Make the CEF browser reacts from keyboard events.
-# ==============================================================================
+
 func _input(event):
 	if browser_focus == null:
 		return
@@ -107,9 +107,9 @@ func _input(event):
 			event.pressed, event.shift_pressed, event.alt_pressed, event.is_command_or_control_pressed())
 	pass
 
-# ==============================================================================
+
 # Memorize browser having the mouse focus
-# ==============================================================================
+
 func _on_text_rect_left_mouse_entered():
 	print("Focus on left browser")
 	browser_focus = $CEF.get_node("right")
@@ -118,9 +118,9 @@ func _on_text_rect_left_mouse_entered():
 		return
 	pass
 
-# ==============================================================================
+
 # Memorize browser having the mouse focus
-# ==============================================================================
+
 func _on_text_rect_right_mouse_entered():
 	print("Focus on right browser")
 	browser_focus = $CEF.get_node("left")
@@ -129,10 +129,10 @@ func _on_text_rect_right_mouse_entered():
 		return
 	pass
 
-# ==============================================================================
+
 # Split the browser vertically to display two browsers (aka tabs) rendered in
 # two separate textures. Note viewport on texture is not tottally functional.
-# ==============================================================================
+
 func _ready():
 	# Set application dimension
 	var h = get_viewport().size.x
@@ -204,8 +204,8 @@ func _ready():
 	var _err = $Timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
 	pass
 
-# ==============================================================================
+
 # CEF is implicitely updated by this function.
-# ==============================================================================
+
 func _process(_delta):
 	pass

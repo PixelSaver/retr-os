@@ -1,8 +1,8 @@
-# ==============================================================================
+
 # Demo based on the initial asset https://godotengine.org/asset-library/asset/127
 # Basic application showing how to use CEF inside Godot with a 3D scene and mouse
 # and keyboard events.
-# ==============================================================================
+
 
 extends Control
 
@@ -17,9 +17,9 @@ const HOME_URL = "https://github.com/Lecrapouille/gdcef"
 # Memorize if the mouse was pressed
 @onready var mouse_pressed : bool = false
 
-# ==============================================================================
+
 # Home button pressed: get the browser node and load a new page.
-# ==============================================================================
+
 func _on_Home_pressed():
 	var browser = $CEF.get_node(browser_name)
 	if browser == null:
@@ -28,9 +28,9 @@ func _on_Home_pressed():
 	browser.load_url(HOME_URL)
 	pass
 
-# ==============================================================================
+
 # Go to previously visited page
-# ==============================================================================
+
 func _on_Prev_pressed():
 	var browser = $CEF.get_node(browser_name)
 	if browser == null:
@@ -39,9 +39,9 @@ func _on_Prev_pressed():
 	browser.previous_page()
 	pass
 
-# ==============================================================================
+
 # Go to next page
-# ==============================================================================
+
 func _on_Next_pressed():
 	var browser = $CEF.get_node(browser_name)
 	if browser == null:
@@ -50,16 +50,16 @@ func _on_Next_pressed():
 	browser.next_page()
 	pass
 
-# ==============================================================================
+
 # Callback when a page has ended to load: we print a message
-# ==============================================================================
+
 func _on_page_loaded(node):
 	$Panel/Label.set_text(node.name + ": page " + node.get_url() + " loaded")
 
-# ==============================================================================
+
 # Callback when a page has ended to load with failure.
 # Display a load error message using a data: URI.
-# ==============================================================================
+
 func _on_page_failed_loading(err_code, err_msg, node):
 	if err_code == -3:
 		return
@@ -67,9 +67,9 @@ func _on_page_failed_loading(err_code, err_msg, node):
 		node.get_url() + ": " + err_msg)
 	pass
 
-# ==============================================================================
+
 # On new URL entered
-# ==============================================================================
+
 func _on_TextEdit_text_changed(new_text):
 	var browser = $CEF.get_node(browser_name)
 	if browser == null:
@@ -77,9 +77,9 @@ func _on_TextEdit_text_changed(new_text):
 		return
 	browser.load_url(new_text)
 
-# ==============================================================================
+
 # Get mouse events and broadcast them to CEF
-# ==============================================================================
+
 func _on_TextureRect_gui_input(event):
 	var browser = $CEF.get_node(browser_name)
 	if browser == null:
@@ -114,9 +114,9 @@ func _on_TextureRect_gui_input(event):
 		browser.set_mouse_moved(event.position.x, event.position.y)
 	pass
 
-# ==============================================================================
+
 # Make the CEF browser reacts from keyboard events.
-# ==============================================================================
+
 func _input(event):
 	var browser = $CEF.get_node(browser_name)
 	if browser == null:
@@ -128,9 +128,9 @@ func _input(event):
 			event.pressed, event.shift_pressed, event.alt_pressed, event.is_command_or_control_pressed())
 	pass
 
-# ==============================================================================
+
 # Create a single briwser named "browser_name" that is attached as child node to $CEF.
-# ==============================================================================
+
 func _ready():
 	# See API.md for more details. CEF Configuration is:
 	#   resource_path := {"artifacts", CEF_ARTIFACTS_FOLDER}
@@ -184,8 +184,8 @@ func _ready():
 	browser.audio_stream = player.get_stream_playback()
 	pass
 
-# ==============================================================================
+
 # $CEF is periodically updated
-# ==============================================================================
+
 func _process(_delta):
 	pass

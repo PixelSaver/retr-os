@@ -1,22 +1,22 @@
 extends Control
 
-# ==============================================================================
+
 # CEF variables
-# ==============================================================================
+
 const BROWSER_NAME = "test_bindings"
 @onready var browser = null
 @onready var mouse_pressed: bool = false
 
-# ==============================================================================
+
 # UI variables
-# ==============================================================================
+
 @onready var results_label: RichTextLabel = %ResultsLabel
 
-# ==============================================================================
+
 # Test bindings: receives data from JavaScript and sends it back.
 # This callback shall be registered with the browser:
 # browser.register_method(Callable(self, "test_bindings"))
-# ==============================================================================
+
 func test_bindings(data: Variant):
 	results_label.text = "Godot Test Results:\n"
 	results_label.text += "Test - Received: " + str(data) + "\n"
@@ -28,16 +28,16 @@ func test_bindings(data: Variant):
 	results_label.text += "Test - Sending: " + str(data) + "\n"
 	%CEF.get_node(BROWSER_NAME).js_emit("test_result", data)
 
-# ==============================================================================
+
 # Initialize CEF and create the GUI as HTML/JS/CSS page.
-# ==============================================================================
+
 func _ready():
 	initialize_cef()
 	results_label.text = "Godot Test Results:"
 
-# ==============================================================================
+
 # Initialize CEF and create the browser
-# ==============================================================================
+
 func initialize_cef():
 	# CEF initialization
 	if !%CEF.initialize({
@@ -58,34 +58,34 @@ func initialize_cef():
 	browser.connect("on_page_failed_loading", _on_page_failed_loading)
 	browser.resize(%TextureRect.get_size())
 
-# ==============================================================================
+
 # CEF Callback when a page has ended to load with success.
-# ==============================================================================
+
 func _on_page_loaded(browser):
 	print("The browser " + browser.name + " has loaded " + browser.get_url())
 
 	# Register our test method with the browser
 	browser.register_method(self, "test_bindings")
 
-# ==============================================================================
+
 # Callback when a page has ended to load with failure.
-# ==============================================================================
+
 func _on_page_failed_loading(_err_code, _err_msg, browser):
 	var error = "The browser " + browser.name + " did not load " + browser.get_url()
 	results_label.text = error
 	push_error(error)
 
-# ==============================================================================
+
 # Resize the browser when the texture rect is resized
-# ==============================================================================
+
 func _on_texture_rect_resized():
 	if browser == null:
 		return
 	browser.resize(%TextureRect.get_size())
 
-# ==============================================================================
+
 # Handle mouse events
-# ==============================================================================
+
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if browser == null:
 		return
@@ -118,8 +118,8 @@ func _on_texture_rect_gui_input(event: InputEvent) -> void:
 		browser.set_mouse_moved(event.position.x, event.position.y)
 	pass
 
-# ==============================================================================
+
 # CEF is implicitly updated by this function.
-# ==============================================================================
+
 func _process(_delta):
 	pass
