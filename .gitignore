@@ -11,3 +11,4 @@
 /cef_artifacts/cache
 /addons/gdcef/thirdparty
 *.log
+*.tmp

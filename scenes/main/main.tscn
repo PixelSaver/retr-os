@@ -2733,13 +2733,17 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k2fmo")
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99488074, 0.10105629, 0, -0.10105629, 0.99488074, 0, 0.104, 0.691)
+
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99828714, 0.058504906, 0, -0.058504906, 0.99828714, 0, 0.018732563, -0.0019930974)
 monitorable = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9998829, -0.01530594, 0, 0.01530594, 0.9998829, 0, 0.01184992, 0)
 mesh = SubResource("QuadMesh_vom5j")
-skeleton = NodePath("../../CameraManager/Mac/Camera3D")
+skeleton = NodePath("../../Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -3309,10 +3313,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 2.4)
 transform = Transform3D(0.7660445, 0.3213938, -0.5566704, 0, 0.86602545, 0.5, 0.64278764, -0.38302222, 0.66341406, 2.34105, -0.89146477, 1.3257442)
 
 [node name="Mac" type="Marker3D" parent="CameraManager"]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.2588191, 0, -0.25881907, 0.9659258, 0, 0.2588191, 0.9659258)
-
-[node name="Camera3D" type="Camera3D" parent="CameraManager/Mac"]
-transform = Transform3D(1, 0, 0, 0, 0.9979156, -0.06453231, 0, 0.06453231, 0.9979156, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99488074, 0.10105629, 0, -0.10105629, 0.99488074, 0, 0.104, 0.691)
 
 [connection signal="input_event" from="Area3D" to="Screen" method="_on_area_3d_input_event"]
 
