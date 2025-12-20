@@ -13,7 +13,7 @@ func _program_end() -> void:
 	
 func _program_ready() -> void:
 	hide()
-	var dialog = OSFileDialog.create(OSFileDialog.FileMode.OPEN_FILE)
+	var dialog = OSFileDialog.create(OSFileBrowser.FileMode.OPEN_FILE)
 	dialog.add_filter("Text Files", PackedStringArray(["txt"]))
 	dialog.add_filter("GDScript Files", PackedStringArray(["gd"]))
 	dialog.add_filter("All Files", PackedStringArray(["*"]))

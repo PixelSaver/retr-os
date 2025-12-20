@@ -118,7 +118,7 @@ func _open_file() -> void:
 		_do_open_file()
 
 func _do_open_file() -> void:
-	var dialog = OSFileDialog.create(OSFileDialog.FileMode.OPEN_FILE)
+	var dialog = OSFileDialog.create(OSFileBrowser.FileMode.OPEN_FILE)
 	dialog.add_filter("Text Files", PackedStringArray(["txt"]))
 	dialog.add_filter("GDScript Files", PackedStringArray(["gd"]))
 	dialog.add_filter("All Files", PackedStringArray(["*"]))
@@ -146,7 +146,7 @@ func _save_file() -> void:
 		_do_save_file(current_file_path)
 
 func _save_file_as() -> void:
-	var dialog = OSFileDialog.create(OSFileDialog.FileMode.SAVE_FILE)
+	var dialog = OSFileDialog.create(OSFileBrowser.FileMode.SAVE_FILE)
 	dialog.add_filter("Text Files", PackedStringArray(["txt"]))
 	dialog.add_filter("GDScript Files", PackedStringArray(["gd"]))
 	dialog.add_filter("All Files", PackedStringArray(["*"]))
