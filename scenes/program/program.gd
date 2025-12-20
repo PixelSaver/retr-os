@@ -32,9 +32,6 @@ func _program_start(args:Array=[]) -> void:
 ## By default, closes the window and frees the program
 func _program_end() -> void:
 	queue_free()
-	
-func _close_window():
-	close_window.emit()
 
 ## Override this in subclasses for per-frame logic
 func _program_process(delta: float) -> void:

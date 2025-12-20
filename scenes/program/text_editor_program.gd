@@ -276,7 +276,7 @@ func _show_unsaved_dialog() -> void:
 		"Save",
 		"Don't Save"
 	)
-	#dialog.add_button("Cancel", "cancel")
+	dialog.add_button("Cancel", "custom_cancel")
 	
 	Global.main_ui.window_container.add_child(dialog)
 	
@@ -290,7 +290,13 @@ func _show_unsaved_dialog() -> void:
 	)
 	
 	dialog.canceled.connect(func():
-		print("Cancelled")
+		# Emulate nothing changed so can_close() passes
+		is_modified = false
+		close_program_window()
+	)
+	
+	dialog.custom_action.connect(func(action:String):
+		if action != "custom_cancel": return
 		dialog.queue_free()
 	)
 

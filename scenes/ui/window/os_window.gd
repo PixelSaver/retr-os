@@ -149,6 +149,7 @@ func _on_window_button_pressed(but: WindowButton) -> void:
 			pass
 
 func _close_window() -> void:
+	print("Closing window")
 	if held_program:
 		held_program.end_program()
 		
