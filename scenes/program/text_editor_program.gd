@@ -276,7 +276,7 @@ func _show_unsaved_dialog() -> void:
 		"Save",
 		"Don't Save"
 	)
-	dialog.add_button("Cancel", "cancel")
+	#dialog.add_button("Cancel", "cancel")
 	
 	Global.main_ui.window_container.add_child(dialog)
 	
@@ -286,14 +286,13 @@ func _show_unsaved_dialog() -> void:
 		# Wait for save dialog if needed
 		await get_tree().process_frame
 		if not is_modified:
-			queue_free()
+			close_program_window()
 	)
 	
 	dialog.canceled.connect(func():
-		queue_free()
+		print("Cancelled")
+		dialog.queue_free()
 	)
-	
-	# Cancel does nothing - just closes the dialog
 
 func _show_unsaved_dialog_for_action(action: Callable) -> void:
 	var dialog = OSConfirmationDialog.create(

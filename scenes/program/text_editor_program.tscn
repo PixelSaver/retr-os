@@ -52,6 +52,9 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 placeholder_text = "Empty file..."
+caret_type = 1
+caret_blink = true
+caret_blink_interval = 0.5
 draw_tabs = true
 
 [node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]

@@ -89,7 +89,6 @@ func _ready() -> void:
 	
 	open_directory(current_dir)
 
-
 func _build_ui() -> void:
 	if show_toolbar:
 		toolbar = HBoxContainer.new()
@@ -215,8 +214,6 @@ func _build_ui() -> void:
 		item_count_label.text = "0 items"
 		status_bar.add_child(item_count_label)
 	
-
-
 func _update_drives() -> void:
 	if not drives_list:
 		return
@@ -489,6 +486,15 @@ func clear_filters() -> void:
 	filters.clear()
 	if filter_option:
 		_update_filter_list()
+
+func get_selected_file() -> String:
+	return selected_items[0] if selected_items.size() > 0 else ""
+
+func get_selected_files() -> PackedStringArray:
+	return selected_items
+
+func get_current_dir() -> String:
+	return current_dir
 
 func set_current_dir(path: String) -> void:
 	current_dir = path
