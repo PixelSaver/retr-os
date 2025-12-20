@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg0dpkfqho8xs"]
+[gd_scene load_steps=3 format=3 uid="uid://cg0dpkfqho8xs"]
 
 [ext_resource type="Script" uid="uid://mkvfkq0mhplf" path="res://scenes/program/browser_program.gd" id="1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsmuf"]
 
 [node name="BrowserProgram" type="Control"]
 texture_filter = 1
@@ -24,6 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hsmuf")
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -43,6 +46,7 @@ alignment = 1
 [node name="New" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "New empty document"
+theme_override_font_sizes/font_size = 12
 shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "New"
@@ -50,24 +54,33 @@ text = "New"
 [node name="Home" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to home page"
+theme_override_font_sizes/font_size = 12
 shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "Home"
 
-[node name="URL" type="Label" parent="Panel/VBox/HBox"]
+[node name="URL" type="RichTextLabel" parent="Panel/VBox/HBox"]
 layout_mode = 2
-mouse_filter = 0
+bbcode_enabled = true
 text = "URL:"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="TextEdit" type="LineEdit" parent="Panel/VBox/HBox"]
-custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Type your desired URl and then click on the go button"
+theme_override_font_sizes/font_size = 12
+context_menu_enabled = false
+emoji_menu_enabled = false
+caret_blink = true
+caret_blink_interval = 0.5
 
 [node name="Go" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Load a page given its URL"
+theme_override_font_sizes/font_size = 12
 shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "Go"
@@ -75,6 +88,7 @@ text = "Go"
 [node name="Refresh" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Reload the page"
+theme_override_font_sizes/font_size = 12
 shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "Refresh"
@@ -82,6 +96,7 @@ text = "Refresh"
 [node name="Prev" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to previous page"
+theme_override_font_sizes/font_size = 12
 shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "<"
@@ -89,19 +104,20 @@ text = "<"
 [node name="Next" type="Button" parent="Panel/VBox/HBox"]
 layout_mode = 2
 tooltip_text = "Go to next page"
+theme_override_font_sizes/font_size = 12
 shortcut_feedback = false
 shortcut_in_tooltip = false
 text = ">"
 
-[node name="TabBar" type="Label" parent="Panel/VBox/HBox"]
+[node name="TabBar" type="RichTextLabel" parent="Panel/VBox/HBox"]
 visible = false
 layout_mode = 2
-mouse_filter = 0
-text = "Opened:"
+bbcode_enabled = true
+text = "URL:"
+scroll_active = false
 
 [node name="BrowserList" type="OptionButton" parent="Panel/VBox/HBox"]
 visible = false
-custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 tooltip_text = "Select opened pages"
 
