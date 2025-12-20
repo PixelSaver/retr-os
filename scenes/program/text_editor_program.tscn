@@ -50,8 +50,9 @@ popup/item_0/id = 0
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
+mouse_filter = 1
 placeholder_text = "Empty file..."
+draw_tabs = true
 
 [node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)

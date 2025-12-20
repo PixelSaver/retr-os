@@ -26,7 +26,19 @@ func _program_ready() -> void:
 func _program_start(args:Array=[]) -> void:
 	print("Text Editor started")
 	text_edit.grab_focus()
-	_new_file()
+	
+	if args.size() > 0 and args[0] is String and not (args[0] as String).is_empty():
+		_load_file_from_path(args[0])
+	else:
+		_new_file()
+
+## Loading a file from path 
+func _load_file_from_path(path: String) -> void:
+	if FileAccess.file_exists(path):
+		_on_file_opened(path)
+	else:
+		_show_error("File not found: " + path)
+		_new_file()
 
 func _setup_ui() -> void:
 	text_edit.syntax_highlighter = null
@@ -36,7 +48,8 @@ func _setup_ui() -> void:
 
 func _setup_menus() -> void:
 	# File menu
-	var file_popup = file_menu.get_popup()
+	var file_popup := file_menu.get_popup()
+	file_popup.clear()
 	file_popup.add_item("New", FileMenuId.NEW)
 	file_popup.add_item("Open...", FileMenuId.OPEN)
 	file_popup.add_separator()
@@ -205,8 +218,16 @@ func _on_find_text(search_text: String) -> void:
 		return
 	
 	var text = text_edit.text
-	var start_pos = text_edit.get_caret_column()
-	var found_pos = text.find(search_text, start_pos)
+	var current_line = text_edit.get_caret_line()
+	var current_col = text_edit.get_caret_column()
+	
+	var lines = text.split("\n")
+	var char_pos = 0
+	for i in range(current_line):
+		char_pos += lines[i].length() + 1
+	char_pos += current_col
+	
+	var found_pos = text.find(search_text, char_pos)
 	
 	if found_pos == -1:
 		# Search from beginning

@@ -41,7 +41,7 @@ func _on_file_activated(path: String) -> void:
 				"Open",
 				"Cancel"
 			)
-			get_window().get_parent().add_child(confirm)
+			window_parent.add_child(confirm)
 			confirm.confirmed.connect(func():
 				Global.main_ui.run_program_by_id("text_editor", [path])
 			)
