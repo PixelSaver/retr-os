@@ -349,7 +349,7 @@ func _on_file_menu_pressed(id: int) -> void:
 			_save_file_as()
 		FileMenuId.CLOSE:
 			if can_close():
-				queue_free()
+				close_program_window()
 
 func _on_edit_menu_pressed(id: int) -> void:
 	match id:
