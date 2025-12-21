@@ -238,6 +238,22 @@ program_id = "empty"
 layout_mode = 2
 program_id = "empty"
 
+[node name="Shortcut37" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+program_id = "empty"
+
+[node name="Shortcut38" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+program_id = "empty"
+
+[node name="Shortcut39" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+program_id = "empty"
+
+[node name="Shortcut40" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+program_id = "empty"
+
 [node name="TaskBar" type="Panel" parent="Theme/GUI"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2

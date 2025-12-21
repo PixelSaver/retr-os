@@ -22,6 +22,7 @@ func get_popup() -> OSMenuButton:
 		popup_menu = OSMenuPopup.new()
 		# Add the popup to the root of the scene tree to ensure it floats above all controls
 		add_child(popup_menu)
+		popup_menu.top_level = true
 		
 		# Connect the popup's signals to our button's signals
 		popup_menu.id_pressed.connect(func(id):
@@ -131,11 +132,9 @@ func _on_menu_button_pressed() -> void:
 		# Initialize the popup
 		get_popup()
 		_rebuild_popup()
-		
-	# Position the popup below the button
-	var button_size = size
 	
-	popup_menu.position = button_size
+	
+	popup_menu.position = Vector2(0, size.y) + global_position
 	
 	# Set the popup to appear immediately (important for modal behavior)
 	popup_menu.visible = true

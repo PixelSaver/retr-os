@@ -101,7 +101,6 @@ func _on_kill_button_pressed(index: int) -> void:
 	var program_name = program_to_kill.title
 	
 	# Attempt to close gracefully first, then force-kill if needed.
-	# Since your TextEditorProgram has a can_close(), we'll use that.
 	if program_to_kill.can_close():
 		print("Attempting to close program: %s" % program_name)
 		program_to_kill.close_program_window()
