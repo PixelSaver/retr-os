@@ -11,12 +11,17 @@ class_name ProgramManagerProgram
 @export var status_bar: HBoxContainer
 @export var status_label: RichTextLabel
 
-@export_group("Column Tweaks")
-@export var col_icon: int = 40
-@export var col_name: int = 200
-@export var col_window: int = 150
-@export var col_status: int = 80
-@export var col_button: int = 100
+## 0 means shrink, anything above 0 means a ratio of stretching
+@export_group("Column Stretch Ratios")
+#@export var col_icon_ratio: float = 0
+@export var col_name_ratio: float = 2
+@export var col_window_ratio: float = 3
+@export var col_status_ratio: float = 1
+@export var col_button_ratio: float = 0
+
+@export_group("Minimum Sizes")
+#@export var col_icon_min: int = 50
+@export var col_button_min: int = 100
 
 var running_programs: Array[Program] = []
 
@@ -29,42 +34,61 @@ func _program_ready() -> void:
 	_update_program_list()
 
 func _create_header_row():
-	# Icon column
-	var icon_label = _create_header_label("", col_icon)
-	header_row.add_child(icon_label)
+	for child in header_row.get_children():
+		child.queue_free()
 	
-	# Name column
-	var name_label = _create_header_label("Program Name", col_name)
+	#TODO Add icon and window if more details / large window? 
+	# Icon column (fixed width, shrink)
+	#var icon_label = _create_header_label("", col_icon_ratio, col_icon_min)
+	#icon_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	#header_row.add_child(icon_label)
+	
+	# Name column (expands with ratio)
+	var name_label = _create_header_label("Program Name", col_name_ratio)
 	header_row.add_child(name_label)
 	
-	# Window column
-	var window_label = _create_header_label("Window Title", col_window)
-	header_row.add_child(window_label)
+	# Window column (expands with ratio - largest)
+	#var window_label = _create_header_label("Window Title", col_window_ratio)
+	#header_row.add_child(window_label)
 	
-	# Status column
-	var status_label = _create_header_label("Status", col_status)
+	# Status column (expands with ratio)
+	var status_label = _create_header_label("Status", col_status_ratio)
 	header_row.add_child(status_label)
 	
-	# Button column
-	var button_label = _create_header_label("Actions", col_button)
+	# Button column (fixed width, shrink)
+	var button_label = _create_header_label("Actions", col_button_ratio, col_button_min)
 	header_row.add_child(button_label)
 
-func _create_header_label(text: String, width: int) -> Label:
+func _create_header_label(text: String, stretch_ratio: float = 1.0, min_size: int = 0) -> Label:
 	var label = Label.new()
 	label.text = text
-	label.custom_minimum_size = Vector2(width, 0)
-	label.size_flags_horizontal = Control.SIZE_FILL
 	label.add_theme_font_size_override("font_size", 12)
+	
+	if stretch_ratio > 0:
+		# Expandable column
+		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		label.size_flags_stretch_ratio = stretch_ratio
+	else:
+		# Fixed-size column
+		label.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		label.custom_minimum_size = Vector2(min_size, 0)
 	
 	return label
 
-func _create_cell_label(text: String, width: int) -> Label:
+func _create_cell_label(text: String, stretch_ratio: float = 1.0, min_size: int = 0) -> Label:
 	var label = Label.new()
 	label.text = text
-	label.custom_minimum_size = Vector2(width, 0)
-	label.size_flags_horizontal = Control.SIZE_FILL
 	label.clip_text = true
+	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	
+	if stretch_ratio > 0:
+		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		label.size_flags_stretch_ratio = stretch_ratio
+	else:
+		label.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		label.custom_minimum_size = Vector2(min_size, 0)
+	
 	return label
 
 func _connect_signals() -> void:
@@ -116,47 +140,35 @@ func _update_program_list() -> void:
 func _create_program_list_entry(program: Program, index: int) -> PanelContainer:
 	var panel = PanelContainer.new()
 	
-	var style = StyleBoxFlat.new()
-	style.bg_color = Color(0.15, 0.15, 0.15, 0.5)
-	style.corner_radius_top_left = 4
-	style.corner_radius_top_right = 4
-	style.corner_radius_bottom_left = 4
-	style.corner_radius_bottom_right = 4
-	style.content_margin_left = 8
-	style.content_margin_right = 8
-	style.content_margin_top = 4
-	style.content_margin_bottom = 4
-	panel.add_theme_stylebox_override("panel", style)
-	
 	var hbox = HBoxContainer.new()
 	hbox.add_theme_constant_override("separation", 0)
 	panel.add_child(hbox)
 	
-	# Icon column
-	var icon_label = _create_cell_label(_get_program_icon(program), col_icon)
-	icon_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	hbox.add_child(icon_label)
+	# Icon column (fixed, centered)
+	#var icon_label = _create_cell_label(_get_program_icon(program), col_icon_ratio, col_icon_min)
+	#icon_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	#hbox.add_child(icon_label)
 	
-	# Name column
-	var _name = program.program_id if not program.program_id.is_empty() else program.get_class()
-	var _name_label = _create_cell_label(_name, col_name)
-	hbox.add_child(_name_label)
+	# Name column (expands)
+	var prog_name = program.program_id if not program.program_id.is_empty() else program.get_class()
+	var name_label = _create_cell_label(prog_name, col_name_ratio)
+	hbox.add_child(name_label)
 	
-	# Window title column
-	var window_title = program.title if not program.title.is_empty() else "Untitled"
-	var window_label = _create_cell_label(window_title, col_window)
-	window_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	hbox.add_child(window_label)
+	# Window title column (expands - largest)
+	#var window_title = program.title if not program.title.is_empty() else "Untitled"
+	#var window_label = _create_cell_label(window_title, col_window_ratio)
+	#hbox.add_child(window_label)
 	
-	# Status column
+	# Status column (expands)
 	var status = "Running" if program.is_running else "Paused"
-	var status_label = _create_cell_label(status, col_status)
+	var status_label = _create_cell_label(status, col_status_ratio)
 	status_label.add_theme_color_override("font_color", Color.GREEN if program.is_running else Color.YELLOW)
 	hbox.add_child(status_label)
 	
-	# Button column
+	# Button column (fixed)
 	var button_container = HBoxContainer.new()
-	button_container.custom_minimum_size = Vector2(col_button, 0)
+	button_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	button_container.custom_minimum_size = Vector2(col_button_min, 0)
 	button_container.add_theme_constant_override("separation", 4)
 	hbox.add_child(button_container)
 	
@@ -168,12 +180,10 @@ func _create_program_list_entry(program: Program, index: int) -> PanelContainer:
 	
 	# Hover
 	panel.mouse_entered.connect(func():
-		var hover_style = style.duplicate()
-		hover_style.bg_color = Color(0.2, 0.2, 0.25, 0.6)
-		panel.add_theme_stylebox_override("panel", hover_style)
+		panel.modulate.a = 1.1
 	)
 	panel.mouse_exited.connect(func():
-		panel.add_theme_stylebox_override("panel", style)
+		panel.modulate.a = 1.0
 	)
 	
 	return panel

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=75 format=3 uid="uid://drrt0lg0vdcoc"]
+[gd_resource type="Theme" load_steps=76 format=3 uid="uid://drrt0lg0vdcoc"]
 
 [ext_resource type="StyleBox" uid="uid://cqveew3fhjoni" path="res://assets/Themes/Classic95/Styles/Button/Disabled.tres" id="1_gh6ca"]
 [ext_resource type="StyleBox" uid="uid://dygx7je0yh5k" path="res://assets/Themes/Classic95/Styles/Button/Focused.tres" id="2_gpp0l"]
@@ -123,8 +123,18 @@ expand_margin_bottom = 3.0
 axis_stretch_vertical = 1
 region_rect = Rect2(0, 0, 10, 25)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqjei"]
-bg_color = Color(0.761719, 0.777344, 0.792969, 1)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_badhs"]
+load_path = "res://.godot/imported/Panel.png-315295b53a633c5f9432edaa38f95719.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_skoli"]
+texture = SubResource("CompressedTexture2D_badhs")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 6, 6)
 
 [sub_resource type="StyleBoxFlat" id="4"]
 bg_color = Color(0, 0, 0.501961, 1)
@@ -275,7 +285,7 @@ OptionButton/styles/hover = ExtResource("32_0sykt")
 OptionButton/styles/normal = ExtResource("32_0sykt")
 OptionButton/styles/pressed = ExtResource("33_bdlw1")
 Panel/styles/panel = ExtResource("34_i4sj2")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_wqjei")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_skoli")
 Popup/styles/panel = ExtResource("35_6hgxu")
 PopupMenu/colors/font_color = Color(0, 0, 0, 1)
 PopupMenu/colors/font_color_accel = Color(0, 0, 0, 0.596078)

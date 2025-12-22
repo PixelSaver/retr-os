@@ -20,11 +20,9 @@ header_row = NodePath("VBoxContainer/ProcessTable/Header")
 program_list = NodePath("VBoxContainer/ProcessTable/Scroll/ProgramList")
 status_bar = NodePath("VBoxContainer/StatusBar")
 status_label = NodePath("VBoxContainer/StatusBar/StatusLabel")
-col_icon = 20
-col_name = 100
-col_window = 70
-col_status = 40
-col_button = 50
+col_name_ratio = 1.0
+col_window_ratio = 0.0
+col_button_min = 75
 min_size = Vector2(280, -1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -34,7 +32,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
 
 [node name="Toolbar" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
@@ -53,9 +50,11 @@ text = "Kill All"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="Header" type="HBoxContainer" parent="VBoxContainer/ProcessTable"]
 layout_mode = 2
+alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/ProcessTable"]
 layout_mode = 2
@@ -67,6 +66,8 @@ size_flags_stretch_ratio = 6.0
 
 [node name="ProgramList" type="VBoxContainer" parent="VBoxContainer/ProcessTable/Scroll"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
