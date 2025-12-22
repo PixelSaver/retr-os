@@ -1,10 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bae27shjm0nv6"]
+[gd_scene load_steps=3 format=3 uid="uid://bae27shjm0nv6"]
 
 [ext_resource type="Theme" uid="uid://drrt0lg0vdcoc" path="res://assets/Themes/Classic95/win95.tres" id="1_a5njt"]
 [ext_resource type="Script" uid="uid://ba4c2n5thyuma" path="res://scenes/program/program_manager_program.gd" id="1_vlbmw"]
-[ext_resource type="FontFile" uid="uid://bwmaewfp4qvr3" path="res://assets/98.css/fonts/converted/ms_sans_serif_bold.woff2" id="3_cnn2g"]
 
-[node name="ProgramManagerProgram" type="Control"]
+[node name="ProgramManagerProgram" type="Control" node_paths=PackedStringArray("toolbar", "refresh_button", "kill_all_button", "process_table", "header_row", "program_list", "status_bar", "status_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +12,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_a5njt")
 script = ExtResource("1_vlbmw")
+toolbar = NodePath("VBoxContainer/Toolbar")
+refresh_button = NodePath("VBoxContainer/Toolbar/Refresh")
+kill_all_button = NodePath("VBoxContainer/Toolbar/KillAll")
+process_table = NodePath("VBoxContainer/ProcessTable")
+header_row = NodePath("VBoxContainer/ProcessTable/Header")
+program_list = NodePath("VBoxContainer/ProcessTable/Scroll/ProgramList")
+status_bar = NodePath("VBoxContainer/StatusBar")
+status_label = NodePath("VBoxContainer/StatusBar/StatusLabel")
+col_icon = 20
+col_name = 100
+col_window = 70
+col_status = 40
+col_button = 50
 min_size = Vector2(280, -1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -24,27 +36,40 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
+[node name="Toolbar" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 alignment = 2
 
-[node name="Control" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Refresh" type="Button" parent="VBoxContainer/Toolbar"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="KillAll" type="Button" parent="VBoxContainer/Toolbar"]
+layout_mode = 2
+text = "Kill All"
+
+[node name="ProcessTable" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer/ProcessTable"]
 layout_mode = 2
 
-[node name="RefreshButton" type="Button" parent="VBoxContainer/HBoxContainer/Control"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/ProcessTable"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_cnn2g")
-theme_override_font_sizes/font_size = 10
-text = "Refresh List"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="Scroll" type="ScrollContainer" parent="VBoxContainer/ProcessTable"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
 
-[node name="ProgramList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="ProgramList" type="VBoxContainer" parent="VBoxContainer/ProcessTable/Scroll"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+
+[node name="StatusBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StatusLabel" type="RichTextLabel" parent="VBoxContainer/StatusBar"]
+layout_mode = 2
