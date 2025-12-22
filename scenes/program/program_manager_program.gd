@@ -150,7 +150,7 @@ func _create_program_list_entry(program: Program, index: int) -> PanelContainer:
 	#hbox.add_child(icon_label)
 	
 	# Name column (expands)
-	var prog_name = program.program_id if not program.program_id.is_empty() else program.get_class()
+	var prog_name = program.title if not program.title.is_empty() else program.get_class()
 	var name_label = _create_cell_label(prog_name, col_name_ratio)
 	hbox.add_child(name_label)
 	
@@ -165,18 +165,11 @@ func _create_program_list_entry(program: Program, index: int) -> PanelContainer:
 	status_label.add_theme_color_override("font_color", Color.GREEN if program.is_running else Color.YELLOW)
 	hbox.add_child(status_label)
 	
-	# Button column (fixed)
-	var button_container = HBoxContainer.new()
-	button_container.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	button_container.custom_minimum_size = Vector2(col_button_min, 0)
-	button_container.add_theme_constant_override("separation", 4)
-	hbox.add_child(button_container)
-	
 	var end_button = Button.new()
 	end_button.text = "End Task"
-	end_button.custom_minimum_size = Vector2(90, 25)
+	end_button.custom_minimum_size = Vector2(col_button_min, 0)
 	end_button.pressed.connect(_on_kill_button_pressed.bind(index))
-	button_container.add_child(end_button)
+	hbox.add_child(end_button)
 	
 	# Hover
 	panel.mouse_entered.connect(func():

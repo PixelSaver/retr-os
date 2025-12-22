@@ -10,5 +10,7 @@
 /ignore*
 /cef_artifacts/cache
 /addons/gdcef/thirdparty
+/addons/todo_manager/
 *.log
 *.tmp
+
