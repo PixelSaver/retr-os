@@ -1,4 +1,4 @@
-[gd_scene load_steps=206 format=4 uid="uid://bjr78tl586o87"]
+[gd_scene load_steps=211 format=4 uid="uid://bjr78tl586o87"]
 
 [ext_resource type="Script" uid="uid://bebui2t15quet" path="res://scenes/main/main.gd" id="1_l3cfh"]
 [ext_resource type="Script" uid="uid://d4kghif8h5k10" path="res://scenes/ui/screen.gd" id="2_iuonh"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cvmxr87qork4q" path="res://assets/models/macintosh_128k/textures/knigi_baseColor.jpeg" id="18_7nlll"]
 [ext_resource type="PackedScene" uid="uid://d17hg6ip2814h" path="res://sonance/Scenes/radio.tscn" id="18_r4lks"]
 [ext_resource type="Script" uid="uid://bobpk0a3kbiyy" path="res://scenes/main/camera_manager.gd" id="19_necax"]
+[ext_resource type="Script" uid="uid://bxbe6xggi4vmp" path="res://scenes/main/change_screen_ui.gd" id="20_r4lks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hyk8p"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -2723,6 +2724,18 @@ shader_parameter/min_scanline_thickness = 0.5
 shader_parameter/aspect = 0.75
 shader_parameter/wobble_strength = 0.498000023655
 
+[sub_resource type="Gradient" id="Gradient_r4lks"]
+colors = PackedColorArray(1, 1, 1, 0.6509804, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pg34l"]
+gradient = SubResource("Gradient_r4lks")
+
+[sub_resource type="Gradient" id="Gradient_m4h2d"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.6392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p8abn"]
+gradient = SubResource("Gradient_m4h2d")
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_l3cfh")
 
@@ -3276,6 +3289,20 @@ metadata/_edit_group_ = true
 [node name="RadioShell" parent="Radio" index="9"]
 transform = Transform3D(-5.9604645e-08, 1, 4.371139e-08, 0, -4.3711385e-08, 0.9999997, 1, 5.9604645e-08, 3.5527137e-15, 0, -0.005944729, 0)
 
+[node name="CameraManager" type="Node3D" parent="." node_paths=PackedStringArray("marker_array")]
+script = ExtResource("19_necax")
+marker_array = [NodePath("Home"), NodePath("Radio"), NodePath("Mac")]
+metadata/_custom_type_script = "uid://bobpk0a3kbiyy"
+
+[node name="Home" type="Marker3D" parent="CameraManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 2.4)
+
+[node name="Radio" type="Marker3D" parent="CameraManager"]
+transform = Transform3D(0.7660445, 0.3213938, -0.5566704, 0, 0.86602545, 0.5, 0.64278764, -0.38302222, 0.66341406, 2.34105, -0.89146477, 1.3257442)
+
+[node name="Mac" type="Marker3D" parent="CameraManager"]
+transform = Transform3D(1, 0, 0, 0, 0.99488074, 0.10105629, 0, -0.10105629, 0.99488074, 0, 0.104, 0.691)
+
 [node name="Screen" type="SubViewport" parent="." node_paths=PackedStringArray("screen_mesh", "subviewport")]
 size = Vector2i(1195, 680)
 script = ExtResource("2_iuonh")
@@ -3301,19 +3328,33 @@ size = Vector2i(640, 512)
 
 [node name="MainUI" parent="Screen/Text/SubViewport" instance=ExtResource("2_k2fmo")]
 
-[node name="CameraManager" type="Node3D" parent="." node_paths=PackedStringArray("marker_array")]
-script = ExtResource("19_necax")
-marker_array = [NodePath("Home"), NodePath("Radio"), NodePath("Mac")]
-metadata/_custom_type_script = "uid://bobpk0a3kbiyy"
+[node name="3DUI" type="CanvasLayer" parent="."]
 
-[node name="Home" type="Marker3D" parent="CameraManager"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 2.4)
+[node name="ChangeScreenUI" type="HBoxContainer" parent="3DUI" node_paths=PackedStringArray("left_control", "right_control")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_r4lks")
+left_control = NodePath("Left")
+right_control = NodePath("Right")
 
-[node name="Radio" type="Marker3D" parent="CameraManager"]
-transform = Transform3D(0.7660445, 0.3213938, -0.5566704, 0, 0.86602545, 0.5, 0.64278764, -0.38302222, 0.66341406, 2.34105, -0.89146477, 1.3257442)
+[node name="Left" type="TextureRect" parent="3DUI/ChangeScreenUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("GradientTexture1D_pg34l")
 
-[node name="Mac" type="Marker3D" parent="CameraManager"]
-transform = Transform3D(1, 0, 0, 0, 0.99488074, 0.10105629, 0, -0.10105629, 0.99488074, 0, 0.104, 0.691)
+[node name="Center" type="Control" parent="3DUI/ChangeScreenUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+mouse_filter = 1
+
+[node name="Right" type="TextureRect" parent="3DUI/ChangeScreenUI"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("GradientTexture1D_p8abn")
 
 [connection signal="input_event" from="Area3D" to="Screen" method="_on_area_3d_input_event"]
 

@@ -7,3 +7,5 @@ enum States {
 	GUI,
 }
 var os_state : States = States.GUI
+
+signal cam_to_marker(marker_name:String)
