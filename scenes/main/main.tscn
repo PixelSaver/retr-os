@@ -3341,6 +3341,7 @@ left_control = NodePath("Left")
 right_control = NodePath("Right")
 
 [node name="Left" type="TextureRect" parent="3DUI/ChangeScreenUI"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("GradientTexture1D_pg34l")
@@ -3348,10 +3349,11 @@ texture = SubResource("GradientTexture1D_pg34l")
 [node name="Center" type="Control" parent="3DUI/ChangeScreenUI"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 6.0
+size_flags_stretch_ratio = 8.0
 mouse_filter = 1
 
 [node name="Right" type="TextureRect" parent="3DUI/ChangeScreenUI"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("GradientTexture1D_p8abn")

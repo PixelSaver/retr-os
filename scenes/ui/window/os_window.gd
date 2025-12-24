@@ -58,10 +58,14 @@ func custom_init(rect_size:Vector2=Vector2.ZERO, init_pos:Vector2=Vector2.ONE*-1
 		self.position = init_pos
 
 func _update_window_size(new_size:Vector2=size):
-	if new_size.x < min_size.x:
-		new_size.x = min_size.x
-	if new_size.y < min_size.y:
-		new_size.y = min_size.y
+	var viewport_size = get_viewport_rect().size
+	new_size.x = clampf(new_size.x, min_size.x, viewport_size.x)
+	new_size.y = clampf(new_size.y, min_size.y, viewport_size.y)
+	var out_of_bound = ( position + new_size ) / viewport_size
+	if out_of_bound.x > 1:
+		new_size.x = viewport_size.x - position.x
+	if out_of_bound.y > 1:
+		new_size.y = viewport_size.y - position.y
 	
 	# Set the size
 	size = new_size
@@ -335,11 +339,21 @@ func _handle_resizing() -> void:
 	var delta = mouse_pos - drag_start_offset
 	var new_pos = resize_start_rect.position
 	var new_size = resize_start_rect.size
+	
+	var par_size = get_parent_control().get_rect().size
+	var viewport_size = get_viewport_rect().size
+	## min x, min y, max x, max y
+	var margins = [4, 3, 4, 2] 
 
 	# Handle Horizontal Resizing
 	if active_resize_mode & ResizeEdge.LEFT:
 		var new_x = resize_start_rect.position.x + delta.x
 		var new_w = resize_start_rect.size.x - delta.x
+		
+		new_x = max(new_x, margins[0])
+		new_w = resize_start_rect.position.x + resize_start_rect.size.x - new_x
+		
+		
 		if new_w >= min_size.x:
 			new_pos.x = new_x
 			new_size.x = new_w
@@ -347,12 +361,20 @@ func _handle_resizing() -> void:
 			new_pos.x = resize_start_rect.position.x + (resize_start_rect.size.x - min_size.x)
 			new_size.x = min_size.x
 	elif active_resize_mode & ResizeEdge.RIGHT:
-		new_size.x = max(min_size.x, resize_start_rect.size.x + delta.x)
+		new_size.x = resize_start_rect.size.x + delta.x
+		new_size.x = max(min_size.x, new_size.x)
+		
+		new_size.x = min(new_size.x, par_size.x - new_pos.x - margins[2])
+
 
 	# Handle Vertical Resizing
 	if active_resize_mode & ResizeEdge.TOP:
 		var new_y = resize_start_rect.position.y + delta.y
 		var new_h = resize_start_rect.size.y - delta.y
+		
+		new_y = max(new_y, margins[1])
+		new_h = resize_start_rect.position.y + resize_start_rect.size.y - new_y
+		
 		if new_h >= min_size.y:
 			new_pos.y = new_y
 			new_size.y = new_h
@@ -360,7 +382,13 @@ func _handle_resizing() -> void:
 			new_pos.y = resize_start_rect.position.y + (resize_start_rect.size.y - min_size.y)
 			new_size.y = min_size.y
 	elif active_resize_mode & ResizeEdge.BOTTOM:
-		new_size.y = max(min_size.y, resize_start_rect.size.y + delta.y)
+		new_size.y = resize_start_rect.size.y + delta.y
+		new_size.y = max(min_size.y, new_size.y)
+		
+		
+		new_size.y = min(new_size.y, par_size.y - new_pos.y - margins[3])
+
+
 
 	# Apply changes
 	global_position = new_pos
