@@ -114,17 +114,13 @@ program_id = "program_manager"
 layout_mode = 2
 program_id = "browser"
 
-[node name="Shortcut6" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
-layout_mode = 2
-program_id = "website https://www.google.com Google"
-
 [node name="Shortcut7" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 program_id = "file_explorer"
 
 [node name="Shortcut8" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
-program_id = "empty"
+program_id = "help user://game_files/help.md"
 
 [node name="Shortcut9" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
@@ -251,6 +247,10 @@ layout_mode = 2
 program_id = "empty"
 
 [node name="Shortcut40" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
+layout_mode = 2
+program_id = "empty"
+
+[node name="Shortcut41" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
 program_id = "empty"
 

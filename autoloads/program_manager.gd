@@ -110,6 +110,15 @@ func _register_builtin_programs() -> void:
 			"description": "KILL THEM ALL"
 		}
 	)
+	register_program("help", 
+		preload("res://scenes/program/text_editor_program.tscn"),
+		{
+			"title": "Help",
+			"icon": "res://assets/win98_icons/png/help_question_mark-0.png",
+			"category": "Utilities",
+			"description": "Need help?"
+		}
+	)
 	if OS.has_feature("web"): return
 	register_program("browser", 
 		load("res://scenes/program/browser_program.tscn"),
@@ -133,7 +142,7 @@ func _register_builtin_programs() -> void:
 #"res://assets/win98_icons/png/console_prompt-0.png"
 #"res://assets/win98_icons/png/directory_closed-3.png"
 #
-#"res://assets/win98_icons/png/help_question_mark-0.png"
+#
 #"res://assets/win98_icons/png/recycle_bin_empty_cool-5.png"
 #"res://assets/win98_icons/png/recycle_bin_full_cool-5.png"
 #"res://assets/win98_icons/png/amplify.png"
@@ -142,7 +151,7 @@ func _register_builtin_programs() -> void:
 #"res://assets/win98_icons/png/certificate_excl-1.png"
 #"res://assets/win98_icons/png/envelope_closed-0.png"
 #"res://assets/win98_icons/png/envelope_open_sheet-0.png"
-#"res://assets/win98_icons/png/help_sheet-0.png"
+#
 #"res://assets/win98_icons/png/loudspeaker_rays-0.png"
 #"res://assets/win98_icons/png/loudspeaker_muted-0.png"
 #"res://assets/win98_icons/png/notepad-1.png"

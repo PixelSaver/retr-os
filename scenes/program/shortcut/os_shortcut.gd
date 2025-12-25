@@ -34,7 +34,7 @@ func _ready() -> void:
 func _setup_from_program_manager() -> void:
 	var info = ProgramManager.get_program_info(_id)
 	print(args)
-	if args.size() > 0 and args.size() <= 2:
+	if args.size() > 1 and args.size() <= 2:
 		label_text = args[1]
 		print(args)
 		return
