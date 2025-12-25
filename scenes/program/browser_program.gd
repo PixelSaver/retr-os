@@ -2,8 +2,8 @@ extends Program
 class_name OSBrowser
 
 # URL
-const DEFAULT_PAGE = "user://default_page.html"
-const SAVED_PAGE = "user://saved_page.html"
+const DEFAULT_PAGE = "user://game_files/default_page.html"
+const SAVED_PAGE = "user://game_files/saved_page.html"
 const HOME_PAGE = "https://lexm.leprd.space"
 const RADIO_PAGE = "http://streaming.radio.co/s9378c22ee/listen"
 #const RADIO_PAGE = "https://www.programmes-radio.com/fr/stream-e8BxeoRhsz9jY9mXXRiFTE/ecouter-KPJK"
@@ -35,7 +35,8 @@ func _program_start(args:Array=[]) -> void:
 	if args.size() > 0:
 		start_url = args[0]
 	
-	create_default_page()
+	# Skipped because it's created in MainUI
+	#create_default_page()
 
 	# See API.md for more details. CEF Configuration is:
 	# {

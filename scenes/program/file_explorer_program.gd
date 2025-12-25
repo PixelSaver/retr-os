@@ -34,6 +34,8 @@ func _on_file_activated(path: String) -> void:
 	match ext:
 		"txt", "md", "gd", "json", "xml", "log":
 			Global.main_ui.run_program_by_id("text_editor", [path])
+		"html":
+			Global.main_ui.run_program_by_id("browser", [path])
 		_:
 			# Ask what to open with
 			var confirm = OSConfirmationDialog.create(

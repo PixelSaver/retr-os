@@ -19,12 +19,13 @@ enum FileMode {
 enum Access {
 	RESOURCES,
 	USERDATA,
-	FILESYSTEM
+	FILESYSTEM,
+	GAME
 }
 
 # Config stuff
 var file_mode: FileMode = FileMode.OPEN_FILE
-var access_mode: Access = Access.FILESYSTEM
+var access_mode: Access = Access.GAME
 var show_hidden_files: bool = false
 var show_toolbar: bool = true
 var show_sidebar: bool = true
@@ -66,6 +67,7 @@ var item_count_label: Label
 var context_menu: PopupMenu
 
 static var global_favorites: PackedStringArray = [
+	"user://game_files",
 	"res://",
 	"user://",
 	#TODO Add a game file directory
@@ -73,6 +75,7 @@ static var global_favorites: PackedStringArray = [
 const OS_FILE_DIALOG = preload("uid://q0n1glrx3cko")
 
 func _ready() -> void:
+	_setup_game_dir()
 	_build_ui()
 	_setup_context_menu()
 	_connect_signals()
@@ -84,10 +87,18 @@ func _ready() -> void:
 				current_dir = "res://"
 			Access.USERDATA:
 				current_dir = "user://"
+			Access.GAME:
+				current_dir = "user://game_files"
 			Access.FILESYSTEM:
 				current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	
 	open_directory(current_dir)
+
+## Setup for the user://game_files directory
+func _setup_game_dir():
+	var dir = DirAccess.open("user://")
+	if dir.dir_exists("game_files"): return
+	dir.make_dir("game_files")
 
 func _build_ui() -> void:
 	if show_toolbar:
@@ -279,6 +290,8 @@ func _setup_initial_dir() -> void:
 				current_dir = "res://"
 			Access.USERDATA:
 				current_dir = "user://"
+			Access.GAME:
+				current_dir = "user://game_files"
 			Access.FILESYSTEM:
 				current_dir = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
 	
