@@ -120,7 +120,7 @@ program_id = "file_explorer"
 
 [node name="Shortcut8" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2
-program_id = "help user://game_files/help.md"
+program_id = "help user://game_files/HELP.md"
 
 [node name="Shortcut9" parent="Theme/GUI/WindowContainer/ShortcutContainer" instance=ExtResource("4_b1beo")]
 layout_mode = 2

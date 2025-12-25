@@ -34,7 +34,7 @@ func _program_start(args:Array=[]) -> void:
 
 ## Loading a file from path 
 func _load_file_from_path(path: String) -> void:
-	if FileAccess.file_exists(path):
+	if FileAccess.file_exists(path) or true:
 		_on_file_opened(path)
 	else:
 		_show_error("File not found: " + path)
@@ -142,7 +142,7 @@ func _do_open_file() -> void:
 	dialog.file_selected.connect(_on_file_opened)
 
 func _on_file_opened(path: String) -> void:
-	var file = FileAccess.open(path, FileAccess.READ)
+	var file = FileAccess.open((path), FileAccess.READ)
 	if file:
 		text_edit.text = file.get_as_text()
 		current_file_path = path

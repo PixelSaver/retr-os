@@ -33,15 +33,17 @@ func setup_game_files():
 		if err != OK:
 			push_error("Failed to create game_files directory: " + str(err))
 			return
+	await get_tree().process_frame
 	create_page("user://game_files/default_page.html", "<html><body bgcolor=\"white\"><h2>Welcome to Retr-OS!</h2><p>This is a generated page in game_files directory.</p></body></html>")
 	create_page("user://game_files/holidays.html", "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>Happy Holidays!</title><style>body{margin:0;padding:0;background:linear-gradient(to bottom,#1a1a2e 0%,#0f3460 100%);font-family:'Arial',sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden}.container{text-align:center;color:white}h1{font-size:4em;margin:0;animation:fadeInScale 2s ease-out}.snowflake{position:absolute;top:-10px;color:white;font-size:1.5em;animation:fall linear infinite;opacity:0.8}@keyframes fall{to{transform:translateY(100vh) rotate(360deg)}}@keyframes fadeInScale{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}.message{font-size:1.5em;margin-top:20px;animation:fadeIn 3s ease-in 1s both}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.star{display:inline-block;animation:twinkle 1.5s ease-in-out infinite}@keyframes twinkle{0%,100%{opacity:1}50%{opacity:0.3}}</style></head><body><div class=\"container\"><h1><span class=\"star\">*</span> Happy Holidays! <span class=\"star\">*</span></h1><p class=\"message\">Wishing you joy and warmth this season</p></div><script>function createSnowflake(){const snowflake=document.createElement('div');snowflake.classList.add('snowflake');snowflake.innerHTML='*';snowflake.style.left=Math.random()*100+'%';snowflake.style.animationDuration=(Math.random()*3+2)+'s';snowflake.style.fontSize=(Math.random()*1+0.5)+'em';document.body.appendChild(snowflake);setTimeout(()=>{snowflake.remove()},5000)}setInterval(createSnowflake,200)</script></body></html>")
 	
 	# Copy HELP.md
-	var src_path := "res://HELP.md"
+	#var src_path := "res://HELP.md"
 	var dst_path := "user://game_files/HELP.md"
-	var src := FileAccess.open(src_path, FileAccess.READ)
-	var content := src.get_as_text()
-	src.close()
+	#var src := FileAccess.open(src_path, FileAccess.READ)
+	#var content := src.get_as_text()
+	#src.close()
+	var content = "# Help\n\nTo enter a program, double click any of the shortcuts\n\nTo resize the window, click near the sides or the corners. The overlay for the mouse cursor is NOT consistent, so keep trying. \n\nTo move the window, click and drag on the title bar\n\nTo close a program, click the X button"
 	var dst := FileAccess.open(dst_path, FileAccess.WRITE)
 	dst.store_string(content)
 	dst.close()

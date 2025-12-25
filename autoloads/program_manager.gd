@@ -120,24 +120,24 @@ func _register_builtin_programs() -> void:
 		}
 	)
 	if OS.has_feature("web"): return
-	register_program("browser", 
-		load("res://scenes/program/browser_program.tscn"),
-		{
-			"title": "Pixel Browser",
-			"icon": "res://assets/win98_icons/png/world-2.png",
-			"category": "Utilities",
-			"description": "Big files to load this"
-		}
-	)
-	register_program("website", 
-		load("res://scenes/program/browser_program.tscn"),
-		{
-			"title": "Pixel Browser",
-			"icon": "res://assets/win98_icons/png/web_file-3.png",
-			"category": "Utilities",
-			"description": "Hopefully passes arguments correctly"
-		}
-	)
+	#register_program("browser", 
+		#load("res://scenes/program/browser_program.tscn"),
+		#{
+			#"title": "Pixel Browser",
+			#"icon": "res://assets/win98_icons/png/world-2.png",
+			#"category": "Utilities",
+			#"description": "Big files to load this"
+		#}
+	#)
+	#register_program("website", 
+		#load("res://scenes/program/browser_program.tscn"),
+		#{
+			#"title": "Pixel Browser",
+			#"icon": "res://assets/win98_icons/png/web_file-3.png",
+			#"category": "Utilities",
+			#"description": "Hopefully passes arguments correctly"
+		#}
+	#)
 
 #"res://assets/win98_icons/png/console_prompt-0.png"
 #"res://assets/win98_icons/png/directory_closed-3.png"

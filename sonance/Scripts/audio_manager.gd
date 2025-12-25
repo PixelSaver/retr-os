@@ -14,7 +14,7 @@ var stations_list: Array = [
 		"station_name": "Rock Radio",
 		"frequency": 60.0,
 		"range": 4.0,
-		"stream": preload("uid://i4s1ycrx8h5q")
+		"stream": preload("uid://bpcofeq0pti8c")
 	},
 	{
 		"station_name": "Talk Station",

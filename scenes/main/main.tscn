@@ -3286,9 +3286,6 @@ transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-
 transform = Transform3D(1.1914471, 0, -0.91129243, 0, 1.5, 0, 0.91129243, 0, 1.1914471, 2.9831579, -1.9038544, 0.46114874)
 metadata/_edit_group_ = true
 
-[node name="RadioShell" parent="Radio" index="9"]
-transform = Transform3D(-5.9604645e-08, 1, 4.371139e-08, 0, -4.3711385e-08, 0.9999997, 1, 5.9604645e-08, 3.5527137e-15, 0, -0.005944729, 0)
-
 [node name="CameraManager" type="Node3D" parent="." node_paths=PackedStringArray("marker_array")]
 script = ExtResource("19_necax")
 marker_array = [NodePath("Home"), NodePath("Radio"), NodePath("Mac")]
@@ -3341,7 +3338,6 @@ left_control = NodePath("Left")
 right_control = NodePath("Right")
 
 [node name="Left" type="TextureRect" parent="3DUI/ChangeScreenUI"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("GradientTexture1D_pg34l")
@@ -3353,11 +3349,8 @@ size_flags_stretch_ratio = 8.0
 mouse_filter = 1
 
 [node name="Right" type="TextureRect" parent="3DUI/ChangeScreenUI"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("GradientTexture1D_p8abn")
 
 [connection signal="input_event" from="Area3D" to="Screen" method="_on_area_3d_input_event"]
-
-[editable path="Radio"]
